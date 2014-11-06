@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="DLR" description="DMA Line Request Device Description" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="10" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/10">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.0"/>
+    <resourcesList name="ovrstat_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrstat/ln10" isResolved="true"/>
+    <resourcesList name="ovrclr_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrclr/ln10" isResolved="true"/>
+    <resourcesList name="lnen_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/lnen/ln10" isResolved="true"/>
+    <resourcesList name="srsel_rs" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/srsel1/rs10" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/in10" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/out10" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/int10" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="OVERRUN_INT10" description="" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/10/int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.10"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out10" description="DMA Line Request out 10" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/10/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in10" description="DMA Line Request in 10" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/10/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.14"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LN10" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/10/lnen_ln" maxValue="1" minValue="0" startPos="10" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Line 10 Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Disables the line"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Enables the line and resets a pending request"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="11" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/11">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.0"/>
+    <resourcesList name="ovrstat_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrstat/ln11" isResolved="true"/>
+    <resourcesList name="ovrclr_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrclr/ln11" isResolved="true"/>
+    <resourcesList name="lnen_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/lnen/ln11" isResolved="true"/>
+    <resourcesList name="srsel_rs" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/srsel1/rs11" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/in11" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/out11" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/int11" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="OVERRUN_INT11" description="" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/11/int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.10"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out11" description="DMA Line Request out 11" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/11/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in11" description="DMA Line Request in 11" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/11/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.14"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LN11" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/11/lnen_ln" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Line 11 Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Disables the line"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Enables the line and resets a pending request"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="8" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/8">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.0"/>
+    <resourcesList name="ovrstat_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrstat/ln8" isResolved="true"/>
+    <resourcesList name="ovrclr_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrclr/ln8" isResolved="true"/>
+    <resourcesList name="lnen_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/lnen/ln8" isResolved="true"/>
+    <resourcesList name="srsel_rs" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/srsel1/rs8" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/in8" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/out8" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/int8" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="OVERRUN_INT8" description="" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/8/int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.10"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out8" description="DMA Line Request out 8" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/8/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in8" description="DMA Line Request in 8" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/8/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.14"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LN8" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/8/lnen_ln" maxValue="1" minValue="0" startPos="8" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Line 8 Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Disables the line"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Enables the line and resets a pending request"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="9" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/9">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.0"/>
+    <resourcesList name="ovrstat_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrstat/ln9" isResolved="true"/>
+    <resourcesList name="ovrclr_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrclr/ln9" isResolved="true"/>
+    <resourcesList name="lnen_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/lnen/ln9" isResolved="true"/>
+    <resourcesList name="srsel_rs" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/srsel1/rs9" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/in9" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/out9" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/int9" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="OVERRUN_INT9" description="" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/9/int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.10"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out9" description="DMA Line Request out 9" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/9/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in9" description="DMA Line Request in 9" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/9/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.14"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LN9" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/9/lnen_ln" maxValue="1" minValue="0" startPos="9" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Line 9 Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Disables the line"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Enables the line and resets a pending request"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="2" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/2">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_9.app#//@consumed.0"/>
+    <resourcesList name="ovrstat_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrstat/ln2" isResolved="true"/>
+    <resourcesList name="ovrclr_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrclr/ln2" isResolved="true"/>
+    <resourcesList name="lnen_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/lnen/ln2" isResolved="true"/>
+    <resourcesList name="srsel_rs" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/srsel0/rs2" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/in2" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/out2" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/int2" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="OVERRUN_INT2" description="" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/2/int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_9.app#//@consumed.10"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out2" description="DMA Line Request out 2" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/2/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_9.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in2" description="DMA Line Request in 2" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/2/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_9.app#//@consumed.14"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LN2" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/2/lnen_ln" maxValue="1" minValue="0" startPos="2" stopPos="2" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_9.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Line 2 Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Disables the line"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Enables the line and resets a pending request"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="3" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/3">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_10.app#//@consumed.0"/>
+    <resourcesList name="ovrstat_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrstat/ln3" isResolved="true"/>
+    <resourcesList name="ovrclr_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrclr/ln3" isResolved="true"/>
+    <resourcesList name="lnen_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/lnen/ln3" isResolved="true"/>
+    <resourcesList name="srsel_rs" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/srsel0/rs3" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/in3" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/out3" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/int3" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="OVERRUN_INT3" description="" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/3/int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_10.app#//@consumed.10"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out3" description="DMA Line Request out 3" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/3/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_10.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in3" description="DMA Line Request in 3" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/3/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_10.app#//@consumed.14"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LN3" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/3/lnen_ln" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_10.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Line 3 Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Disables the line"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Enables the line and resets a pending request"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="0" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/0">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_11.app#//@consumed.0"/>
+    <resourcesList name="ovrstat_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrstat/ln0" isResolved="true"/>
+    <resourcesList name="ovrclr_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrclr/ln0" isResolved="true"/>
+    <resourcesList name="lnen_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/lnen/ln0" isResolved="true"/>
+    <resourcesList name="srsel_rs" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/srsel0/rs0" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/in0" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/out0" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/int0" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="OVERRUN_INT0" description="" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/0/int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_11.app#//@consumed.10"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out0" description="DMA Line Request out 0" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/0/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_11.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in0" description="DMA Line Request in 0" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/0/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_11.app#//@consumed.14"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LN0" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/0/lnen_ln" maxValue="1" minValue="0" startPos="0" stopPos="0" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_11.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Line 0 Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Disables the line"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Enables the line and resets a pending request"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="1" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/1">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_12.app#//@consumed.0"/>
+    <resourcesList name="ovrstat_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrstat/ln1" isResolved="true"/>
+    <resourcesList name="ovrclr_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/ovrclr/ln1" isResolved="true"/>
+    <resourcesList name="lnen_ln" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/lnen/ln1" isResolved="true"/>
+    <resourcesList name="srsel_rs" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/srsel0/rs1" isResolved="true"/>
+    <resourcesList name="in" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/in1" isResolved="true"/>
+    <resourcesList name="out" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/out1" isResolved="true"/>
+    <resourcesList name="int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dlr/0/int1" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="OVERRUN_INT1" description="" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/1/int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_12.app#//@consumed.10"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="out1" description="DMA Line Request out 1" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/1/out" signalType="SINGAL" direction="OUT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_12.app#//@consumed.12"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="in1" description="DMA Line Request in 1" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/1/in" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_12.app#//@consumed.14"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="LN1" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/1/lnen_ln" maxValue="1" minValue="0" startPos="1" stopPos="1" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_12.app#//@consumed.27"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Line 1 Enable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Disables the line"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Enables the line and resets a pending request"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RS10" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/10/srsel_rs" maxValue="15" minValue="0" startPos="8" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>GPDMA Request Source for Line 10</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RS2" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/2/srsel_rs" maxValue="15" minValue="0" startPos="8" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="13"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="13"/>
+    <toolTipHelpDescription>GPDMA Request Source for Line 2</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RS3" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/3/srsel_rs" maxValue="15" minValue="0" startPos="12" stopPos="15" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="13"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="13"/>
+    <toolTipHelpDescription>GPDMA Request Source for Line 3</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RS0" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/0/srsel_rs" maxValue="15" minValue="0" startPos="0" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="13"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="13"/>
+    <toolTipHelpDescription>GPDMA Request Source for Line 0</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RS11" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/11/srsel_rs" maxValue="15" minValue="0" startPos="12" stopPos="15" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>GPDMA Request Source for Line 11</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RS1" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/1/srsel_rs" maxValue="15" minValue="0" startPos="4" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="13"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="13"/>
+    <toolTipHelpDescription>GPDMA Request Source for Line 1</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RS8" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/8/srsel_rs" maxValue="15" minValue="0" startPos="0" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>GPDMA Request Source for Line 8</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="RS9" URI="http://www.infineon.com/0.1.28/peripheral/dlr/0/ch/9/srsel_rs" maxValue="15" minValue="0" startPos="4" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>GPDMA Request Source for Line 9</toolTipHelpDescription>
+  </provided>
+  <categoryDescription description="DMA Line Request Device Description" name="DMA Line Request"/>
+</ResourceModel:Peripheral>

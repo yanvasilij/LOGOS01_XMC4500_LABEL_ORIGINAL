@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage" displayName="Simple PWM Configurations" className="IfxGroupBox" controlId="1317547037968">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group4" displayName="Timer Mode Settings" className="IfxGroupBox" controlId="1317547058140">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwCountingMode" displayName="Counting Mode" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwCountingMode:Counting Mode" controlId="1317547069671">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwCompareMode" displayName="Compare mode" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwCompareMode:Compare mode" controlId="1317547084796">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwTimerMode" displayName="Timer Mode" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwTimerMode:Timer Mode" controlId="1317547075062">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwstart" displayName="StartApp" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwstart:StartApp" controlId="1324969485079">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="4"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group54" displayName="Timer Configurations" className="IfxGroupBox" controlId="1317548453609">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwResolution" displayName="CCU8 Resolution" className="IntegerType" paramName="app/pwmsp002/0/PWMSP002_irwResolution:CCU8 clock resolution" controlId="1317548475843" defaultType="nsec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="RIGHT"/>
+        <conversionType>nsec</conversionType>
+        <conversionType>usec</conversionType>
+        <conversionType>msec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irSelResolution" displayName="Actual Resoultion " readonly="true" className="IntegerType" constraint="" paramName="app/pwmsp002/0/PWMSP002_irSelResolution:Selected Resolution" controlId="1317551144796" defaultType="nsec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>nsec</conversionType>
+        <conversionType>usec</conversionType>
+        <conversionType>msec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwFreq" displayName="PWM frequency " className="IntegerType" paramName="app/pwmsp002/0/PWMSP002_irwFreq:PWM frequency" controlId="1317549218984" defaultType="Hz" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>Hz</conversionType>
+        <conversionType>KHz</conversionType>
+        <conversionType>MHz</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irSelPeriodReg" displayName="Period Register" readonly="true" className="IntegerType" constraint="CM.setEnable(false); " paramName="app/pwmsp002/0/PWMSP002_irSelPeriodReg:Period Register" controlId="1319440609461" defaultType="hex">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwDutyCycle" displayName="Duty Cycle" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/PWMSP002_erwCompareMode/0&quot;) == &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/PWMSP002_irwDutyCycle:Duty Cycle in %" controlId="1317551061437" defaultType="percentage" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>percentage</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_srTimerConcatenation" displayName="Selected Timer Setting" description="" readonly="true" className="StringType" constraint="" paramName="app/pwmsp002/0/PWMSP002_srTimerConcatenation:Selected Timer concatenation setting" controlId="1317551116546">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irCompareVal1" displayName="Compare 1" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/PWMSP002_erwCompareMode/1&quot;) == &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/PWMSP002_irCompareVal1:Compare value 1" controlId="1317551131015" defaultType="hex">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irCompareVal2" displayName="Compare  2" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/PWMSP002_erwCompareMode/1&quot;) == &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/PWMSP002_irCompareVal2:Compare value 2" controlId="1317551124078" defaultType="hex">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group81" displayName="Interrupt" className="IfxGroupBox" controlId="1324969495478">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwcomaprematch" displayName="Compare Match Interrupt" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwcomaprematch:Compare Match Interrupt" controlId="1324976195787">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwperiodmatch" displayName="Period Match Interrupt" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwperiodmatch:Period Match Interrupt" controlId="1324976199172">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwextstart" displayName="External start Interrupt" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwextstart:External start Interrupt" controlId="1324976219763">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwextstop" displayName="External stop Interrupt" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwextstop:External stop Interrupt" controlId="1324976223757">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwtrap" displayName="Trap Interrupt" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwtrap:Trap Interrupt" controlId="1324976226736">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="4"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page94" displayName="Signal Configurations" className="IfxGroupBox" controlId="1317547108296">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group43" displayName="Ext Start-Stop Configurations" className="IfxGroupBox" controlId="1317547120015">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwStartEdge" displayName="Start Trigger" className="EnumerationType" constraint="" paramName="app/pwmsp002/0/PWMSP002_erwStartEdge:External Start Trigger Edge" controlId="1317547146406">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwStopEdge" displayName="Stop Trigger" description="" className="EnumerationType" constraint="" paramName="app/pwmsp002/0/PWMSP002_erwStopEdge:External Stop Trigger Edge" controlId="1317547164484">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwExtStartConf" displayName="Start Configuration" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/PWMSP002_erwStartEdge/0&quot;) == &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/PWMSP002_erwExtStartConf:External Start Configuration" controlId="1317547173890">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSp002_erwExtStopConf" displayName="Stop Configurations" description="" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/PWMSP002_erwStopEdge/0&quot;) == &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/PWMSp002_erwExtStopConf:External Stop Configurations" controlId="1317547167968">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group61" displayName="Trap Configurations" className="IfxGroupBox" controlId="1317547324250">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwenabletrap" displayName="Trap Enable" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwenabletrap:Trap Enable" controlId="1350386258362">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwTrapLevel" displayName="Trap level" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwenabletrap/0&quot;) == &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}" paramName="app/pwmsp002/0/PWMSP002_erwTrapLevel:Trap level" controlId="1349094774203">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwTrapExit" displayName="Trap Exit Control" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwenabletrap/0&quot;) == &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}" paramName="app/pwmsp002/0/PWMSP002_erwTrapExit:Trap Exit Control" controlId="1349094855750">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwtrapexittime" displayName="Synchronisation Enable" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwenabletrap/0&quot;) == &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}" paramName="app/pwmsp002/0/pwmsp002_erwtrapexittime:Trap Exit Time" controlId="1350382280888">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group42" displayName="Passive Level" className="IfxGroupBox" controlId="1317547354328">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwOut0PassiveLevel" displayName="Direct Output" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwOut0PassiveLevel:Passive Level for direct output" controlId="1317547370140">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwOut1PassiveLevel" displayName="Inverted Output" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwOut1PassiveLevel:Passive Level for inverted output" controlId="1317547372312">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group53" displayName="Passive State" className="IfxGroupBox" controlId="1319539222098">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwOut0State" displayName="Direct Output" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwOut0State:Passive State for direct output" controlId="1319539142428">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwOut1State" displayName="Inverted Output" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwOut1State:Passive State for inverted output" controlId="1317547367437">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page62" displayName="Advanced PWM Configurations" className="IfxGroupBox" controlId="1317547387250">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group15" displayName="Dead Time" className="IfxGroupBox" controlId="1317551160734">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwDeadTimeConf" displayName="" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwDeadTimeConf:Dead Time Configurations" controlId="1317551169593">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwRiseDeadTime" displayName="Rising Time" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/PWMSP002_erwDeadTimeConf/0&quot;) != &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/PWMSP002_irwRiseDeadTime:Rising Dead Time" controlId="1317551178828" defaultType="usec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>usec</conversionType>
+        <conversionType>nsec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwFallDeadTime" displayName="Falling Time" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/PWMSP002_erwDeadTimeConf/0&quot;) != &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/PWMSP002_irwFallDeadTime:Falling Dead time" controlId="1317551183593" defaultType="usec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>usec</conversionType>
+        <conversionType>nsec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwselRiseDeadTime" displayName="Actual Rising Time" readonly="true" className="IntegerType" constraint="CM.setEnable(false); " paramName="app/pwmsp002/0/PWMSP002_irwselRiseDeadTime:Selected Rising Time" controlId="1319539708317" defaultType="usec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>usec</conversionType>
+        <conversionType>nsec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwselFallDeadTime" displayName="Actual Falling Time" readonly="true" className="IntegerType" constraint="CM.setEnable(false); " paramName="app/pwmsp002/0/PWMSP002_irwselFallDeadTime:Selected Falling Time" controlId="1319539716179" defaultType="usec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>usec</conversionType>
+        <conversionType>nsec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwselRiseDeadTimereg" displayName="Rise Value" readonly="true" className="IntegerType" paramName="app/pwmsp002/0/PWMSP002_irwselRiseDeadTimereg:Selected Rising Time register" controlId="1331845138199">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwselFallDeadTimereg" displayName="Fall Value" readonly="true" className="IntegerType" paramName="app/pwmsp002/0/PWMSP002_irwselFallDeadTimereg:Selected Falling Time register" controlId="1331845149649">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irseldeadtimeprescalar" displayName="Dead Time Prescalar" readonly="true" className="IntegerType" paramName="app/pwmsp002/0/PWMSP002_irseldeadtimeprescalar:Dead Time Prescalar" controlId="1325751728352" defaultType="hex">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group8" displayName="Dither" className="IfxGroupBox" controlId="1317551193687">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_erwDitherMode" displayName="Mode" className="EnumerationType" paramName="app/pwmsp002/0/PWMSP002_erwDitherMode:Dither Mode" controlId="1317551215078">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/PWMSP002_irwDitherComp" displayName="Compare Value" className="IntegerType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/PWMSP002_erwDitherMode/0&quot;) != &quot;1&quot;) {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(true); &#xD;&#xA;}else {&#xD;&#xA;    CM.setVisible(true); &#xD;&#xA;    CM.setEnable(false); &#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/PWMSP002_irwDitherComp:Dither compare value" controlId="1317551205000">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <conversionType>dec</conversionType>
+        <conversionType>hex</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page57" displayName="Pin Configurations" className="IfxGroupBox" controlId="1338809574224">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group47" displayName="Direct Output Pin Configuration" className="IfxGroupBox" controlId="1338809585974">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwdirectoutputpadenable" displayName="Output Enable" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwdirectoutputpadenable:Output Enable" controlId="1340635553364">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwdirectoutputpadclass" displayName="Pad Class" className="EnumerationType" constraint="if(CM.getSoftwareId().substring(0,2).compareTo(&quot;13&quot;)==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false);&#xD;&#xA;CM.setVisible(false);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwdirectoutputpadenable/0&quot;) == &quot;1&quot;)&#xD;&#xA;{&#xD;&#xA;&#x9;CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false);&#xD;&#xA;}&#xD;&#xA;}" paramName="app/pwmsp002/0/pwmsp002_erwdirectoutputpadclass:Direct Output Pad Class" controlId="1338809675067">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwdirectoutputpaddrivermode" displayName="Driver Mode" className="EnumerationType" constraint="if(CM.getSoftwareId().substring(0,2).compareTo(&quot;13&quot;)==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false);&#xD;&#xA;CM.setVisible(false);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwdirectoutputpadenable/0&quot;) == &quot;1&quot;)&#xD;&#xA;{&#xD;&#xA;&#x9;CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false);&#xD;&#xA;}&#xD;&#xA;}" paramName="app/pwmsp002/0/pwmsp002_erwdirectoutputpaddrivermode:Direct Output Driver Mode" controlId="1338809685192">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwdirectoutputpadchar" displayName="Output Characteristics" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwdirectoutputpadenable/0&quot;) == &quot;1&quot;)&#xD;&#xA;{&#xD;&#xA;&#x9;CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false)&#xD;&#xA;}" paramName="app/pwmsp002/0/pwmsp002_erwdirectoutputpadchar:Direct Output Characteristics" controlId="1340635765455">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group16" displayName="Inverted Output Pin Configuration" className="IfxGroupBox" controlId="1338809600755">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwinvertedoutputpadenable" displayName="Output Enable" className="EnumerationType" paramName="app/pwmsp002/0/pwmsp002_erwinvertedoutputpadenable:Output Enable" controlId="1340635625926">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwinvertedoutputpadclass" displayName="Pad Class" className="EnumerationType" constraint="if(CM.getSoftwareId().substring(0,2).compareTo(&quot;13&quot;)==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false);&#xD;&#xA;CM.setVisible(false);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwinvertedoutputpadenable/0&quot;) == &quot;1&quot;)&#xD;&#xA;{&#xD;&#xA;&#x9;CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false);&#xD;&#xA;}&#xD;&#xA;}" paramName="app/pwmsp002/0/pwmsp002_erwinvertedoutputpadclass:Inverted Output Pad Class" controlId="1338809792879">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwinvertedoutputpaddrivermode" displayName="Driver Mode" className="EnumerationType" constraint="if(CM.getSoftwareId().substring(0,2).compareTo(&quot;13&quot;)==0)&#xD;&#xA;{&#xD;&#xA;CM.setEnable(false);&#xD;&#xA;CM.setVisible(false);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwinvertedoutputpadenable/0&quot;) == &quot;1&quot;)&#xD;&#xA;{&#xD;&#xA;&#x9;CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false);&#xD;&#xA;}&#xD;&#xA;}" paramName="app/pwmsp002/0/pwmsp002_erwinvertedoutputpaddrivermode:Inverted Output Driver Mode" controlId="1338809817113">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/pwmsp002/0/pwmsp002_erwinvertedoutputpadchar" displayName="Output Characteristics" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/pwmsp002/0/pwmsp002_erwinvertedoutputpadenable/0&quot;) == &quot;1&quot;)&#xD;&#xA;{&#xD;&#xA;&#x9;CM.setEnable(true);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;    CM.setEnable(false)&#xD;&#xA;}&#xD;&#xA;" paramName="app/pwmsp002/0/pwmsp002_erwinvertedoutputpadchar:Inverted Output Characteristics" controlId="1340635777142">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

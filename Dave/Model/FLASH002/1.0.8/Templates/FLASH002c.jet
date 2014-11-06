@@ -1,0 +1,843 @@
+<%@ jet package="CodeGenerator" class="flash002c_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+
+/*CODE_BLOCK_BEGIN[FLASH002.c]*/
+ /*******************************************************************************
+ Copyright (c) 2014, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+                                                                              **
+ Redistribution and use in source and binary forms, with or without           **
+ modification,are permitted provided that the following conditions are met:   **
+                                                                              **
+ *Redistributions of source code must retain the above copyright notice,      **
+ this list of conditions and the following disclaimer.                        **
+ *Redistributions in binary form must reproduce the above copyright notice,   **
+ this list of conditions and the following disclaimer in the documentation    **
+ and/or other materials provided with the distribution.                       **
+ *Neither the name of the copyright holders nor the names of its contributors **
+ may be used to endorse or promote products derived from this software without**
+ specific prior written permission.                                           **
+                                                                              **
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+ ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+ LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+ SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+ CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+ POSSIBILITY OF SUCH DAMAGE.                                                  **
+                                                                              **
+ To improve the quality of the software, users are encouraged to share        **
+ modifications, enhancements or bug fixes with Infineon Technologies AG       **
+ dave@infineon.com).                                                          **
+                                                                              **
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC4000 Series                                         **
+**                                                                            **
+** COMPILER : GCC                                                             **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: Yes                                       **
+**                                                                            **
+** MODIFICATION DATE : Feb 17, 2014                                           **
+**                                                                            **
+*******************************************************************************/
+/*******************************************************************************
+**                      Author(s) Identity                                    **
+********************************************************************************
+**                                                                            **
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** RP         App Developer                                                   **
+*******************************************************************************/
+/* Revision History
+ *****************************************************************************
+ * Date           Version     Remarks
+ * 14-Dec-12    1.0.2      Initial Version
+ * 28-Jun-13	1.0.6      Generation the code for condition check in 
+ * 						   Flash002_EraseSector API based on the flash size.
+ * 17-Feb-14    1.0.8      Added support for XMC4108-Q48K64 device
+ */
+<% String AppBaseuri = "app/FLASH002/0";%>
+/**
+ * @file FLASH002.c
+ *
+ * @App Version FLASH002 <<%=app.getAppVersion(AppBaseuri) %>>
+ *
+ * @brief  Flash/PMU App implementation.
+ *
+ */
+/*******************************************************************************
+ ** INCLUDE FILES                                                             **
+ ******************************************************************************/
+#include <DAVE3.h>
+/*******************************************************************************
+**                      Private Macro Definitions                             **
+*******************************************************************************/
+
+#define FLASH002_FLASH_ERROR_MSK \
+	(FLASH_FSR_PFOPER_Msk | FLASH_FSR_SQER_Msk | FLASH_FSR_PROER_Msk |\
+	FLASH_FSR_VER_Msk)
+
+
+#define FLASH002_UNCACHED_LIMIT 0x0C0FFFFFU
+#define FLASH002_UNCACHED_SIZE  0x100000U
+#define FLASH002_SECTOR0_7_SIZE 0x4000U
+#define FLASH002_SECTOR0_7_MASK 0x3FFFU
+#define FLASH002_PAGE_MASK      0xFFU
+
+/*BMI string parameters*/
+#define FLASH002_BMI_OFFSET  ((2U*FLASH002_UCB_SIZE) + FLASH002_PAGE_SIZE)
+#define FLASH002_BMI_STR_SIZE      34U
+#define FLASH002_BMI_MAC_ADDR_LOC  4U
+#define FLASH002_BMI_MAC_ADDR_SIZE 6U
+#define FLASH002_BMI_IP_EXTN_LOC   10U
+#define FLASH002_BMI_IP_EXTN_SIZE  16U
+#define FLASH002_BMI_USB_SN_LOC    26U
+#define FLASH002_BMI_USB_SN_SIZE   4U
+#define FLASH002_BMI_CSUM_LOC      33U
+
+
+/*******************************************************************************
+**                      Private Type Definitions                              **
+*******************************************************************************/
+
+
+
+
+/*******************************************************************************
+**                 Private Function Declarations                              **
+*******************************************************************************/
+
+
+/*******************************************************************************
+**                      Global Constant Definitions                           **
+*******************************************************************************/
+
+
+
+/*******************************************************************************
+**                      Global Variable Definitions                           **
+*******************************************************************************/
+
+
+
+/*******************************************************************************
+**                      Private Constant Definitions                          **
+*******************************************************************************/
+
+
+
+/*******************************************************************************
+**                 Function like macro definitions                            **
+*******************************************************************************/
+#define M32(adr) (*((uint32_t *) (adr)))
+
+/*******************************************************************************
+**                      Private Function Definitions                           **
+*******************************************************************************/
+
+/*******************************************************************************
+**                      Public Function Definitions                           **
+*******************************************************************************/
+<% String flash002_device_name = null; %>
+<% int flash002_ab_type = 0; %>
+<% int flash002_k_type = 0; %>
+<% int flash002_flash_size = 0;%>
+<% flash002_device_name = app.getDeviceName().toLowerCase();%>
+<% flash002_ab_type = flash002_device_name.lastIndexOf("-");%>
+<% flash002_k_type = flash002_device_name.lastIndexOf("k");%>
+<% if(flash002_ab_type > 7){ %>
+<% flash002_flash_size = Integer.valueOf(flash002_device_name.substring(flash002_device_name.lastIndexOf("x")+1,flash002_device_name.lastIndexOf("-")));%>
+<% } else if(flash002_k_type > 10){ %>
+<% flash002_flash_size = Integer.valueOf(flash002_device_name.substring(flash002_device_name.lastIndexOf("k")+1));%>
+<% } else { %>
+<% flash002_flash_size = Integer.valueOf(flash002_device_name.substring(flash002_device_name.lastIndexOf("x")+1));%>
+<%}%>
+
+void FLASH002_Init()
+{
+  /* <<<DD_FLASH002_nonAPI_1>>> */
+  /*clear error status*/
+  M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0x000000F5U;   
+
+  <%int ui_count = 0;%>
+  <%if (app.getIntegerValue(AppBaseuri + "/pmu/fcon/esldis") == 1) { %>
+  /*Configure FCON register with options from UI*/
+  FLASH0->FCON |= \
+                     /*Disable external sleep*/ \
+              (uint32_t)(FLASH_FCON_ESLDIS_Msk
+  <%ui_count = ui_count + 1;%>
+  <%}%>
+  <%if (app.getIntegerValue(AppBaseuri + "/pmu/fcon/idle") == 1) {%>
+     <%if (ui_count == 0) {%>
+  /*Configure FCON register with options from UI*/
+  FLASH0->FCON |= \
+                  /*Enable dynamic flash idle*/ \
+                (uint32_t)(FLASH_FCON_IDLE_Msk
+     <%}%>
+     <%if (ui_count > 0){%> |\
+                  /*Enable dynamic flash idle*/ \
+                           FLASH_FCON_IDLE_Msk
+     <%}%>
+     <%ui_count = ui_count + 1;%>
+  <% } %>
+  <%if (app.getIntegerValue(AppBaseuri + "/pmu/fcon/voperm") == 1) { %>
+     <%if (ui_count == 0) {%>
+  /*Configure FCON register with options from UI*/
+  FLASH0->FCON |= \
+    /*Enable Verify/Operation error Interrupt*/ \
+              (uint32_t)(FLASH_FCON_VOPERM_Msk
+     <%}%>
+     <%if (ui_count > 0){%> |\
+    /*Enable Verify/Operation error Interrupt*/ \
+                         FLASH_FCON_VOPERM_Msk
+     <%}%>
+     <%ui_count = ui_count + 1;%>
+  <% } %>
+  <%if (app.getIntegerValue(AppBaseuri + "/pmu/fcon/sqerm") == 1) { %>
+     <%if (ui_count == 0) {%>
+  /*Configure FCON register with options from UI*/
+  FLASH0->FCON |= \
+            /*Enable Sequence error Interrupt*/ \
+               (uint32_t)(FLASH_FCON_SQERM_Msk
+     <%}%>
+     <%if (ui_count > 0){%> |\
+            /*Enable Sequence error Interrupt*/ \
+                          FLASH_FCON_SQERM_Msk
+     <%}%>
+     <%ui_count = ui_count + 1;%>
+  <% } %>
+  <%if (app.getIntegerValue(AppBaseuri + "/pmu/fcon/proerm") == 1) { %>
+     <%if (ui_count == 0) {%>
+  /*Configure FCON register with options from UI*/
+  FLASH0->FCON |= \
+          /*Enable Protection error Interrupt*/ \
+              (uint32_t)(FLASH_FCON_PROERM_Msk
+     <%}%>
+     <%if (ui_count > 0){%> |\
+          /*Enable Protection error Interrupt*/ \
+                         FLASH_FCON_PROERM_Msk
+     <%}%>
+     <%ui_count = ui_count + 1;%>
+  <% } %>
+  <%if (app.getIntegerValue(AppBaseuri + "/pmu/fcon/pfsberm") == 1) { %>
+     <%if (ui_count == 0) {%>
+  /*Configure FCON register with options from UI*/
+  FLASH0->FCON |= \
+          /*Enable Single bit error Interrupt*/ \
+             (uint32_t)(FLASH_FCON_PFSBERM_Msk
+     <%}%>
+     <%if (ui_count > 0){%> |\
+          /*Enable Single bit error Interrupt*/ \
+                        FLASH_FCON_PFSBERM_Msk
+     <%}%>
+     <%ui_count = ui_count + 1;%>
+  <% } %>
+  <%if (app.getIntegerValue(AppBaseuri + "/pmu/fcon/pfdberm") == 1) { %>
+     <%if (ui_count == 0) {%>
+  /*Configure FCON register with options from UI*/
+  FLASH0->FCON |= \
+          /*Enable Double bit error Interrupt*/ \
+             (uint32_t)(FLASH_FCON_PFDBERM_Msk
+     <%}%>
+     <%if (ui_count > 0){%> |\
+          /*Enable Double bit error Interrupt*/ \
+                        FLASH_FCON_PFDBERM_Msk
+     <%}%>
+     <%ui_count = ui_count + 1;%>
+  <% } %>
+  <%if (app.getIntegerValue(AppBaseuri + "/pmu/fcon/eobm") == 1) { %>
+     <%if (ui_count == 0) {%>
+  /*Configure FCON register with options from UI*/
+  FLASH0->FCON |= \
+               /*Enable End of Busy Interrupt*/ \
+                (uint32_t)(FLASH_FCON_EOBM_Msk
+     <%}%>
+     <%if (ui_count > 0){%> |\
+               /*Enable End of Busy Interrupt*/ \
+                           FLASH_FCON_EOBM_Msk
+     <%}%>
+     <%ui_count = ui_count + 1;%>
+  <% } %>
+  <%if (ui_count > 0)%>);
+  <%else {}%>
+}
+
+
+/*
+ *  This function executes a 'Clear Status' Command
+ *  A clear status command clears all error flags in the 
+ *  flash status register. It also clears the 'Erase State' and
+ *  'Programming State' flags in the flash status register.
+ */
+void FLASH002_ClearStatus(void)
+{
+  /* <<<DD_FLASH002_API_1>>>*/
+  M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0x000000F5U;  
+}
+
+/*
+ *  This function erases the contents of the given sector.
+ *  The Sector base address is taken as the argument.
+ */    
+status_t Flash002_EraseSector (uint32_t Address)
+{
+  status_t status = (uint32_t) FLASH002_ERROR;
+  /* <<<DD_FLASH002_API_2>>>*/
+  do
+  {
+    /*address shall be a valid sector start address*/
+    if((Address < FLASH002_UNCACHED_BASE)  ||\
+       ((Address & FLASH002_SECTOR0_7_MASK) != 0U)<% if(flash002_flash_size>=256){ %> ||\
+       ((Address >= (FLASH002_SECTOR8_BASE)) &&\
+         (!((Address == (FLASH002_SECTOR8_BASE))<% if(flash002_flash_size>=512){ %>  ||\
+           (Address == (FLASH002_SECTOR9_BASE)) <% if(flash002_flash_size>=768){ %> ||\
+           (Address == (FLASH002_SECTOR10_BASE))<% if(flash002_flash_size>=1024){ %> ||\
+           (Address == (FLASH002_SECTOR11_BASE))<%}}}%>)))<%}%>)
+    {
+      status = (uint32_t) FLASH002_INVALID_PARAM;
+      break;
+    }
+
+      /* If the sector start address is valid */
+    else
+    {
+      /* Clear the flash status register */
+      M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000F5U;
+      /* Erase sequence */
+      M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000AAU;
+      M32(FLASH002_UNCACHED_BASE + 0xAAA8U)=0x00000055U;
+      M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x00000080U;
+      M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000AAU;
+      M32(FLASH002_UNCACHED_BASE + 0xAAA8U)=0x00000055U;
+      M32(Address)=0x00000030U;
+      }
+
+    /*wait until the operation is complete*/
+    while (FLASH0->FSR & FLASH_FSR_PBUSY_Msk)
+    {
+      /*do nothing*/
+    }
+    /* Check if any error occurred during the operation*/
+    if((FLASH0->FSR & FLASH002_FLASH_ERROR_MSK) == 0U)
+    {
+      status = (uint32_t) DAVEApp_SUCCESS;
+    }
+  }while(0);
+  return status;
+}
+
+/*
+ *  The function programs one page of the Flash using
+ *  WritePage command
+ */
+status_t Flash002_WritePage (uint32_t Address, const uint32_t pBuf[])
+{
+  status_t status = (uint32_t) FLASH002_ERROR;
+  uint32_t i;
+   /* <<<DD_FLASH002_API_3>>> */
+
+  /*validate the Address*/
+  if ((Address < FLASH002_UNCACHED_BASE) || (Address > FLASH002_UNCACHED_LIMIT) || \
+       ((Address & FLASH002_PAGE_MASK) != 0U))
+  {
+    status = (uint32_t) FLASH002_INVALID_PARAM;
+  }
+  else
+  {
+    /* Clear the flash status register */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000F5U;
+    /* Enter page mode, program flash*/
+    M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x00000050U;
+    /* Load Assembly Buffer*/
+    for (i=0U; i <(FLASH002_PAGE_SIZE/8U); i++)
+    {
+      M32(FLASH002_UNCACHED_BASE + 0x55F0U) = pBuf[2U * i];
+      M32(FLASH002_UNCACHED_BASE + 0x55F4U) = pBuf[(2U* i) + 1U];
+    }
+
+    /*Launch the write Page command*/
+    M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000AAU;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U)=0x00000055U;
+    M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000A0U;
+    M32(Address)=0x000000AAU;
+
+    /*wait until the operation is complete*/
+    while (FLASH0->FSR & FLASH_FSR_PBUSY_Msk)
+    {
+      /*do nothing*/
+    }
+    /* Check if any error occurred during the operation*/
+    if((FLASH0->FSR & FLASH002_FLASH_ERROR_MSK) == 0U)
+    {
+      status = (uint32_t) DAVEApp_SUCCESS;
+    }
+  }
+  return status;
+}
+
+/*
+ *  This function erases a User Control Block (UCB)
+ */
+
+status_t Flash002_EraseUCB(uint32_t UserLevel)
+{
+  status_t status = (uint32_t)FLASH002_ERROR;
+  /* <<<DD_FLASH002_API_4>>>*/
+  if(UserLevel > 2U)
+  {
+    status = (uint32_t) FLASH002_INVALID_PARAM;
+  }
+  else
+  {
+    /* Clear status flag */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xF5U;
+
+    /* UCB erase command sequence */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0x80U;
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+    M32(FLASH002_UNCACHED_BASE + (UserLevel * FLASH002_UCB_SIZE)) = 0xC0U;
+
+    /*wait until the operation is complete*/
+    while (FLASH0->FSR & FLASH_FSR_PBUSY_Msk)
+    {
+      /*do nothing*/
+    }
+    /* Check if any error occurred during the operation*/
+    if((FLASH0->FSR & FLASH002_FLASH_ERROR_MSK) == 0U)
+    {
+      status = (uint32_t) DAVEApp_SUCCESS;
+    }
+  }
+  return status;
+}
+
+
+/*
+ * This function disables global read protection temporarily.
+ */
+
+status_t Flash002_DisableGlobalReadProtection(uint32_t PW0, uint32_t PW1)
+{
+  status_t status = (uint32_t) FLASH002_ERROR;
+  /* <<<DD_FLASH002_API_5>>> */
+  /* Clear the flash status register */
+  M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000F5U;
+  /* sequence to disable global read protection */
+  M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+  M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+  M32(FLASH002_UNCACHED_BASE + 0x553CU) = 0x00U;
+  M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = PW0;
+  M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = PW1;
+  M32(FLASH002_UNCACHED_BASE + 0x5558U) = 0x08U;
+  /* Check the status of the read protection unlock*/
+  if((FLASH0->FSR & FLASH_FSR_RPRODIS_Msk) != 0U)
+  {
+    status = (uint32_t) DAVEApp_SUCCESS;
+  }
+  return status;
+}
+
+
+/*
+ * This function disables write protection temporarily.
+ *
+ */
+status_t Flash002_DisableSectorWriteProtection
+(uint32_t UserLevel, uint32_t PW0, uint32_t PW1)
+{
+  status_t status = (uint32_t) FLASH002_ERROR;
+  /* <<<DD_FLASH002_API_6>>> */
+
+  if (UserLevel > 1U)
+  {
+    status = (uint32_t) FLASH002_INVALID_PARAM;
+  }
+  else
+  {
+    /* Clear the flash status register */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000F5U;
+    /* sequence to disable write protection */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+    M32(FLASH002_UNCACHED_BASE + 0x553CU) = UserLevel;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = PW0;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = PW1;
+    M32(FLASH002_UNCACHED_BASE + 0x5558U) = 0x05U;
+    /* Check the status of the write protection unlock */
+    if (UserLevel == 0U) 
+    {
+      if((FLASH0->FSR & FLASH_FSR_WPRODIS0_Msk) != 0U)
+      {
+        status = (uint32_t) DAVEApp_SUCCESS;
+      }
+    }
+    else /*UserLevel == 1*/
+    {
+      if((FLASH0->FSR & FLASH_FSR_WPRODIS1_Msk) != 0U)
+      {
+        status = (uint32_t) DAVEApp_SUCCESS;
+      }
+    }
+  }
+  return status;
+}
+
+
+/*
+ *  This function resumes protection if it had been disabled temporarily
+ */
+status_t Flash002_ResumeProtection()
+{
+  status_t status = (uint32_t) FLASH002_ERROR;
+  /* <<<DD_FLASH002__API_7>>> */
+  /*resume protection command*/
+  M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x0000005EU;
+  /*verify that protection is resumed*/
+  if ((FLASH0->FSR & (FLASH_FSR_WPRODIS0_Msk | FLASH_FSR_WPRODIS1_Msk |\
+          FLASH_FSR_RPRODIS_Msk )) == 0U)
+  {
+    status = (uint32_t) DAVEApp_SUCCESS;
+  }
+  return status;
+}
+
+
+/**
+ * This function Configures Sector write protection and/or
+ * global read protection.
+ *
+ */
+status_t Flash002_ConfigureProtection
+(uint32_t UserLevel, uint32_t PW0, uint32_t PW1,
+   FLASH002ProtectionFlags_Type ProtectionFlags)
+{
+  /* NOTE: the array is not initialized here to avoid calling memcpy
+   * since we may want to dynamically load this function to RAM, we shall
+   * avoid linking to other functions
+   */
+  uint32_t UCBPageContent[FLASH002_PAGE_SIZE/4U];
+
+  status_t status = (uint32_t) FLASH002_ERROR;
+  uint32_t i = 0U; /*for simple loop counters*/  
+
+  /* <<<DD_FLASH002__API_8>>> */
+  if(UserLevel > 2U)
+  {
+    status = (uint32_t)FLASH002_INVALID_PARAM;
+  }
+  else
+  {
+    /*clear the array before filling in*/
+    for (i = 0U; i < (FLASH002_PAGE_SIZE/4U); i++)
+    {
+      UCBPageContent[i] = 0U;
+    }
+
+    /* Protection flag - indicates which all sectors needs to be write
+     * protected and/or global read protection
+     */
+    UCBPageContent[0] = (uint32_t) ProtectionFlags;
+    /* And the copy of it */
+    UCBPageContent[2] = (uint32_t) ProtectionFlags;
+
+    /* copy the passwords and their copies*/
+    UCBPageContent[4] = PW0;
+    UCBPageContent[5] = PW1;
+    UCBPageContent[6] = PW0;
+    UCBPageContent[7] = PW1;
+
+
+    /* Enter page mode command */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0x50U;
+
+    /* Load Assembly Buffer with protection info*/
+    for (i = 0U; i < (FLASH002_PAGE_SIZE/8U); i++)
+    {
+      M32(FLASH002_UNCACHED_BASE + 0x55F0U) = UCBPageContent[2U * i];
+      M32(FLASH002_UNCACHED_BASE + 0x55F4U) = UCBPageContent[(2U* i) + 1U];
+    }
+    /** Write Page command - for programming the UCB page*/
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xC0U;
+    M32(FLASH002_UNCACHED_BASE + (UserLevel * FLASH002_UCB_SIZE)) = 0xAAU;
+
+
+    /*wait until the operation is complete*/
+    while ((FLASH0->FSR & FLASH_FSR_PBUSY_Msk) != 0U)
+    {
+      /*do nothing*/
+    }
+    /* Check if any error occurred during the operation*/
+    if((FLASH0->FSR & FLASH002_FLASH_ERROR_MSK) == 0U)
+    {
+      status = (uint32_t) DAVEApp_SUCCESS;
+    }
+  }
+  return status;
+}
+
+/**
+ * This function can be used to verify protection configured in UCBs before
+ * the protection is confirmed.
+ */
+status_t Flash002_VerifyProtection
+(uint32_t UserLevel, uint32_t PW0, uint32_t PW1,
+   FLASH002ProtectionFlags_Type ProtectionFlags)
+{
+  status_t status = (uint32_t) DAVEApp_SUCCESS;
+  uint32_t procon_reg = 0U;
+
+  /* <<<DD_FLASH002__API_9>>> */
+  switch (UserLevel)
+  {
+    case 0U:
+      procon_reg = FLASH0->PROCON0;
+      break;
+    case 1U:
+      procon_reg = FLASH0->PROCON1;
+      break;
+    default:
+      procon_reg = FLASH0->PROCON2;
+      break;
+  }
+  if (procon_reg != (uint32_t) ProtectionFlags)
+  {
+    status = (uint32_t) FLASH002_ERROR;
+  }
+
+  /* Clear the flash status register */
+  M32(FLASH002_UNCACHED_BASE + 0x5554U)=0x000000F5U;
+  /*Disable Write protection using the provided password
+   and verify FSR.WPRODISx if sector write protection is configured*/
+  if ((UserLevel < 2U) && \
+  (((uint32_t)ProtectionFlags & (uint32_t)(~(uint32_t)FLASH002_PROT_RD_GLOBAL)) != 0U))
+  {
+    /* sequence to disable write protection */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+    M32(FLASH002_UNCACHED_BASE + 0x553CU) = UserLevel;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = PW0;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = PW1;
+    M32(FLASH002_UNCACHED_BASE + 0x5558U) = 0x05U;
+    /* Check the status of the write protection unlock */
+    if (UserLevel == 0U) 
+    {
+      if((FLASH0->FSR & FLASH_FSR_WPRODIS0_Msk) == 0U)
+      {
+        status = (uint32_t) FLASH002_ERROR;
+      }
+    }
+    else  /*(UserLevel == 1U)*/
+    {
+      if((FLASH0->FSR & FLASH_FSR_WPRODIS1_Msk) == 0U)
+      {
+        status = (uint32_t) FLASH002_ERROR;
+      }
+    }
+  }
+
+  /*Disable read protection using the provided password
+   and verify FSR.RDPRODIS if global read protection is configured*/
+  if ((UserLevel == 0U) && \
+  (((uint32_t)ProtectionFlags & (uint32_t)FLASH002_PROT_RD_GLOBAL) != 0U))
+  {
+    /* sequence to disable global read protection */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+    M32(FLASH002_UNCACHED_BASE + 0x553CU) = 0x00U;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = PW0;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = PW1;
+    M32(FLASH002_UNCACHED_BASE + 0x5558U) = 0x08U;
+    /*check if unlock is successful*/
+    if ((FLASH0->FSR & FLASH_FSR_RPRODIS_Msk) == 0U)
+    {
+      status = (uint32_t) FLASH002_ERROR;
+    }
+  }
+  
+  return status;
+}
+
+/**
+ * This function can be used to configure the BMI (Boot Mode Index)
+ * in page1 of UCB2
+ */
+status_t Flash002_ConfigureBMI (const FLASH002BMIString_Type *BMIString)
+{
+  status_t status = (uint32_t) FLASH002_ERROR;
+  /* NOTE: the array is not initialized here to avoid calling memcpy
+   * since we may want to dynamically load this function to RAM, we shall
+   * avoid linking to other functions
+   */
+  uint8_t UCBPageBytes[FLASH002_PAGE_SIZE];
+  uint32_t i; /*for simple loop counters*/
+  uint8_t xor_csum = 0U;
+  uint32_t BMIWord;
+
+  /* <<<DD_FLASH002__API_10>>> */
+  /*clear the array before filling in*/
+  for (i = 0U; i < (FLASH002_PAGE_SIZE); i++)
+  {
+    UCBPageBytes[i] = 0U;
+  }  
+  
+  
+  /* BMI word - the boot options and BMI flags
+   */
+  BMIWord = ((uint32_t)(BMIString->BMIFlags)) | \
+               ((uint32_t)(BMIString->BootMode));
+
+  UCBPageBytes[0] = (uint8_t)(BMIWord & 0xFFUL);
+  UCBPageBytes[1] = (uint8_t)((BMIWord & 0xFF00UL) >> 8U);
+  UCBPageBytes[2] = (uint8_t)((BMIWord & 0xFF0000UL) >> 16U);
+  UCBPageBytes[3] = (uint8_t)((BMIWord & 0xFF000000UL) >> 24U);
+  
+  /* copy the MAC addr extension*/
+  for (i = 0U; i < FLASH002_BMI_MAC_ADDR_SIZE; i++)
+  {
+    UCBPageBytes [FLASH002_BMI_MAC_ADDR_LOC + i] = \
+                                       BMIString->MACAddrExtn[i];
+  }
+  
+  /*copy the Ethernet IP extension*/
+  for (i = 0U; i < FLASH002_BMI_IP_EXTN_SIZE; i++)
+  {
+    UCBPageBytes [FLASH002_BMI_IP_EXTN_LOC + i] = \
+                                       BMIString->EthernetIPExtn[i];
+  }
+  
+  /*copy the USB serial number*/
+  for (i = 0U; i < FLASH002_BMI_USB_SN_SIZE; i++)
+  {
+    UCBPageBytes [FLASH002_BMI_USB_SN_LOC + i] = \
+                                       BMIString->USBSerialNumber[i];
+  }
+  
+  /*calculate the XOR checksum and copy to the string*/
+  xor_csum = 0U;
+  for (i = 0U; i < (FLASH002_BMI_STR_SIZE - 1U); i++)
+  {
+     xor_csum ^= UCBPageBytes[i];
+  }
+
+  UCBPageBytes [FLASH002_BMI_CSUM_LOC] = \
+                                       xor_csum;
+
+
+  /* Enter page mode command */
+  M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0x50U;
+
+  /* Load Assembly Buffer with BMI info*/
+  for (i = 0U; i < (FLASH002_PAGE_SIZE/8U); i++)
+  {
+    M32(FLASH002_UNCACHED_BASE + 0x55F0U) = (uint32_t) \
+                    (((uint32_t) UCBPageBytes[8U*i]) | \
+      (((uint32_t) UCBPageBytes[(8U*i) + 1U]) << 8U) | \
+     (((uint32_t) UCBPageBytes[(8U*i) + 2U]) << 16U) | \
+     (((uint32_t) UCBPageBytes[(8U*i) + 3U]) << 24U));       
+    
+    M32(FLASH002_UNCACHED_BASE + 0x55F4U) = (uint32_t) \
+             (((uint32_t) UCBPageBytes[(8U*i) + 4U]) | \
+      (((uint32_t) UCBPageBytes[(8U*i) + 5U]) << 8U) | \
+     (((uint32_t) UCBPageBytes[(8U*i) + 6U]) << 16U) | \
+     (((uint32_t) UCBPageBytes[(8U*i) + 7U]) << 24U));   
+  }
+  /* Write Page command - for programming the UCB page*/
+  M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+  M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+  M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xC0U;
+  M32(FLASH002_UNCACHED_BASE + FLASH002_BMI_OFFSET) = 0xAAU;
+
+  /*wait until the operation is complete*/
+  while ((FLASH0->FSR & FLASH_FSR_PBUSY_Msk) != 0U)
+  {
+    /*do nothing*/
+  }
+  /* Check if any error occurred during the operation*/
+  if((FLASH0->FSR & FLASH002_FLASH_ERROR_MSK) == 0U)
+  {
+    status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  return status;
+}  
+
+/**
+ * This function Confirms the protection configured in the User Control Blocks.
+ */
+status_t Flash002_ConfirmProtection (uint32_t UserLevel)
+{
+  /* NOTE: the array is not initialized here to avoid calling memcpy
+   * since we may want to dynamically load this function to RAM, we shall
+   * avoid linking to other functions
+   */
+  uint32_t UCBPageContent[FLASH002_PAGE_SIZE/4U];
+
+  status_t status = (uint32_t)FLASH002_ERROR;
+  uint32_t i = 0U; /*for simple loop counters*/
+
+  /* <<<DD_FLASH002__API_11>>> */
+  if(UserLevel > 2U)
+  {
+    status = (uint32_t)FLASH002_INVALID_PARAM;
+  }
+
+  else
+  {
+    /*clear the array before filling in*/
+    for (i = 0U; i < (FLASH002_PAGE_SIZE/4U); i++)
+    {
+      UCBPageContent[i] = 0U;
+    }
+    /* Confirmation code and copy*/
+    UCBPageContent[0] = 0x8AFE15C3U;
+    UCBPageContent[2] = 0x8AFE15C3U;
+    /* Enter page mode command */
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0x50U;
+
+    /* Load Assembly Buffer with protection info*/
+    for (i = 0U; i < (FLASH002_PAGE_SIZE/8U); i++)
+    {
+      M32(FLASH002_UNCACHED_BASE + 0x55F0U) = UCBPageContent[2U * i];
+      M32(FLASH002_UNCACHED_BASE + 0x55F4U) = UCBPageContent[(2U * i) + 1U];
+    }
+    /* Write Page command - for programming the UCB page*/
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xAAU;
+    M32(FLASH002_UNCACHED_BASE + 0xAAA8U) = 0x55U;
+    M32(FLASH002_UNCACHED_BASE + 0x5554U) = 0xC0U;
+    /* Confirmation code is written to Page-2 of the UCB*/
+    M32(FLASH002_UNCACHED_BASE + (2U * FLASH002_PAGE_SIZE) +\
+        (UserLevel * FLASH002_UCB_SIZE) ) = 0xAAU;
+
+    /*wait until the operation is complete*/
+    while ((FLASH0->FSR & FLASH_FSR_PBUSY_Msk) != 0U)
+    {
+      /*do nothing*/
+    }
+    /* Check if any error occurred during the operation*/
+    if((FLASH0->FSR & FLASH002_FLASH_ERROR_MSK) == 0U)
+    {
+      status = (uint32_t) DAVEApp_SUCCESS;
+    }
+  }
+
+  return status;
+
+}
+/*CODE_BLOCK_END*/
+
+
+

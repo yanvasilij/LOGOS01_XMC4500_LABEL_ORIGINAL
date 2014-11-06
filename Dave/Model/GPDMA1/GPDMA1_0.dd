@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="GPDMA1" description="GPDMA1 Device Description" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="2" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.1"/>
+    <resourcesList name="sar" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sar2" isResolved="true"/>
+    <resourcesList name="dar" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dar2" isResolved="true"/>
+    <resourcesList name="ctlh" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/ctlh2" isResolved="true"/>
+    <resourcesList name="ctll" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/ctll2" isResolved="true"/>
+    <resourcesList name="cfgh" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh2" isResolved="true"/>
+    <resourcesList name="cfgh_src_per" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh2/src_per" isResolved="true"/>
+    <resourcesList name="cfgh_dest_per" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh2/dest_per" isResolved="true"/>
+    <resourcesList name="cfgl" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl2" isResolved="true"/>
+    <resourcesList name="cfgl_hs_sel_src" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl2/hs_sel_src" isResolved="true"/>
+    <resourcesList name="cfgl_hs_sel_dst" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl2/hs_sel_dst" isResolved="true"/>
+    <resourcesList name="rawblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawblock/ch2" isResolved="true"/>
+    <resourcesList name="rawdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawdsttran/ch2" isResolved="true"/>
+    <resourcesList name="rawsrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawsrctran/ch2" isResolved="true"/>
+    <resourcesList name="rawerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawerr/ch2" isResolved="true"/>
+    <resourcesList name="rawtfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawtfr/ch2" isResolved="true"/>
+    <resourcesList name="statusblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statusblock/ch2" isResolved="true"/>
+    <resourcesList name="statusdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statusdsttran/ch2" isResolved="true"/>
+    <resourcesList name="statussrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statussrctran/ch2" isResolved="true"/>
+    <resourcesList name="statuserr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statuserr/ch2" isResolved="true"/>
+    <resourcesList name="statustfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statustfr/ch2" isResolved="true"/>
+    <resourcesList name="maskblock_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskblock/we_ch2" isResolved="true"/>
+    <resourcesList name="maskblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskblock/ch2" isResolved="true"/>
+    <resourcesList name="maskdsttran_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskdsttran/we_ch2" isResolved="true"/>
+    <resourcesList name="maskdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskdsttran/ch2" isResolved="true"/>
+    <resourcesList name="masksrctran_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masksrctran/we_ch2" isResolved="true"/>
+    <resourcesList name="masksrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masksrctran/ch2" isResolved="true"/>
+    <resourcesList name="maskerr_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskerr/we_ch2" isResolved="true"/>
+    <resourcesList name="maskerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskerr/ch2" isResolved="true"/>
+    <resourcesList name="masktfr_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masktfr/we_ch2" isResolved="true"/>
+    <resourcesList name="masktfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masktfr/ch2" isResolved="true"/>
+    <resourcesList name="clearblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearblock/ch2" isResolved="true"/>
+    <resourcesList name="cleardsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cleardsttran/ch2" isResolved="true"/>
+    <resourcesList name="clearsrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearsrctran/ch2" isResolved="true"/>
+    <resourcesList name="clearerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearerr/ch2" isResolved="true"/>
+    <resourcesList name="cleartfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cleartfr/ch2" isResolved="true"/>
+    <resourcesList name="chenreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/chenreg/we_chx" isResolved="true"/>
+    <resourcesList name="chenreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/chenreg/chx" isResolved="true"/>
+    <resourcesList name="reqsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqsrcreg/we_ch2" isResolved="true"/>
+    <resourcesList name="reqsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqsrcreg/ch2" isResolved="true"/>
+    <resourcesList name="reqdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqdstreg/we_ch2" isResolved="true"/>
+    <resourcesList name="reqdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqdstreg/ch2" isResolved="true"/>
+    <resourcesList name="sglreqsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqsrcreg/we_ch2" isResolved="true"/>
+    <resourcesList name="sglreqsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqsrcreg/ch2" isResolved="true"/>
+    <resourcesList name="sglreqdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqdstreg/we_ch2" isResolved="true"/>
+    <resourcesList name="sglreqdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqdstreg/ch2" isResolved="true"/>
+    <resourcesList name="lstsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstsrcreg/we_ch2" isResolved="true"/>
+    <resourcesList name="lstsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstsrcreg/ch2" isResolved="true"/>
+    <resourcesList name="lstdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstdstreg/we_ch2" isResolved="true"/>
+    <resourcesList name="lstdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstdstreg/ch2" isResolved="true"/>
+    <resourcesList name="dma_int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dma_int2" isResolved="true"/>
+    <resourcesList name="src_req" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/src_req2" isResolved="true"/>
+    <resourcesList name="dest_req" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dest_req2" isResolved="true"/>
+    <resourcesList name="global_signal" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/global_signal2" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dma_int" description="DMA 0 Service Request" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/dma_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.9"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dest_req" description="Channel 2 Destination Request dest_req pin" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/dest_req" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.11"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="src_req" description="Channel 2 Source Request src_req pin" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/src_req" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="SAR2" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/sar" accessPermission="rw" addressOffset="0x00B0" resetValue="00000000" resetMask="0xFFFFFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.15"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <toolTipHelpDescription>Source Address Register for Channel 2</toolTipHelpDescription>
+    <bitFields name="SAR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/sar/sar" maxValue="2147483647" minValue="0" startPos="0" stopPos="31" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Current Source Address of DMA transfer</toolTipHelpDescription>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="DAR2" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/dar" accessPermission="rw" addressOffset="0x00B8" resetValue="00000000" resetMask="0xFFFFFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.16"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <toolTipHelpDescription>Destination Address Register for Channel 2</toolTipHelpDescription>
+    <bitFields name="DAR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/dar/dar" maxValue="2147483647" minValue="0" startPos="0" stopPos="31" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Current Destination address of DMA transfer</toolTipHelpDescription>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="BLOCK_TS" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/ctlh/block_ts" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="64"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="64"/>
+    <toolTipHelpDescription>Block Transfer Size</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DST_TR_WIDTH" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/ctll/dst_tr_width" maxValue="7" minValue="0" startPos="1" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Destination Transfer Width</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_TR_WIDTH" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/ctll/src_tr_width" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Source Transfer Width</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DINC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/ctll/dinc" maxValue="3" minValue="0" startPos="7" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Address Increment</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Increment"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Decrement"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1x" description="No change"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SINC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/ctll/sinc" maxValue="3" minValue="0" startPos="9" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Source Address Increment</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Increment"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Decrement"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1x" description="No change"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DEST_MSIZE" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/ctll/dest_msize" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Burst Transaction Length</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_MSIZE" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/ctll/src_msize" maxValue="7" minValue="0" startPos="14" stopPos="16" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Burst Transaction Length</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CH_PRIOR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/cfgl/ch_prior" maxValue="7" minValue="0" startPos="5" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel priority</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="HS_SEL_SRC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/cfgl/hs_sel_src" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Software or Hardware Handshaking Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Hardware handshaking interface. Software-initiated transaction requests are ignored."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Software handshaking interface. Hardware-initiated transaction requests are ignored."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TT_FC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/ctll/tt_fc" maxValue="7" minValue="0" startPos="20" stopPos="22" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_1.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Transfer Type and Flow Control</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="3" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.1"/>
+    <resourcesList name="sar" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sar3" isResolved="true"/>
+    <resourcesList name="dar" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dar3" isResolved="true"/>
+    <resourcesList name="ctlh" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/ctlh3" isResolved="true"/>
+    <resourcesList name="ctll" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/ctll3" isResolved="true"/>
+    <resourcesList name="cfgh" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh3" isResolved="true"/>
+    <resourcesList name="cfgh_src_per" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh3/src_per" isResolved="true"/>
+    <resourcesList name="cfgh_dest_per" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh3/dest_per" isResolved="true"/>
+    <resourcesList name="cfgl" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl3" isResolved="true"/>
+    <resourcesList name="cfgl_hs_sel_src" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl3/hs_sel_src" isResolved="true"/>
+    <resourcesList name="cfgl_hs_sel_dst" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl3/hs_sel_dst" isResolved="true"/>
+    <resourcesList name="rawblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawblock/ch3" isResolved="true"/>
+    <resourcesList name="rawdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawdsttran/ch3" isResolved="true"/>
+    <resourcesList name="rawsrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawsrctran/ch3" isResolved="true"/>
+    <resourcesList name="rawerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawerr/ch3" isResolved="true"/>
+    <resourcesList name="rawtfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawtfr/ch3" isResolved="true"/>
+    <resourcesList name="statusblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statusblock/ch3" isResolved="true"/>
+    <resourcesList name="statusdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statusdsttran/ch3" isResolved="true"/>
+    <resourcesList name="statussrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statussrctran/ch3" isResolved="true"/>
+    <resourcesList name="statuserr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statuserr/ch3" isResolved="true"/>
+    <resourcesList name="statustfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statustfr/ch3" isResolved="true"/>
+    <resourcesList name="maskblock_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskblock/we_ch3" isResolved="true"/>
+    <resourcesList name="maskblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskblock/ch3" isResolved="true"/>
+    <resourcesList name="maskdsttran_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskdsttran/we_ch3" isResolved="true"/>
+    <resourcesList name="maskdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskdsttran/ch3" isResolved="true"/>
+    <resourcesList name="masksrctran_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masksrctran/we_ch3" isResolved="true"/>
+    <resourcesList name="masksrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masksrctran/ch3" isResolved="true"/>
+    <resourcesList name="maskerr_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskerr/we_ch3" isResolved="true"/>
+    <resourcesList name="maskerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskerr/ch3" isResolved="true"/>
+    <resourcesList name="masktfr_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masktfr/we_ch3" isResolved="true"/>
+    <resourcesList name="masktfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masktfr/ch3" isResolved="true"/>
+    <resourcesList name="clearblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearblock/ch3" isResolved="true"/>
+    <resourcesList name="cleardsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cleardsttran/ch3" isResolved="true"/>
+    <resourcesList name="clearsrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearsrctran/ch3" isResolved="true"/>
+    <resourcesList name="clearerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearerr/ch3" isResolved="true"/>
+    <resourcesList name="cleartfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cleartfr/ch3" isResolved="true"/>
+    <resourcesList name="chenreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/chenreg/we_chx" isResolved="true"/>
+    <resourcesList name="chenreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/chenreg/chx" isResolved="true"/>
+    <resourcesList name="reqsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqsrcreg/we_ch3" isResolved="true"/>
+    <resourcesList name="reqsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqsrcreg/ch3" isResolved="true"/>
+    <resourcesList name="reqdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqdstreg/we_ch3" isResolved="true"/>
+    <resourcesList name="reqdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqdstreg/ch3" isResolved="true"/>
+    <resourcesList name="sglreqsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqsrcreg/we_ch3" isResolved="true"/>
+    <resourcesList name="sglreqsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqsrcreg/ch3" isResolved="true"/>
+    <resourcesList name="sglreqdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqdstreg/we_ch3" isResolved="true"/>
+    <resourcesList name="sglreqdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqdstreg/ch3" isResolved="true"/>
+    <resourcesList name="lstsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstsrcreg/we_ch3" isResolved="true"/>
+    <resourcesList name="lstsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstsrcreg/ch3" isResolved="true"/>
+    <resourcesList name="lstdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstdstreg/we_ch3" isResolved="true"/>
+    <resourcesList name="lstdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstdstreg/ch3" isResolved="true"/>
+    <resourcesList name="dma_int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dma_int3" isResolved="true"/>
+    <resourcesList name="src_req" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/src_req3" isResolved="true"/>
+    <resourcesList name="dest_req" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dest_req3" isResolved="true"/>
+    <resourcesList name="global_signal" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/global_signal3" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dma_int" description="DMA 0 Service Request" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/dma_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.9"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dest_req" description="Channel 3 Destination Request dest_req pin" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/dest_req" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.11"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="src_req" description="Channel 3 Source Request src_req pin" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/src_req" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="SAR3" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/sar" accessPermission="rw" addressOffset="0x0108" resetValue="00000000" resetMask="0xFFFFFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.15"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <toolTipHelpDescription>Source Address Register for Channel 3</toolTipHelpDescription>
+    <bitFields name="SAR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/sar/sar" maxValue="2147483647" minValue="0" startPos="0" stopPos="31" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Current Source Address of DMA transfer</toolTipHelpDescription>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="DAR3" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/dar" accessPermission="rw" addressOffset="0x0110" resetValue="00000000" resetMask="0xFFFFFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.16"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <toolTipHelpDescription>Destination Address Register for Channel 3</toolTipHelpDescription>
+    <bitFields name="DAR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/dar/dar" maxValue="2147483647" minValue="0" startPos="0" stopPos="31" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Current Destination address of DMA transfer</toolTipHelpDescription>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="BLOCK_TS" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/ctlh/block_ts" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="64"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="64"/>
+    <toolTipHelpDescription>Block Transfer Size</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DST_TR_WIDTH" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/ctll/dst_tr_width" maxValue="7" minValue="0" startPos="1" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Destination Transfer Width</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_TR_WIDTH" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/ctll/src_tr_width" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Source Transfer Width</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DINC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/ctll/dinc" maxValue="3" minValue="0" startPos="7" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Address Increment</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Increment"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Decrement"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1x" description="No change"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SINC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/ctll/sinc" maxValue="3" minValue="0" startPos="9" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Source Address Increment</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Increment"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Decrement"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1x" description="No change"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DEST_MSIZE" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/ctll/dest_msize" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Burst Transaction Length</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_MSIZE" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/ctll/src_msize" maxValue="7" minValue="0" startPos="14" stopPos="16" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Burst Transaction Length</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CH_PRIOR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/cfgl/ch_prior" maxValue="7" minValue="0" startPos="5" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel priority</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="HS_SEL_SRC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/cfgl/hs_sel_src" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Software or Hardware Handshaking Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Hardware handshaking interface. Software-initiated transaction requests are ignored."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Software handshaking interface. Hardware-initiated transaction requests are ignored."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TT_FC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/ctll/tt_fc" maxValue="7" minValue="0" startPos="20" stopPos="22" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_2.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Transfer Type and Flow Control</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="1" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.1"/>
+    <resourcesList name="sar" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sar1" isResolved="true"/>
+    <resourcesList name="dar" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dar1" isResolved="true"/>
+    <resourcesList name="ctlh" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/ctlh1" isResolved="true"/>
+    <resourcesList name="ctll" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/ctll1" isResolved="true"/>
+    <resourcesList name="cfgh" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh1" isResolved="true"/>
+    <resourcesList name="cfgh_src_per" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh1/src_per" isResolved="true"/>
+    <resourcesList name="cfgh_dest_per" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh1/dest_per" isResolved="true"/>
+    <resourcesList name="cfgl" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl1" isResolved="true"/>
+    <resourcesList name="cfgl_hs_sel_src" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl1/hs_sel_src" isResolved="true"/>
+    <resourcesList name="cfgl_hs_sel_dst" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl1/hs_sel_dst" isResolved="true"/>
+    <resourcesList name="rawblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawblock/ch1" isResolved="true"/>
+    <resourcesList name="rawdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawdsttran/ch1" isResolved="true"/>
+    <resourcesList name="rawsrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawsrctran/ch1" isResolved="true"/>
+    <resourcesList name="rawerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawerr/ch1" isResolved="true"/>
+    <resourcesList name="rawtfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawtfr/ch1" isResolved="true"/>
+    <resourcesList name="statusblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statusblock/ch1" isResolved="true"/>
+    <resourcesList name="statusdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statusdsttran/ch1" isResolved="true"/>
+    <resourcesList name="statussrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statussrctran/ch1" isResolved="true"/>
+    <resourcesList name="statuserr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statuserr/ch1" isResolved="true"/>
+    <resourcesList name="statustfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statustfr/ch1" isResolved="true"/>
+    <resourcesList name="maskblock_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskblock/we_ch1" isResolved="true"/>
+    <resourcesList name="maskblock_ch1" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskblock/ch1" isResolved="true"/>
+    <resourcesList name="maskdsttran_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskdsttran/we_ch1" isResolved="true"/>
+    <resourcesList name="maskdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskdsttran/ch1" isResolved="true"/>
+    <resourcesList name="masksrctran_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masksrctran/we_ch1" isResolved="true"/>
+    <resourcesList name="masksrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masksrctran/ch1" isResolved="true"/>
+    <resourcesList name="maskerr_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskerr/we_ch1" isResolved="true"/>
+    <resourcesList name="maskerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskerr/ch1" isResolved="true"/>
+    <resourcesList name="masktfr_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masktfr/we_ch1" isResolved="true"/>
+    <resourcesList name="masktfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masktfr/ch1" isResolved="true"/>
+    <resourcesList name="clearblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearblock/ch1" isResolved="true"/>
+    <resourcesList name="cleardsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cleardsttran/ch1" isResolved="true"/>
+    <resourcesList name="clearsrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearsrctran/ch1" isResolved="true"/>
+    <resourcesList name="clearerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearerr/ch1" isResolved="true"/>
+    <resourcesList name="cleartfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cleartfr/ch1" isResolved="true"/>
+    <resourcesList name="chenreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/chenreg/we_chx" isResolved="true"/>
+    <resourcesList name="chenreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/chenreg/chx" isResolved="true"/>
+    <resourcesList name="reqsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqsrcreg/we_ch1" isResolved="true"/>
+    <resourcesList name="reqsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqsrcreg/ch1" isResolved="true"/>
+    <resourcesList name="reqdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqdstreg/we_ch1" isResolved="true"/>
+    <resourcesList name="reqdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqdstreg/ch1" isResolved="true"/>
+    <resourcesList name="sglreqsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqsrcreg/we_ch1" isResolved="true"/>
+    <resourcesList name="sglreqsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqsrcreg/ch1" isResolved="true"/>
+    <resourcesList name="sglreqdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqdstreg/we_ch1" isResolved="true"/>
+    <resourcesList name="sglreqdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqdstreg/ch1" isResolved="true"/>
+    <resourcesList name="lstsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstsrcreg/we_ch1" isResolved="true"/>
+    <resourcesList name="lstsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstsrcreg/ch1" isResolved="true"/>
+    <resourcesList name="lstdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstdstreg/we_ch1" isResolved="true"/>
+    <resourcesList name="lstdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstdstreg/ch1" isResolved="true"/>
+    <resourcesList name="dma_int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dma_int1" isResolved="true"/>
+    <resourcesList name="src_req" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/src_req1" isResolved="true"/>
+    <resourcesList name="dest_req" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dest_req1" isResolved="true"/>
+    <resourcesList name="global_signal" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/global_signal1" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dma_int" description="DMA 0 Service Request" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/dma_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.9"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dest_req" description="Channel 1 Destination Request dest_req pin" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/dest_req" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.11"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="src_req" description="Channel 1 Source Request src_req pin" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/src_req" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="SAR1" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/sar" accessPermission="rw" addressOffset="0x0058" resetValue="00000000" resetMask="0xFFFFFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.15"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <toolTipHelpDescription>Source Address Register for Channel 1</toolTipHelpDescription>
+    <bitFields name="SAR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/sar/sar" maxValue="2147483647" minValue="0" startPos="0" stopPos="31" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Current Source Address of DMA transfer</toolTipHelpDescription>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="DAR1" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/dar" accessPermission="rw" addressOffset="0x0060" resetValue="00000000" resetMask="0xFFFFFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.16"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <toolTipHelpDescription>Destination Address Register for Channel 1</toolTipHelpDescription>
+    <bitFields name="DAR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/dar/dar" maxValue="2147483647" minValue="0" startPos="0" stopPos="31" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Current Destination address of DMA transfer</toolTipHelpDescription>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="BLOCK_TS" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/ctlh/block_ts" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="64"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="64"/>
+    <toolTipHelpDescription>Block Transfer Size</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DST_TR_WIDTH" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/ctll/dst_tr_width" maxValue="7" minValue="0" startPos="1" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Destination Transfer Width</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_TR_WIDTH" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/ctll/src_tr_width" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Source Transfer Width</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DINC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/ctll/dinc" maxValue="3" minValue="0" startPos="7" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Address Increment</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Increment"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Decrement"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1x" description="No change"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SINC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/ctll/sinc" maxValue="3" minValue="0" startPos="9" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Source Address Increment</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Increment"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Decrement"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1x" description="No change"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DEST_MSIZE" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/ctll/dest_msize" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Burst Transaction Length</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_MSIZE" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/ctll/src_msize" maxValue="7" minValue="0" startPos="14" stopPos="16" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Burst Transaction Length</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CH_PRIOR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/cfgl/ch_prior" maxValue="7" minValue="0" startPos="5" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel priority</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="HS_SEL_SRC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/cfgl/hs_sel_src" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Software or Hardware Handshaking Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Hardware handshaking interface. Software-initiated transaction requests are ignored."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Software handshaking interface. Hardware-initiated transaction requests are ignored."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TT_FC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/ctll/tt_fc" maxValue="7" minValue="0" startPos="20" stopPos="22" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_3.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Transfer Type and Flow Control</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="0" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.1"/>
+    <resourcesList name="sar" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sar0" isResolved="true"/>
+    <resourcesList name="dar" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dar0" isResolved="true"/>
+    <resourcesList name="ctlh" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/ctlh0" isResolved="true"/>
+    <resourcesList name="ctll" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/ctll0" isResolved="true"/>
+    <resourcesList name="cfgh" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh0" isResolved="true"/>
+    <resourcesList name="cfgh_src_per" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh0/src_per" isResolved="true"/>
+    <resourcesList name="cfgh_dest_per" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgh0/dest_per" isResolved="true"/>
+    <resourcesList name="cfgl" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl0" isResolved="true"/>
+    <resourcesList name="cfgl_hs_sel_src" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl0/hs_sel_src" isResolved="true"/>
+    <resourcesList name="cfgl_hs_sel_dst" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cfgl0/hs_sel_dst" isResolved="true"/>
+    <resourcesList name="rawblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawblock/ch0" isResolved="true"/>
+    <resourcesList name="rawdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawdsttran/ch0" isResolved="true"/>
+    <resourcesList name="rawsrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawsrctran/ch0" isResolved="true"/>
+    <resourcesList name="rawerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawerr/ch0" isResolved="true"/>
+    <resourcesList name="rawtfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/rawtfr/ch0" isResolved="true"/>
+    <resourcesList name="statusblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statusblock/ch0" isResolved="true"/>
+    <resourcesList name="statusdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statusdsttran/ch0" isResolved="true"/>
+    <resourcesList name="statussrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statussrctran/ch0" isResolved="true"/>
+    <resourcesList name="statuserr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statuserr/ch0" isResolved="true"/>
+    <resourcesList name="statustfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/statustfr/ch0" isResolved="true"/>
+    <resourcesList name="maskblock_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskblock/we_ch0" isResolved="true"/>
+    <resourcesList name="maskblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskblock/ch0" isResolved="true"/>
+    <resourcesList name="maskdsttran_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskdsttran/we_ch0" isResolved="true"/>
+    <resourcesList name="maskdsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskdsttran/ch0" isResolved="true"/>
+    <resourcesList name="masksrctran_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masksrctran/we_ch0" isResolved="true"/>
+    <resourcesList name="masksrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masksrctran/ch0" isResolved="true"/>
+    <resourcesList name="maskerr_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskerr/we_ch0" isResolved="true"/>
+    <resourcesList name="maskerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/maskerr/ch0" isResolved="true"/>
+    <resourcesList name="masktfr_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masktfr/we_ch0" isResolved="true"/>
+    <resourcesList name="masktfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/masktfr/ch0" isResolved="true"/>
+    <resourcesList name="clearblock_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearblock/ch0" isResolved="true"/>
+    <resourcesList name="cleardsttran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cleardsttran/ch0" isResolved="true"/>
+    <resourcesList name="clearsrctran_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearsrctran/ch0" isResolved="true"/>
+    <resourcesList name="clearerr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/clearerr/ch0" isResolved="true"/>
+    <resourcesList name="cleartfr_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/cleartfr/ch0" isResolved="true"/>
+    <resourcesList name="chenreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/chenreg/we_chx" isResolved="true"/>
+    <resourcesList name="chenreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/chenreg/chx" isResolved="true"/>
+    <resourcesList name="reqsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqsrcreg/we_ch0" isResolved="true"/>
+    <resourcesList name="reqsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqsrcreg/ch0" isResolved="true"/>
+    <resourcesList name="reqdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqdstreg/we_ch0" isResolved="true"/>
+    <resourcesList name="reqdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/reqdstreg/ch0" isResolved="true"/>
+    <resourcesList name="sglreqsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqsrcreg/we_ch0" isResolved="true"/>
+    <resourcesList name="sglreqsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqsrcreg/ch0" isResolved="true"/>
+    <resourcesList name="sglreqdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqdstreg/we_ch0" isResolved="true"/>
+    <resourcesList name="sglreqdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/sglreqdstreg/ch0" isResolved="true"/>
+    <resourcesList name="lstsrcreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstsrcreg/we_ch0" isResolved="true"/>
+    <resourcesList name="lstsrcreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstsrcreg/ch0" isResolved="true"/>
+    <resourcesList name="lstdstreg_we_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstdstreg/we_ch0" isResolved="true"/>
+    <resourcesList name="lstdstreg_ch" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/lstdstreg/ch0" isResolved="true"/>
+    <resourcesList name="dma_int" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dma_int0" isResolved="true"/>
+    <resourcesList name="src_req" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/src_req0" isResolved="true"/>
+    <resourcesList name="dest_req" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/dest_req0" isResolved="true"/>
+    <resourcesList name="global_signal" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/dma4/0/global_signal0" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dma_int" description="DMA 0 Service Request" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/dma_int" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.9"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="dest_req" description="Channel 0 Destination Request dest_req pin" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/dest_req" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.11"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="src_req" description="Channel 0 Source Request src_req pin" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/src_req" signalType="SINGAL" direction="IN" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.13"/>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="SAR0" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/sar" accessPermission="rw" addressOffset="0x0000" resetValue="00000000" resetMask="0xFFFFFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.15"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <toolTipHelpDescription>Source Address Register for Channel 0</toolTipHelpDescription>
+    <bitFields name="SAR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/sar/sar" maxValue="2147483647" minValue="0" startPos="0" stopPos="31" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Current Source Address of DMA transfer</toolTipHelpDescription>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:RegisterParameter" name="DAR0" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/dar" accessPermission="rw" addressOffset="0x0008" resetValue="00000000" resetMask="0xFFFFFFFF">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.16"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
+    <toolTipHelpDescription>Destination Address Register for Channel 0</toolTipHelpDescription>
+    <bitFields name="DAR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/dar/dar" maxValue="2147483647" minValue="0" startPos="0" stopPos="31" accessPermission="rw">
+      <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <toolTipHelpDescription>Current Destination address of DMA transfer</toolTipHelpDescription>
+    </bitFields>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="BLOCK_TS" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/ctlh/block_ts" maxValue="4095" minValue="0" startPos="0" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.17"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="64"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="64"/>
+    <toolTipHelpDescription>Block Transfer Size</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DST_TR_WIDTH" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/ctll/dst_tr_width" maxValue="7" minValue="0" startPos="1" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.18"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Destination Transfer Width</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_TR_WIDTH" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/ctll/src_tr_width" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.19"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Source Transfer Width</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DINC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/ctll/dinc" maxValue="3" minValue="0" startPos="7" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.20"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Address Increment</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Increment"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Decrement"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1x" description="No change"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SINC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/ctll/sinc" maxValue="3" minValue="0" startPos="9" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.21"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Source Address Increment</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b00" description="Increment"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b01" description="Decrement"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1x" description="No change"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DEST_MSIZE" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/ctll/dest_msize" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.22"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Burst Transaction Length</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_MSIZE" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/ctll/src_msize" maxValue="7" minValue="0" startPos="14" stopPos="16" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.23"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Burst Transaction Length</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="CH_PRIOR" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/cfgl/ch_prior" maxValue="7" minValue="0" startPos="5" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.24"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Channel priority</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="HS_SEL_SRC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/cfgl/hs_sel_src" maxValue="1" minValue="0" startPos="11" stopPos="11" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.25"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Software or Hardware Handshaking Select</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Hardware handshaking interface. Software-initiated transaction requests are ignored."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Software handshaking interface. Hardware-initiated transaction requests are ignored."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="TT_FC" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/ctll/tt_fc" maxValue="7" minValue="0" startPos="20" stopPos="22" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../DMA003/1.0.18/dma003_4.app#//@consumed.26"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Transfer Type and Flow Control</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DEST_PER" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/cfgh_dest_per" maxValue="15" minValue="0" startPos="11" stopPos="14" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Peripheral</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_PER" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/2/cfgh_src_per" maxValue="15" minValue="0" startPos="7" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="2"/>
+    <toolTipHelpDescription>Source Peripheral</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DEST_PER" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/cfgh_dest_per" maxValue="15" minValue="0" startPos="11" stopPos="14" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Peripheral</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_PER" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/3/cfgh_src_per" maxValue="15" minValue="0" startPos="7" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="3"/>
+    <toolTipHelpDescription>Source Peripheral</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DEST_PER" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/cfgh_dest_per" maxValue="15" minValue="0" startPos="11" stopPos="14" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Peripheral</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_PER" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/1/cfgh_src_per" maxValue="15" minValue="0" startPos="7" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Source Peripheral</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="DEST_PER" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/cfgh_dest_per" maxValue="15" minValue="0" startPos="11" stopPos="14" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Destination Peripheral</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SRC_PER" URI="http://www.infineon.com/0.1.28/peripheral/dma4/0/ch/0/cfgh_src_per" maxValue="15" minValue="0" startPos="7" stopPos="10" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Source Peripheral</toolTipHelpDescription>
+  </provided>
+  <categoryDescription description="General Purpose Direct Memory Access 1 Device Description" name="GPDMA1"/>
+</ResourceModel:Peripheral>

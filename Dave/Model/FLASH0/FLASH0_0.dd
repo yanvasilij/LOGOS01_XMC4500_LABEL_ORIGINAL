@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="FLASH0" description="Program Memory Unit - FLASH" URI="http://www.infineon.com/0.1.29/peripheral/flash/0">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="PMU" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.0"/>
+    <resourcesList name="pmu_id" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/pmu/0/id"/>
+    <resourcesList name="flash_id" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/flash/0/id" isResolved="true"/>
+    <resourcesList name="fsr" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/flash/0/fsr" isResolved="true"/>
+    <resourcesList name="fcon" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/flash/0/fcon" isResolved="true"/>
+    <resourcesList name="marp" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/flash/0/marp" isResolved="true"/>
+    <resourcesList name="procon0" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/flash/0/procon0" isResolved="true"/>
+    <resourcesList name="procon1" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/flash/0/procon1" isResolved="true"/>
+    <resourcesList name="procon2" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/flash/0/procon2" isResolved="true"/>
+    <resourcesList name="interrupt" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/flash/0/interrupt" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="ESLDIS" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/esldis" maxValue="1" minValue="0" startPos="14" stopPos="14" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.2"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>External Sleep Request Disable</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="External sleep request signal input is enabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Externally requested Flash sleep is disabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="IDLE" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/idle" maxValue="1" minValue="0" startPos="13" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.3"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Dynamic Flash Idle</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Normal/standard Flash read operation"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Dynamic idle of Program&#xa0;Flash enabled for power saving; static prefetching disabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="WSPFLASH" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/wspflash" maxValue="15" minValue="0" startPos="0" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="6"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="6"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="6"/>
+    <toolTipHelpDescription>Wait States for read access to PFlash</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0000" description="PFlash access in one clock cycle"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0001" description="PFlash access in one clock cycle"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0010" description="PFlash access in two clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0011" description="PFlash access in three clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0100" description="PFlash access in four clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0101" description="PFlash access in five clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0110" description="PFlash access in six clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0111" description="PFlash access in seven clock cycles."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1000" description="PFlash access in eight clock cycle"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1001" description="PFlash access in nine clock cycle"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1010" description="PFlash access in ten clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1011" description="PFlash access in elevan clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1100" description="PFlash access in twelve clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1101" description="PFlash access in thirteen clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1110" description="PFlash access in fourteen clock cycles"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1111" description="PFlash access in fifteen clock cycles."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="VOPERM" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/voperm" maxValue="1" minValue="0" startPos="24" stopPos="24" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Verify and Operation Error Interrupt Mask</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Interrupt not enabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Flash interrupt because of Verify Error or Operation Error in Flash array (FSI) is enabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="SQERM" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/sqerm" maxValue="1" minValue="0" startPos="25" stopPos="25" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.6"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Command Sequence Error Interrupt Mask</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Interrupt not enabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Flash interrupt because of Sequence Error is enabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PROERM" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/proerm" maxValue="1" minValue="0" startPos="26" stopPos="26" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.7"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Protection Error Interrupt Mask</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Interrupt not enabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Flash interrupt because of Protection Error is enabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PFSBERM" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/pfsberm" maxValue="1" minValue="0" startPos="27" stopPos="27" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.8"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>PFlash Single-Bit Error Interrupt Mask</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="No Single-Bit Error interrupt enabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Single-Bit Error interrupt enabled for PFlash"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PFDBERM" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/pfdberm" maxValue="1" minValue="0" startPos="29" stopPos="29" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.9"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>PFlash Double-Bit Error Interrupt Mask</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Double-Bit Error interrupt for PFlash not enabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Double-Bit Error interrupt for PFlash enabled. Especially intended for margin check"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="EOBM" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/fcon/eobm" maxValue="1" minValue="0" startPos="31" stopPos="31" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.10"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>End of Busy Interrupt Mask</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Interrupt not enabled"/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="EOB interrupt is enabled"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="interrupt" description="" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/pmu/interrupt" signalType="INTERRUPT" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.11"/>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="PREFETCH" URI="http://www.infineon.com/0.1.29/peripheral/flash/0/prefetch">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../FLASH002/1.0.8/flash002_0.app#//@consumed.1"/>
+    <resourcesList name="pcon" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/pref/0/pcon"/>
+  </provided>
+  <categoryDescription description="The embedded Flash module includes 1.0 MB of Flash memory." name="FLASH"/>
+</ResourceModel:Peripheral>

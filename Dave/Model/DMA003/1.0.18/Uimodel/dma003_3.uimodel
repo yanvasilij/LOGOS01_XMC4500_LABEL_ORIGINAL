@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage" displayName="Channel Configuration" className="IfxGroupBox" controlId="1321341202125">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group77" displayName="General" className="IfxGroupBox" controlId="1321341228593">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwChannelEnable" displayName="Start transfer at App initialization" labelRequired="false" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwChannelEnable:Start transfer at App initialization" controlId="1321341241500">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwChPriority" displayName="Channel Priority" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwChPriority:Channel Priority" controlId="1321341258187">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwChannelHWSel" displayName="Trigger Type" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwChannelHWSel:Hardware Trigger Enable" controlId="1321341252828">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwFlowControl" displayName="Transfer Flow type" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwFlowControl:Transfer Type" controlId="1321341266031">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_irwBlockSize" displayName="Block Size" className="IntegerType" paramName="app/DMA003/0/DMA003_irwBlockSize:Block Transfer Size" controlId="1321341347109">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalSpan="2"/>
+        <conversionType>dec</conversionType>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group15" displayName="Source/Destination Configuration" className="IfxGroupBox" controlId="1321341305703">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group97" displayName="Source" className="IfxGroupBox" controlId="1321341405625">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwSrcIncrement" displayName="Increment" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwSrcIncrement:Source Increment" controlId="1321341458765">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwSrcTrWidth" displayName="Single Transfer Width" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwSrcTrWidth:Source Transfer Width" controlId="1321341463359">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwSrcMSize" displayName="DMA Burst Width" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwSrcMSize:Source Burst Transaction Length" controlId="1321341470453">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_irwSrcAddress" displayName="Address" className="StringType" paramName="app/DMA003/0/DMA003_irwSrcAddress:Source Address" controlId="1321341329796">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true" horizontalSpan="2"/>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group72" displayName="Destination" className="IfxGroupBox" controlId="1321341420562">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwDstIncrement" displayName="Increment" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwDstIncrement:Destination Increment" controlId="1321341476890">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwDstTrWidth" displayName="Single Transfer Width" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwDstTrWidth:Destination Transfer Width" controlId="1321341483968">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_erwDstMSize" displayName="DMA Burst Width" className="EnumerationType" paramName="app/DMA003/0/DMA003_erwDstMSize:Destination Burst Transaction Length" controlId="1321341489546">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/DMA003/0/DMA003_irwDestAddress" displayName="Address" className="StringType" paramName="app/DMA003/0/DMA003_irwDestAddress:Destination Address" controlId="1321341338468">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true" horizontalSpan="2"/>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Page40" displayName="Interrupt Configuration" className="IfxGroupBox" controlId="1321341777578">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group71" displayName="Interrupt Configuration" className="IfxGroupBox" controlId="1326091465537">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dma003/0/DMA003_SrcTransInterrupt" displayName="Enable Source transaction complete interrupt" labelRequired="false" className="EnumerationType" constraint="if((CM.getParamValue(&quot;app/dma003/0/DMA003_erwFlowControl/0&quot;) ==1) ||&#xD;&#xA;(CM.getParamValue(&quot;app/dma003/0/DMA003_erwFlowControl/2&quot;)==1)) &#xD;&#xA;{&#xD;&#xA;CM.setEnable(false);&#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/dma003/0/DMA003_SrcTransInterrupt:Enable Source transaction complete interrupt" controlId="1326473060108">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dma003/0/DMA003_DestTransInterrupt" displayName="Enable Destination transaction complete interrupt" labelRequired="false" className="EnumerationType" constraint="if((CM.getParamValue(&quot;app/dma003/0/DMA003_erwFlowControl/1&quot;) ==1) ||&#xD;&#xA;(CM.getParamValue(&quot;app/dma003/0/DMA003_erwFlowControl/2&quot;)==1)) &#xD;&#xA;{&#xD;&#xA;CM.setEnable(false);&#xD;&#xA;}else{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;}" paramName="app/dma003/0/DMA003_DestTransInterrupt:Enable Destination transaction complete interrupt" controlId="1326473063493">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dma003/0/DMA003_ErrorInterrupt" displayName="Enable error interrupt" labelRequired="false" className="EnumerationType" paramName="app/dma003/0/DMA003_ErrorInterrupt:Enable error interrupt" controlId="1326473077721">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dma003/0/DMA003_BlockInterrupt" displayName="Enable block complete interrupt" labelRequired="false" className="EnumerationType" paramName="app/dma003/0/DMA003_BlockInterrupt:Enable block complete interrupt" controlId="1326473183567">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dma003/0/DMA003_TransferInterrupt" displayName="Enable transfer complete interrupt" labelRequired="false" className="EnumerationType" paramName="app/dma003/0/DMA003_TransferInterrupt:Enable transfer complete interrupt" controlId="1326473196203">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group19" displayName="User defined Callback Function" className="IfxGroupBox" controlId="1326473313967">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/dma003/0/DMA003_irwCallbackFunc" displayName="User defined Event Handler" labelRequired="false" className="StringType" paramName="app/dma003/0/DMA003_irwCallbackFunc:User defined Event Handler" controlId="1326473362795">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessHorizontalSpace="true"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

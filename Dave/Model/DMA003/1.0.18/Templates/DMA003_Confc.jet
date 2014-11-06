@@ -1,0 +1,205 @@
+<%@ jet package="CodeGenerator" class="dma003_confc_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+<% String AppBaseuri = "app/dma003/";%>
+
+/*CODE_BLOCK_BEGIN[DMA003_Conf.c]*/
+
+/*******************************************************************************
+ Copyright (c) 2013, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+                                                                              **
+ Redistribution and use in source and binary forms, with or without           **
+ modification,are permitted provided that the following conditions are met:   **
+                                                                              **
+ *Redistributions of source code must retain the above copyright notice,      **
+ this list of conditions and the following disclaimer.                        **
+ *Redistributions in binary form must reproduce the above copyright notice,   **
+ this list of conditions and the following disclaimer in the documentation    **
+ and/or other materials provided with the distribution.                       **
+ *Neither the name of the copyright holders nor the names of its contributors **
+ may be used to endorse or promote products derived from this software without**
+ specific prior written permission.                                           **
+                                                                              **
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+ ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+ LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+ SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+ CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+ POSSIBILITY OF SUCH DAMAGE.                                                  **
+                                                                              **
+ To improve the quality of the software, users are encouraged to share        **
+ modifications, enhancements or bug fixes with Infineon Technologies AG       **
+ dave@infineon.com).                                                          **
+                                                                              **
+********************************************************************************
+**                                                                            **
+** PLATFORM : Infineon XMC4000 Series                                         **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: No                                        **
+**                                                                            **
+********************************************************************************
+** VERSION HISTORY:
+********************************************************************************
+** v1.0.11, 18 Jan 2013: Initial version
+** v1.0.12, 13 Feb 2013: Misra updates
+** v1.0.16, 30 Sept 2013: Updated code for compliance with programming
+**                        guidelines.   
+*******************************************************************************/
+
+/**
+ * @file   DMA003_Conf.c
+ * 
+ * 
+ * @brief  Configuration file generated based on UI settings 
+ *         of DMA003 App
+ *
+ */
+
+/*******************************************************************************
+ ** INCLUDE FILES                                                             **
+ ******************************************************************************/
+/* Include file to acccess app data structure, functions & enumerations */
+#include "../../inc/DMA003/DMA003.h"
+
+/* Include file to acccess the constants and App HandleArray variables */
+#include "../../inc/DMA003/DMA003_Conf.h"
+
+<% String Dmauri = "http://www.infineon.com/0.1.28/peripheral/"; %>
+<% String MappedUri = null; %>
+<% String NVICDMAUri = null; %>
+<% int UnitInst = 0; %>
+<% String ChannelInst = null; %>
+<% String AddrString = null; %>
+<% String NVICInst = null; %>
+<% int myIndex = 0; %>
+<% String appInst  = null; %>
+<% int HWMode = 0; %>
+<% String DLRInst = null; %>
+
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/dma003/"));
+ for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);
+ MappedUri = app.getMappedUri(AppBaseuri + appInst + "/channel"); 
+ if((MappedUri != null) && (MappedUri != "")) { 
+ UnitInst =  MappedUri.indexOf("dma4");
+ if ( UnitInst != -1 )
+{UnitInst =1;}else {UnitInst =0;}
+ ChannelInst = MappedUri.substring(MappedUri.length()-1);
+ NVICDMAUri = app.getMappedUri(AppBaseuri + appInst +"/nvic_dma001");
+ NVICInst = NVICDMAUri.substring(NVICDMAUri.length() -1);
+ AddrString = app.getStringValue(AppBaseuri + appInst +"/DMA003_irwSrcAddress"); %>
+<% if (AddrString  == "")
+  {} else {	  
+  myIndex = AddrString.indexOf("0x");
+  if ( myIndex != -1 )
+  {} else {%>
+extern uint8_t* <%=AddrString %>; /*SrcAddress Symbol*/ <%}}%> 
+  <% if (app.getStringValue(AppBaseuri + appInst +"/DMA003_irwDestAddress") == "")
+  {} else {
+  AddrString = app.getStringValue(AppBaseuri + appInst +"/DMA003_irwDestAddress");
+  myIndex = AddrString.indexOf("0x");
+  if ( myIndex != -1 )
+  { } else {%>
+extern uint8_t* <%=AddrString %>; /*DestAddress Symbol*/ 
+ <%}}%> 
+ 
+ /*******************************************************************************
+  ** App Instance <%=appInst%> Handle generated based on UI Configuration      **
+  ******************************************************************************/  
+DMA003_ChannelHandleType DMA003_Handle<%=appInst%>  = 
+{
+   { <% AddrString = app.getStringValue(AppBaseuri + appInst +"/DMA003_irwSrcAddress");
+	   if (AddrString  == "")
+	  {%>
+	  NULL,  //SrcAddress
+	  <%} else {	  
+	  myIndex = AddrString.indexOf("0x");
+	  if ( myIndex != -1 )
+	  { %>
+	  .SrcAddress = (uint32_t)<%=AddrString %>,  /*SrcAddress*/	  
+	  <%} else {%>
+	  .SrcAddress = (uint32_t)&<%=AddrString %>, /*SrcAddress*/ <%}}%> 
+	  <% if (app.getStringValue(AppBaseuri + appInst +"/DMA003_irwDestAddress") == "")
+	  {%>
+	  .DstAddress = NULL, //DstAddress
+	  <%} else {
+	  AddrString = app.getStringValue(AppBaseuri + appInst +"/DMA003_irwDestAddress");
+	  myIndex = AddrString.indexOf("0x");
+	  if ( myIndex != -1 )
+	  { %>
+	  .DstAddress = (uint32_t)<%=AddrString %>,  /*DstAddress*/
+	  <%} else {%>
+	  .DstAddress = (uint32_t)&<%=AddrString %>, /*DstAddress*/ <%}}%>
+	  .BlockSize = (uint32_t)0x<%= app.getHexValue(AppBaseuri + appInst +"/channel/ctlh/block_ts") %>,/*Block Size*/
+ 	  .TransferFlow = (DMA_TransferFlowType)<%= app.getIntegerValue(AppBaseuri + appInst + "/channel/ctll/tt_fc") %>,  /* Transfer Flow */
+      .ChPriority = (DMA_ChPriorityType)<%= app.getIntegerValue(AppBaseuri + appInst +"/channel/cfgl/ch_prior") %>, /* Channel Priority */
+      .SrcTrWidth = (DMA_TransferWidthType)<%= app.getIntegerValue(AppBaseuri + appInst +"/channel/ctll/src_tr_width") %>,/* Source Transfer Width */
+      .DstTrWidth = (DMA_TransferWidthType)<%= app.getIntegerValue(AppBaseuri + appInst +"/channel/ctll/dst_tr_width") %>,/* Destination Transfer Width */  		
+   	  .SrcMSize = (DMA_BurstTransLenType)<%= app.getIntegerValue(AppBaseuri + appInst +"/channel/ctll/src_msize") %>,/* Source Msize */
+   	  .DstMSize = (DMA_BurstTransLenType)<%= app.getIntegerValue(AppBaseuri + appInst +"/channel/ctll/dest_msize") %>,/* Destination Msize */
+   	  .SrcInc = (DMA_AddrIncType)<%= app.getIntegerValue(AppBaseuri + appInst +"/channel/ctll/sinc") %>,/* Source Inc */
+   	  .DstInc = (DMA_AddrIncType)<%= app.getIntegerValue(AppBaseuri + appInst +"/channel/ctll/dinc") %>,/* Destination Inc */
+   },
+  .DMAChRegs = (GPDMA0_CH_TypeDef*)GPDMA<%= UnitInst%>_CH<%=ChannelInst%>, /* Base Address of mapped DMA Channel */
+  .DMARegs = (GPDMA0_GLOBAL_TypeDef*)GPDMA<%= UnitInst%>, /* Base Address of mapped DMA Unit */
+  .NVICDMA_Handle = (NVIC_DMA001_HandleType*)&NVIC_DMA001_Handle<%=NVICInst%>,/* Mapped NVIC_DMA001 App handle. */
+  .ChannelID = (uint8_t)<%= ChannelInst%>, /* Channel ID  */
+  .DMAUnit = (uint8_t)<%= UnitInst%>, /* DMA Unit */
+  .ChannelEnabled = (bool)<%= app.getIntegerValue(AppBaseuri + appInst +"/DMA003_erwChannelEnable/0") %>,/* Channel Enabled  */          
+  .HWHandshakeEnabled = (bool)<%= app.getIntegerValue(AppBaseuri + appInst +"/DMA003_erwChannelHWSel/0") %>, /* HW Handshaking Enabled */ 
+  .SrcTranEventEn = (bool)<%= app.getIntegerValue(AppBaseuri + appInst +"/DMA003_SrcTransInterrupt/0") %>, /* Source Transaction Event Enabled */
+  .DstTranEventEn = (bool)<%= app.getIntegerValue(AppBaseuri + appInst +"/DMA003_DestTransInterrupt/0") %>, /* Destination Transaction Event Enabled */
+  .ErrorEventEn = (bool)<%= app.getIntegerValue(AppBaseuri + appInst +"/DMA003_ErrorInterrupt/0") %>, /* Error Event Enabled */
+  .BlockEventEn = (bool)<%= app.getIntegerValue(AppBaseuri + appInst +"/DMA003_BlockInterrupt/0") %>, /* Block Event Enabled */
+  .TfrEventEn = (bool)<%= app.getIntegerValue(AppBaseuri + appInst +"/DMA003_TransferInterrupt/0") %>, /* Transfer Event Enabled */
+  <%appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+ <% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/channel"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+ <%String EventHandler = app.getStringValue(AppBaseuri + appInst +"/DMA003_irwCallbackFunc");
+ if((EventHandler != null) && (EventHandler != "")) { %>
+  .Cb_Fun = <%=EventHandler%>, /* User-defined event handler. */
+ <%} else {%>
+  .Cb_Fun = NULL, /* User-defined event handler. */
+ <%}}%>
+<% HWMode = app.getIntegerValue(AppBaseuri + appInst +"/DMA003_erwChannelHWSel/0"); 
+if(HWMode == 1) {
+ MappedUri = app.getMappedUri(AppBaseuri + appInst + "/dlr");
+ DLRInst= MappedUri.substring(MappedUri.indexOf("/peripheral/dlr/")+21,MappedUri.length());
+ int Unit = Integer.parseInt(DLRInst); %>
+  .Dlr_Enable = DLR_LNEN_LN<%=Unit%>_Msk /* DLR line configuration mask. */
+<%} else {%>
+  .Dlr_Enable = 0U /* DLR line configuration mask. */
+<%}%>
+};
+<% } %>
+<% else { %>
+// DMA CHANNEL IS NOT MAPPED
+<% } %>
+
+<%} %>
+
+/* Holds references to the handles in your project. */
+const DMA003_ChannelHandleType *DMA003_HandleArray[DMA003_NUM_INSTANCES] = {
+<% ArrayList<String> appsList1 = (ArrayList<String>)(app.getApps("app/dma003/"));
+ for (String appIns : appsList1 ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+ <% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/channel"); %>
+ <% if((MappedUri != null) && (MappedUri != "")) { %>
+  (DMA003_ChannelHandleType *)&DMA003_Handle<%= appInst %>,
+  <%} else {%>
+  /* DMA CHANNEL NOT MAPPED FOR INSTANCE <%=appInst%> */
+ <%}}%>
+};
+
+
+/*CODE_BLOCK_END*/

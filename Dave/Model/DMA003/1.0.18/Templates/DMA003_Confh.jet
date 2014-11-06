@@ -1,0 +1,175 @@
+<%@ jet package="CodeGenerator" class="dma003_confh_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+/*CODE_BLOCK_BEGIN[DMA003_Conf.h]*/
+/*******************************************************************************
+**									                                          **
+** Copyright (C) 2013 Infineon Technologies AG. All rights reserved.          **
+**                                                                            **
+** Infineon Technologies AG (Infineon) is supplying this software for use     **
+** with Infineon's microcontrollers.					                      **
+** This file can be freely distributed within development tools that are      **
+** supporting such microcontrollers.                                          **
+**                                                                            **
+** THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS,        **
+** IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES    **
+** OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS      **
+** SOFTWARE. INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, **
+** INCIDENTAL, OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.           **
+**									                                          **     
+********************************************************************************
+**                                                                            **
+** PLATFORM : Infineon XMC4000 Series                                         **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: No                                        **
+**                                                                            **
+********************************************************************************
+** VERSION HISTORY:
+********************************************************************************
+** v1.0.11, 18 Jan 2013: Initial version.
+** v1.0.16, 30 Sept 2013: Updated code for compliance with programming
+**                        guidelines.
+*******************************************************************************/
+
+/**
+ * @file   DMA003_Conf.h
+ *
+ * @brief  Configuration file generated based on UI settings 
+ *         of DMA003 App
+ *
+ */
+
+#ifndef _CONF_DMA003_H_
+#define _CONF_DMA003_H_
+
+/* Support for C++ */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/******************************************************************************
+**                      Include Files                                        **
+******************************************************************************/
+<% String AppBaseuri = "app/dma003/";%>
+<% String MappedUri = null; %>
+<% int UnitInst = 0; %>
+<% String ChannelInst = null; %>
+<% String appInst  = null; %>
+<% int HWMode = 0; %>
+<% String DLRInst = null; %>
+<% int InstancesNum = 0; %>
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/dma003/"));
+ for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+<% InstancesNum++;%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/channel"); %>
+<% if((MappedUri != null) && (MappedUri != "")) { %>
+<%String EventHandler = app.getStringValue(AppBaseuri + appInst +"/DMA003_irwCallbackFunc");
+  if((EventHandler != null) && (EventHandler != "")) { %>
+/*
+ * external reference to user-defined
+ * event handler: `<%=EventHandler%>'
+ */ 
+extern void <%=EventHandler%>(DMA_IRQType irq_type, uint32_t cb_arg);
+  <% } %>
+<% } %>
+<% else { %>
+// DMA CHANNEL IS NOT MAPPED
+<% } %>
+<%} %> 
+
+/* Number of DMA003 instances. */
+#define DMA003_NUM_INSTANCES <%= InstancesNum%>U
+
+/* Declare Handle array. This is used in the initialization function */
+extern const DMA003_ChannelHandleType *DMA003_HandleArray[DMA003_NUM_INSTANCES];
+
+<%  for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/channel"); %>
+<% if((MappedUri != null) && (MappedUri != "")) { 
+ UnitInst =  MappedUri.indexOf("dma4");
+ if ( UnitInst != -1 )
+{UnitInst =1;}else {UnitInst =0;}
+ ChannelInst = MappedUri.substring(MappedUri.length()-1); %>
+/* Mapped DMA Channel BaseAddress for App Instance <%=appInst%> */ 
+#define DMA003_Handle<%=appInst%>_CHANNEL  GPDMA<%=UnitInst%>_CH<%=ChannelInst%>
+<% } %>
+<% else { %>
+
+<% } %>
+
+<%} %> 
+
+<% String TempApps = null;
+   String MyAppName = null;
+   ArrayList<String> apps;
+   String TempLowerApps = null; 
+   boolean DBGApp = false;   
+   apps=(ArrayList<String>)(app.getApps());
+        for (int k = 0; k < apps.size(); k++) {
+              TempApps = apps.get(k);
+//            if(app.isAppInitProvider(apps.get(k)) == true) {
+              MyAppName = TempApps.substring(TempApps.indexOf("/app/") + 5, TempApps.lastIndexOf("/"));
+              TempLowerApps = MyAppName.toLowerCase();
+              if (TempLowerApps.equalsIgnoreCase("dbg002")) {DBGApp = true;}   
+//   }  
+  } %>
+<% if (!DBGApp) { %>  
+/*****************************************************************************
+              DUMMY DEFINTIONS OF DEBUG LOG MACROS
+*****************************************************************************/
+/*These definitions are included here to avoid compilation errors,
+ since the DBG002 app is not part of the project. All the macros are defined
+ as empty*/ 
+#ifndef _DBG002_H_
+
+#define DBG002_RegisterCallBack(A,B,C)
+#define DBG002_I(e) 
+#define DBG002_IG(e,g) 
+#define DBG002_IH(e,h) 
+#define DBG002_IP(e,p) 
+#define DBG002_IGH(e,g,h) 
+#define DBG002_IGP(e,g,p) 
+#define DBG002_IHP(e,h,p) 
+#define DBG002_IGHP(e,g,h,p) 
+#define DBG002_N(e) 
+#define DBG002_NG(e,g) 
+#define DBG002_NH(e,h) 
+#define DBG002_NP(e,p) 
+#define DBG002_NGH(e,g,h) 
+#define DBG002_NGP(e,g,p) 
+#define DBG002_NHP(e,h,p) 
+#define DBG002_NGHP(e,g,h,p) 
+#define DBG002_ID(e) 
+#define DBG002_IS(e) 
+#define DBG002_ISG(e,g) 
+#define DBG002_SAFETY_CRITICAL(groupid,messageid,length,value)
+#define DBG002_CRITICAL(groupid,messageid,length,value)
+#define DBG002_ERROR(groupid,messageid,length,value)
+#define DBG002_WARNING(groupid,messageid,length,value)
+#define DBG002_INFO(groupid,messageid,length,value)
+#define DBG002_TRACE(groupid,messageid,length,value)
+#define DBG002_FUNCTION_ENTRY(GID, Status) 
+#define DBG002_FUNCTION_EXIT(GID, Status) 
+
+#endif/* End of definitions of dummy Debug Log macros*/
+<% } %>
+
+/*******************************************************************************
+** STRUCTURES:
+*******************************************************************************/
+
+/* Support for C++ */
+#ifdef __cplusplus
+}
+#endif
+
+#endif  /* ifndef _CONF_DMA003_H_*/
+
+/*CODE_BLOCK_END*/

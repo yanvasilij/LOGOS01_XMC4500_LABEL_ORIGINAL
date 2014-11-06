@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage" displayName="FLASH002 Configuration" className="IfxGroupBox" controlId="1320653085328">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group3" displayName="Internal Flash Interrupt Configuration" className="IfxGroupBox" controlId="1351593413240">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash002/0/FLASH002_erwEndofBusy" displayName="Enable End of Busy Interrupt" labelRequired="false" className="EnumerationType" paramName="app/flash002/0/FLASH002_erwEndofBusy:End of Busy Interrupt Mask" controlId="1351593509082">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash002/0/FLASH002_erwVerifyOperationError" displayName="Enable Verify or Operation Error Interrupt" labelRequired="false" className="EnumerationType" paramName="app/flash002/0/FLASH002_erwVerifyOperationError:Verify and Operation Error Interrupt Mask" controlId="1351593461394">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash002/0/FLASH002_erwCommandSequenceError" displayName="Enable Command Sequence Error Interrupt" labelRequired="false" className="EnumerationType" paramName="app/flash002/0/FLASH002_erwCommandSequenceError:Command Sequence Error Interrupt Mask" controlId="1351593472008">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash002/0/FLASH002_erwProtectionError" displayName="Enable Protection Error Interrupt" labelRequired="false" className="EnumerationType" paramName="app/flash002/0/FLASH002_erwProtectionError:Protection Error Interrupt Mask" controlId="1351593484553">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash002/0/FLASH002_erwSingleBitError" displayName="Enable Single Bit Error Interrupt" labelRequired="false" className="EnumerationType" paramName="app/flash002/0/FLASH002_erwSingleBitError:Single Bit Error Interrupt Mask" controlId="1351593491519">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash002/0/FLASH002_erwDoubleBitError" displayName="Enable Double Bit Error Interrupt" labelRequired="false" className="EnumerationType" paramName="app/flash002/0/FLASH002_erwDoubleBitError:Double Bit Error Interrupt Mask" controlId="1351593498507">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group38" displayName="Internal Flash Advanced Configuration" className="IfxGroupBox" controlId="1320655778031">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalSpan="2" verticalSpan="2"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash002/0/FLASH002_erwEnableExtSleep" displayName="Disable External Sleep Request" labelRequired="false" className="EnumerationType" paramName="app/flash002/0/FLASH002_erwEnableExtSleep:Disable external sleep" controlId="1323161950734">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" grabExcessVerticalSpace="true"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/flash002/0/FLASH002_erwEnableDynamicFlash" displayName="Enable Dynamic Flash Idle" labelRequired="false" className="EnumerationType" paramName="app/flash002/0/FLASH002_erwEnableDynamicFlash:Enable dynamic flash idle" controlId="1323161961546">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalSpan="2"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="3"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

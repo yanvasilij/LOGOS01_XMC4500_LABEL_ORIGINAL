@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="P14" description="Port 14" URI="http://www.infineon.com/0.1.29/port/p/14">
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.9 / #51" URI="http://www.infineon.com/0.1.29/port/p/14/pad/9">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_9.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p9" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps9" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr9" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p9" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps9" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis9" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr8/pc9_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr8/pc9_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_9/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_9/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_9/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_9/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/9/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_9.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS9" URI="http://www.infineon.com/0.1.29/port/p/14/pad/9/pdisc_pdis" maxValue="1" minValue="0" startPos="9" stopPos="9" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_9.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 9</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 1 analog input 1 and ADC 2 analog input 5 and DAC output 1 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC9_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/9/iocr_pcr" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_9.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 8 to 11</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.15 / #31" URI="http://www.infineon.com/0.1.29/port/p/14/pad/15">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_3.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p15" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps15" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr15" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p15" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps15" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis15" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr12/pc15_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr12/pc15_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_15/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_15/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_15/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_15/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/15/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_3.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS15" URI="http://www.infineon.com/0.1.29/port/p/14/pad/15/pdisc_pdis" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_3.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 15</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 1 analog input 7 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC15_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/15/iocr_pcr" maxValue="7" minValue="0" startPos="27" stopPos="29" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_3.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.12 / #34" URI="http://www.infineon.com/0.1.29/port/p/14/pad/12">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_15.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p12" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps12" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr12" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p12" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps12" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis12" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr12/pc12_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr12/pc12_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_12/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_12/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_12/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_12/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/12/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_15.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS12" URI="http://www.infineon.com/0.1.29/port/p/14/pad/12/pdisc_pdis" maxValue="1" minValue="0" startPos="12" stopPos="12" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_15.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 12</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 1 analog input 4 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC12_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/12/iocr_pcr" maxValue="7" minValue="0" startPos="3" stopPos="5" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_15.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.14 / #32" URI="http://www.infineon.com/0.1.29/port/p/14/pad/14">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_16.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p14" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps14" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr14" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p14" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps14" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis14" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr12/pc14_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr12/pc14_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_14/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_14/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_14/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_14/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/14/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_16.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS14" URI="http://www.infineon.com/0.1.29/port/p/14/pad/14/pdisc_pdis" maxValue="1" minValue="0" startPos="14" stopPos="14" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_16.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 14</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 1 analog input 6 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC14_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/14/iocr_pcr" maxValue="7" minValue="0" startPos="19" stopPos="21" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_16.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.3 / #39" URI="http://www.infineon.com/0.1.29/port/p/14/pad/3">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_17.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p3" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps3" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr3" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p3" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps3" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis3" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr0/pc3_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr0/pc3_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_3/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_3/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_3/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_3/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/3/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_17.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS3" URI="http://www.infineon.com/0.1.29/port/p/14/pad/3/pdisc_pdis" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_17.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 3</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 0 and ADC 1 analog input 3 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC3_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/3/iocr_pcr" maxValue="7" minValue="0" startPos="27" stopPos="29" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_17.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.2 / #40" URI="http://www.infineon.com/0.1.29/port/p/14/pad/2">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_18.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p2" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps2" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr2" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p2" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps2" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis2" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr0/pc2_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr0/pc2_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_2/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_2/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_2/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_2/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/2/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_18.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS2" URI="http://www.infineon.com/0.1.29/port/p/14/pad/2/pdisc_pdis" maxValue="1" minValue="0" startPos="2" stopPos="2" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_18.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 2</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 0 and ADC 1 analog input 2 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC2_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/2/iocr_pcr" maxValue="7" minValue="0" startPos="19" stopPos="21" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_18.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.13 / #33" URI="http://www.infineon.com/0.1.29/port/p/14/pad/13">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_19.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p13" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps13" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr13" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p13" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps13" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis13" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr12/pc13_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr12/pc13_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_13/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_13/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_13/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_13/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/13/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_19.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS13" URI="http://www.infineon.com/0.1.29/port/p/14/pad/13/pdisc_pdis" maxValue="1" minValue="0" startPos="13" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_19.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 13</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 1 analog input 5 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC13_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/13/iocr_pcr" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_19.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.8 / #52" URI="http://www.infineon.com/0.1.29/port/p/14/pad/8">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_20.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p8" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps8" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr8" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p8" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps8" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis8" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr8/pc8_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr8/pc8_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_8/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_8/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_8/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_8/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/8/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_20.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS8" URI="http://www.infineon.com/0.1.29/port/p/14/pad/8/pdisc_pdis" maxValue="1" minValue="0" startPos="8" stopPos="8" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_20.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 8</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 1 analog input 0 and ADC 2 analog input 4 and DAC output 0 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC8_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/8/iocr_pcr" maxValue="7" minValue="0" startPos="3" stopPos="5" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_20.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 8 to 11</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.4 / #38" URI="http://www.infineon.com/0.1.29/port/p/14/pad/4">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_21.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p4" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps4" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr4" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p4" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps4" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis4" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr4/pc4_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr4/pc4_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_4/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_4/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_4/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_4/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/4/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_21.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/4/pdisc_pdis" maxValue="1" minValue="0" startPos="4" stopPos="4" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_21.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 4</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 0 analog input 4 and ADC 2 analog input 0 and DAC Reference selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC4_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/4/iocr_pcr" maxValue="7" minValue="0" startPos="3" stopPos="5" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_21.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 4 to 7</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.5 / #37" URI="http://www.infineon.com/0.1.29/port/p/14/pad/5">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_0.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p5" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps5" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr5" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p5" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps5" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis5" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr4/pc5_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr4/pc5_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_5/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_5/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_5/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_5/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/5/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_0.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS5" URI="http://www.infineon.com/0.1.29/port/p/14/pad/5/pdisc_pdis" maxValue="1" minValue="0" startPos="5" stopPos="5" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_0.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 5</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 0 analog input 5 and ADC 2 analog input 1 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC5_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/5/iocr_pcr" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_0.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 4 to 7</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.6 / #36" URI="http://www.infineon.com/0.1.29/port/p/14/pad/6">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_4.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p6" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps6" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr6" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p6" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps6" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis6" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr4/pc6_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr4/pc6_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_6/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_6/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_6/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_6/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/6/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_4.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS6" URI="http://www.infineon.com/0.1.29/port/p/14/pad/6/pdisc_pdis" maxValue="1" minValue="0" startPos="6" stopPos="6" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_4.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 6</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 0 analog input 6 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC6_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/6/iocr_pcr" maxValue="7" minValue="0" startPos="19" stopPos="21" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_4.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 4 to 7</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.7 / #35" URI="http://www.infineon.com/0.1.29/port/p/14/pad/7">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_5.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p7" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps7" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr7" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p7" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps7" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis7" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr4/pc7_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr4/pc7_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_7/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_7/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_7/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_7/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/7/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_5.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS7" URI="http://www.infineon.com/0.1.29/port/p/14/pad/7/pdisc_pdis" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_5.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 7</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC0 analog input 7 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC7_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/7/iocr_pcr" maxValue="7" minValue="0" startPos="27" stopPos="29" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_5.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 4 to 7</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:ResourceGroup" name="P14.1 / #41" URI="http://www.infineon.com/0.1.29/port/p/14/pad/1">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_6.app#//@consumed.0"/>
+    <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/out/p1" isResolved="true"/>
+    <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/ps1" isResolved="true"/>
+    <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/omr/pr1" isResolved="true"/>
+    <resourcesList name="in_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/in/p1" isResolved="true"/>
+    <resourcesList name="pps_pps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pps/pps1" isResolved="true"/>
+    <resourcesList name="pdisc_pdis" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pdisc/pdis1" isResolved="true"/>
+    <resourcesList name="iocr_oe" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr0/pc1_4" isResolved="true"/>
+    <resourcesList name="iocr_pcr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/iocr0/pc1_2_0" isResolved="true"/>
+    <resourcesList name="analogout" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_1/analogout" isResolved="true"/>
+    <resourcesList name="analogin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_1/analogin" isResolved="true"/>
+    <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_1/altin" isResolved="true"/>
+    <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/14/pad_1/pad" isResolved="true"/>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/14/pad/1/pad" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_6.app#//@consumed.3"/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PDIS1" URI="http://www.infineon.com/0.1.29/port/p/14/pad/1/pdisc_pdis" maxValue="1" minValue="0" startPos="1" stopPos="1" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_6.app#//@consumed.4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <toolTipHelpDescription>Pad Disable for Port 14 Pin 1</toolTipHelpDescription>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="Pad is enabled, digital input selected."/>
+    <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="Pad is disabled, ADC 0 analog input 1 selected."/>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC1_2_0" URI="http://www.infineon.com/0.1.29/port/p/14/pad/1/iocr_pcr" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO001/1.0.16/io001_6.app#//@consumed.5"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC15_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/15/iocr_oe" maxValue="1" minValue="0" startPos="31" stopPos="31" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC12_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/12/iocr_oe" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC1_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/1/iocr_oe" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC14_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/14/iocr_oe" maxValue="1" minValue="0" startPos="23" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC3_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/3/iocr_oe" maxValue="1" minValue="0" startPos="31" stopPos="31" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC2_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/2/iocr_oe" maxValue="1" minValue="0" startPos="23" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC13_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/13/iocr_oe" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC7_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/7/iocr_oe" maxValue="1" minValue="0" startPos="31" stopPos="31" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 4 to 7</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC6_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/6/iocr_oe" maxValue="1" minValue="0" startPos="23" stopPos="23" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 4 to 7</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC5_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/5/iocr_oe" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 4 to 7</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC4_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/4/iocr_oe" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 4 to 7</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC9_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/9/iocr_oe" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 8 to 11</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:BitField" name="PC8_4" URI="http://www.infineon.com/0.1.29/port/p/14/pad/8/iocr_oe" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
+    <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <toolTipHelpDescription>Port Control for Port n Pin 8 to 11</toolTipHelpDescription>
+  </provided>
+  <categoryDescription description="Port 14 is a 14-bit analog/digital input port." name="Port 14"/>
+</ResourceModel:Peripheral>
