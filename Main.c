@@ -23,6 +23,7 @@
 #include "GPIO.h"
 
 #define teststep 1
+#define sectionparamsize 63
 
 extern status_t Flash002_EraseSector  ( uint32_t  Address ) __attribute__ ((section (".ram_code")));
 extern void FLASH002_Init (void) __attribute__ ((section (".ram_code")));
@@ -36,8 +37,8 @@ void CalculateTxChecksum(uint8_t len);
 uint16_t CalculateRxChecksum(void);
 void GetSPIData(void);
 
-/*uint32_t BufferOut[FLASH002_PAGE_SIZE/4];*/
-
+uint8_t sectionrecoverydelaythr=11;
+uint8_t sectionrecoverydelay[8];
 uint32_t StartAddr = FLASH002_SECTOR11_BASE; //Page-0 of sector 11
 
 uint8_t sendflag=0;
@@ -96,6 +97,10 @@ uint16_t imaxv1[8];
 uint16_t imaxv2[8];
 uint16_t iminv1[8];
 uint16_t iminv2[8];
+uint16_t i_0_v1[8];
+uint16_t i_100_v1[8];
+uint16_t i_0_v2[8];
+uint16_t i_100_v2[8];
 float maxctrlv1[8];
 float minctrlv1[8];
 float maxctrlv2[8];
@@ -133,6 +138,7 @@ uint16_t sentdata=0;
 
 uint32_t flash_status;
 uint32_t* address = FLASH002_SECTOR11_BASE;
+uint8_t membuffer[sectionparamsize*8];
 
 uint16_t NoMappedVal1;
 uint16_t G2Ch2Val;
@@ -152,30 +158,83 @@ int main(void)
 {
 //	status_t status;		// Declaration of return variable for DAVE3 APIs (toggle comment if required)
 	int i;
+	uint32_t membaseaddress;
 
 	DAVE_Init();			// Initialization of DAVE Apps
 	IO004_Init();
 
-
-	/*flash_status=Flash002_EraseSector(FLASH002_SECTOR11_BASE);
-
-	if(flash_status==DAVEApp_SUCCESS)
-	{
-
-		for(i=0;i<(FLASH002_PAGE_SIZE/4);i++)
-		{
-			BufferOut[i]=StartAddr+4*i;
-		}
-
-		flash_status=Flash002_WritePage(FLASH002_SECTOR11_BASE,BufferOut);
-		if(flash_status==DAVEApp_SUCCESS)
-		{
-			i++;
-		}
-	}*/
-
 	P2_1_set_mode(INPUT);
 	P2_1_set_hwsel(HW1);
+
+	for(i=0;i<8;i++)
+	{
+
+	membaseaddress=sectionparamsize*i;
+
+	loopfreq[i] = *(address+membaseaddress);
+	ditherampl[i] = *(address+membaseaddress+1);
+	configsec[i] = *(address+membaseaddress+2);
+
+	imaxv1[i] = *(address+membaseaddress+3) * 256 + *(address+membaseaddress+4);
+	iminv1[i] = *(address+membaseaddress+5) * 256 + *(address+membaseaddress+6);
+	maxctrlv1[i] = *(address+membaseaddress+7);
+	minctrlv1[i] = *(address+membaseaddress+8);
+
+	i_0_v1[i] = *(address+membaseaddress+9) * 256 + *(address+membaseaddress+10);
+	i_100_v1[i] = *(address+membaseaddress+11) * 256 + *(address+membaseaddress+12);
+
+	slopeupipointsv1[0][i] = *(address+membaseaddress+13) * 256 + *(address+membaseaddress+14);
+	slopeupipointsv1[1][i] = *(address+membaseaddress+15) * 256 + *(address+membaseaddress+16);
+	slopeupipointsv1[2][i] = *(address+membaseaddress+17) * 256 + *(address+membaseaddress+18);
+
+	slopeuptpointsv1[0][i] = *(address+membaseaddress+19);
+	slopeuptpointsv1[1][i] = *(address+membaseaddress+20);
+	slopeuptpointsv1[2][i] = *(address+membaseaddress+21);
+	slopeuptpointsv1[3][i] = *(address+membaseaddress+22);
+
+	slopedownipointsv1[0][i] = *(address+membaseaddress+23) * 256 + *(address+membaseaddress+24);
+	slopedownipointsv1[1][i] = *(address+membaseaddress+25) * 256 + *(address+membaseaddress+26);
+	slopedownipointsv1[2][i] = *(address+membaseaddress+27) * 256 + *(address+membaseaddress+28);
+
+	slopedowntpointsv1[0][i] = *(address+membaseaddress+29);
+	slopedowntpointsv1[1][i] = *(address+membaseaddress+30);
+	slopedowntpointsv1[2][i] = *(address+membaseaddress+31);
+	slopedowntpointsv1[3][i] = *(address+membaseaddress+32);
+
+	imaxv2[i] = *(address+membaseaddress+33) * 256 + *(address+membaseaddress+34);
+	iminv2[i] = *(address+membaseaddress+35) * 256 + *(address+membaseaddress+36);
+	maxctrlv2[i] = *(address+membaseaddress+37);
+	minctrlv2[i] = *(address+membaseaddress+38);
+
+	i_0_v2[i] = *(address+membaseaddress+39) * 256 + *(address+membaseaddress+40);
+	i_100_v2[i] = *(address+membaseaddress+41) * 256 + *(address+membaseaddress+42);
+
+	slopeupipointsv2[0][i] = *(address+membaseaddress+43) * 256 + *(address+membaseaddress+44);
+	slopeupipointsv2[1][i] = *(address+membaseaddress+45) * 256 + *(address+membaseaddress+46);
+	slopeupipointsv2[2][i] = *(address+membaseaddress+47) * 256 + *(address+membaseaddress+48);
+
+	slopeuptpointsv2[0][i] = *(address+membaseaddress+49);
+	slopeuptpointsv2[1][i] = *(address+membaseaddress+50);
+	slopeuptpointsv2[2][i] = *(address+membaseaddress+51);
+	slopeuptpointsv2[3][i] = *(address+membaseaddress+52);
+
+	slopedownipointsv2[0][i] = *(address+membaseaddress+53) * 256 + *(address+membaseaddress+54);
+	slopedownipointsv2[1][i] = *(address+membaseaddress+55) * 256 + *(address+membaseaddress+56);
+	slopedownipointsv2[2][i] = *(address+membaseaddress+57) * 256 + *(address+membaseaddress+58);
+
+	slopedowntpointsv2[0][i] = *(address+membaseaddress+59);
+	slopedowntpointsv2[1][i] = *(address+membaseaddress+60);
+	slopedowntpointsv2[2][i] = *(address+membaseaddress+61);
+	slopedowntpointsv2[3][i] = *(address+membaseaddress+62);
+
+	piv1[i] = (imaxv1[i] - iminv1[i])
+			/ (maxctrlv1[i] - minctrlv1[i]);
+	piv2[i] = (imaxv2[i] - iminv2[i])
+			/ (maxctrlv2[i] - minctrlv2[i]);
+	qiv1[i] = -piv1[i] * minctrlv1[i];
+	qiv2[i] = -piv2[i] * minctrlv2[i];
+
+	}
 
 	for(i=0;i<8;i++)
 	{
@@ -1178,6 +1237,7 @@ void RxUartEventHandler()
     uint8_t DataRead;
     uint8_t TmpSecId;
     uint8_t i,k;
+    uint32_t membaseaddress;
 
 	if(UART001_GetFlagStatus(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG) == UART001_SET)
 	{
@@ -1188,7 +1248,7 @@ void RxUartEventHandler()
 		 if(uartmsglen==1 && rxindex==0)
 		 {
 			 switch(rxbuf[0]){
-			 	 case 1: uartmsglen=2;
+			 	 case 1: uartmsglen=3;
 			 		 	 break;
 			 	 case 3: uartmsglen=2;
 			 			 break;
@@ -1212,7 +1272,7 @@ void RxUartEventHandler()
 				 switch(rxbuf[0])
 				 {
 				 	 //Risposta Start Diagno
-				 	 case 1:startdiagno=1;
+				 	 case 1:startdiagno=rxbuf[1]+1;
 				 		 	txlen=4;
 				 		 	txbuf[0]=0x01;
 					 	    txbuf[1]=0x01;
@@ -1290,7 +1350,7 @@ void RxUartEventHandler()
 				 		 	break;
 
 				 	 case 6:TmpSecId=rxbuf[1];
-				 	 	 	txlen=59;
+				 	 	 	txlen=67;
 				 	 	 	txbuf[0]=0x06;
 				 	 	 	txbuf[1]=TmpSecId;
 
@@ -1305,70 +1365,80 @@ void RxUartEventHandler()
 				 	 	 	txbuf[9]=maxctrlv1[TmpSecId];
 				 	 	 	txbuf[10]=minctrlv1[TmpSecId];
 
-				 	 	 	txbuf[11]=slopeupipointsv1[0][TmpSecId]/256;
-				 	 	 	txbuf[12]=slopeupipointsv1[0][TmpSecId]%256;
+				 	 	 	txbuf[11]=i_0_v1[TmpSecId]/256;
+				 	 	 	txbuf[12]=i_0_v1[TmpSecId]%256;
+				 	 	 	txbuf[13]=i_100_v1[TmpSecId]/256;
+				 	 	 	txbuf[14]=i_100_v1[TmpSecId]%256;
 
-				 	 	 	txbuf[13]=slopeupipointsv1[1][TmpSecId]/256;
-				 	 	 	txbuf[14]=slopeupipointsv1[1][TmpSecId]%256;
+				 	 	 	txbuf[15]=slopeupipointsv1[0][TmpSecId]/256;
+				 	 	 	txbuf[16]=slopeupipointsv1[0][TmpSecId]%256;
 
-				 	 	 	txbuf[15]=slopeupipointsv1[2][TmpSecId]/256;
-				 	 	 	txbuf[16]=slopeupipointsv1[2][TmpSecId]%256;
+				 	 	 	txbuf[17]=slopeupipointsv1[1][TmpSecId]/256;
+				 	 	 	txbuf[18]=slopeupipointsv1[1][TmpSecId]%256;
 
-				 	 	 	txbuf[17]=slopeuptpointsv1[0][TmpSecId];
-				 	 	 	txbuf[18]=slopeuptpointsv1[1][TmpSecId];
-				 	 	 	txbuf[19]=slopeuptpointsv1[2][TmpSecId];
-				 	 	 	txbuf[20]=slopeuptpointsv1[3][TmpSecId];
+				 	 	 	txbuf[19]=slopeupipointsv1[2][TmpSecId]/256;
+				 	 	 	txbuf[20]=slopeupipointsv1[2][TmpSecId]%256;
 
-				 	 	 	txbuf[21]=slopedownipointsv1[0][TmpSecId]/256;
-				 	 	 	txbuf[22]=slopedownipointsv1[0][TmpSecId]%256;
+				 	 	 	txbuf[21]=slopeuptpointsv1[0][TmpSecId];
+				 	 	 	txbuf[22]=slopeuptpointsv1[1][TmpSecId];
+				 	 	 	txbuf[23]=slopeuptpointsv1[2][TmpSecId];
+				 	 	 	txbuf[24]=slopeuptpointsv1[3][TmpSecId];
 
-				 	 	 	txbuf[23]=slopedownipointsv1[1][TmpSecId]/256;
-				 	 	 	txbuf[24]=slopedownipointsv1[1][TmpSecId]%256;
+				 	 	 	txbuf[25]=slopedownipointsv1[0][TmpSecId]/256;
+				 	 	 	txbuf[26]=slopedownipointsv1[0][TmpSecId]%256;
 
-				 	 	 	txbuf[25]=slopedownipointsv1[2][TmpSecId]/256;
-				 	 	 	txbuf[26]=slopedownipointsv1[2][TmpSecId]%256;
+				 	 	 	txbuf[27]=slopedownipointsv1[1][TmpSecId]/256;
+				 	 	 	txbuf[28]=slopedownipointsv1[1][TmpSecId]%256;
 
-				 	 	 	txbuf[27]=slopedowntpointsv1[0][TmpSecId];
-				 	 	 	txbuf[28]=slopedowntpointsv1[1][TmpSecId];
-				 	 	 	txbuf[29]=slopedowntpointsv1[2][TmpSecId];
-				 	 	 	txbuf[30]=slopedowntpointsv1[3][TmpSecId];
+				 	 	 	txbuf[29]=slopedownipointsv1[2][TmpSecId]/256;
+				 	 	 	txbuf[30]=slopedownipointsv1[2][TmpSecId]%256;
 
-				 	 	 	txbuf[31]=imaxv2[TmpSecId]/256;
-				 	 	 	txbuf[32]=imaxv2[TmpSecId]%256;
+				 	 	 	txbuf[31]=slopedowntpointsv1[0][TmpSecId];
+				 	 	 	txbuf[32]=slopedowntpointsv1[1][TmpSecId];
+				 	 	 	txbuf[33]=slopedowntpointsv1[2][TmpSecId];
+				 	 	 	txbuf[34]=slopedowntpointsv1[3][TmpSecId];
 
-				 	 	 	txbuf[33]=iminv2[TmpSecId]/256;
-				 	 	 	txbuf[34]=iminv2[TmpSecId]%256;
+				 	 	 	txbuf[35]=imaxv2[TmpSecId]/256;
+				 	 	 	txbuf[36]=imaxv2[TmpSecId]%256;
 
-				 	 	 	txbuf[35]=maxctrlv2[TmpSecId];
-				 	 	 	txbuf[36]=minctrlv2[TmpSecId];
+				 	 	 	txbuf[37]=iminv2[TmpSecId]/256;
+				 	 	 	txbuf[38]=iminv2[TmpSecId]%256;
 
-				 	 	 	txbuf[37]=slopeupipointsv2[0][TmpSecId]/256;
-				 	 	 	txbuf[38]=slopeupipointsv2[0][TmpSecId]%256;
+				 	 	 	txbuf[39]=maxctrlv2[TmpSecId];
+				 	 	 	txbuf[40]=minctrlv2[TmpSecId];
 
-				 	 	 	txbuf[39]=slopeupipointsv2[1][TmpSecId]/256;
-				 	 	 	txbuf[40]=slopeupipointsv2[1][TmpSecId]%256;
+				 	 	 	txbuf[41]=i_0_v2[TmpSecId]/256;
+				 	 	 	txbuf[42]=i_0_v2[TmpSecId]%256;
+				 	 	 	txbuf[43]=i_100_v2[TmpSecId]/256;
+				 	 	 	txbuf[44]=i_100_v2[TmpSecId]%256;
 
-				 	 	 	txbuf[41]=slopeupipointsv2[2][TmpSecId]/256;
-				 	 	 	txbuf[42]=slopeupipointsv2[2][TmpSecId]%256;
+				 	 	 	txbuf[45]=slopeupipointsv2[0][TmpSecId]/256;
+				 	 	 	txbuf[46]=slopeupipointsv2[0][TmpSecId]%256;
 
-				 	 	 	txbuf[43]=slopeuptpointsv2[0][TmpSecId];
-				 	 	 	txbuf[44]=slopeuptpointsv2[1][TmpSecId];
-				 	 	 	txbuf[45]=slopeuptpointsv2[2][TmpSecId];
-				 	 	 	txbuf[46]=slopeuptpointsv2[3][TmpSecId];
+				 	 	 	txbuf[47]=slopeupipointsv2[1][TmpSecId]/256;
+				 	 	 	txbuf[48]=slopeupipointsv2[1][TmpSecId]%256;
 
-				 	 	 	txbuf[47]=slopedownipointsv2[0][TmpSecId]/256;
-				 	 	 	txbuf[48]=slopedownipointsv2[0][TmpSecId]%256;
+				 	 	 	txbuf[49]=slopeupipointsv2[2][TmpSecId]/256;
+				 	 	 	txbuf[50]=slopeupipointsv2[2][TmpSecId]%256;
 
-				 	 	 	txbuf[49]=slopedownipointsv2[1][TmpSecId]/256;
-				 	 	 	txbuf[50]=slopedownipointsv2[1][TmpSecId]%256;
+				 	 	 	txbuf[51]=slopeuptpointsv2[0][TmpSecId];
+				 	 	 	txbuf[52]=slopeuptpointsv2[1][TmpSecId];
+				 	 	 	txbuf[53]=slopeuptpointsv2[2][TmpSecId];
+				 	 	 	txbuf[54]=slopeuptpointsv2[3][TmpSecId];
 
-				 	 	 	txbuf[51]=slopedownipointsv2[2][TmpSecId]/256;
-				 	 	 	txbuf[52]=slopedownipointsv2[2][TmpSecId]%256;
+				 	 	 	txbuf[55]=slopedownipointsv2[0][TmpSecId]/256;
+				 	 	 	txbuf[56]=slopedownipointsv2[0][TmpSecId]%256;
 
-				 	 	 	txbuf[53]=slopedowntpointsv2[0][TmpSecId];
-				 	 	 	txbuf[54]=slopedowntpointsv2[1][TmpSecId];
-				 	 	 	txbuf[55]=slopedowntpointsv2[2][TmpSecId];
-				 	 	 	txbuf[56]=slopedowntpointsv2[3][TmpSecId];
+				 	 	 	txbuf[57]=slopedownipointsv2[1][TmpSecId]/256;
+				 	 	 	txbuf[58]=slopedownipointsv2[1][TmpSecId]%256;
+
+				 	 	 	txbuf[59]=slopedownipointsv2[2][TmpSecId]/256;
+				 	 	 	txbuf[60]=slopedownipointsv2[2][TmpSecId]%256;
+
+				 	 	 	txbuf[61]=slopedowntpointsv2[0][TmpSecId];
+				 	 	 	txbuf[62]=slopedowntpointsv2[1][TmpSecId];
+				 	 	 	txbuf[63]=slopedowntpointsv2[2][TmpSecId];
+				 	 	 	txbuf[64]=slopedowntpointsv2[3][TmpSecId];
 
 				 	 	 	CalculateTxChecksum(txlen);
 				 	 	 	sendflag=1;
@@ -1390,55 +1460,86 @@ void RxUartEventHandler()
 				 		 	maxctrlv1[TmpSecId]=rxbuf[9];
 				 		 	minctrlv1[TmpSecId]=rxbuf[10];
 
-				 		 	slopeupipointsv1[0][TmpSecId]=rxbuf[11]*256+rxbuf[12];
-				 		 	slopeupipointsv1[1][TmpSecId]=rxbuf[13]*256+rxbuf[14];
-				 		 	slopeupipointsv1[2][TmpSecId]=rxbuf[15]*256+rxbuf[16];
+				 		 	i_0_v1[TmpSecId]=rxbuf[11]*256+rxbuf[12];
+				 		 	i_100_v1[TmpSecId]=rxbuf[13]*256+rxbuf[14];
 
-				 		 	slopeuptpointsv1[0][TmpSecId]=rxbuf[17];
-				 		 	slopeuptpointsv1[1][TmpSecId]=rxbuf[18];
-				 		 	slopeuptpointsv1[2][TmpSecId]=rxbuf[19];
-				 		 	slopeuptpointsv1[3][TmpSecId]=rxbuf[20];
+				 		 	slopeupipointsv1[0][TmpSecId]=rxbuf[15]*256+rxbuf[16];
+				 		 	slopeupipointsv1[1][TmpSecId]=rxbuf[17]*256+rxbuf[18];
+				 		 	slopeupipointsv1[2][TmpSecId]=rxbuf[19]*256+rxbuf[20];
 
-				 		 	slopedownipointsv1[0][TmpSecId]=rxbuf[21]*256+rxbuf[22];
-				 		 	slopedownipointsv1[1][TmpSecId]=rxbuf[23]*256+rxbuf[24];
-				 		 	slopedownipointsv1[2][TmpSecId]=rxbuf[25]*256+rxbuf[26];
+				 		 	slopeuptpointsv1[0][TmpSecId]=rxbuf[21];
+				 		 	slopeuptpointsv1[1][TmpSecId]=rxbuf[22];
+				 		 	slopeuptpointsv1[2][TmpSecId]=rxbuf[23];
+				 		 	slopeuptpointsv1[3][TmpSecId]=rxbuf[24];
 
-				 		 	slopedowntpointsv1[0][TmpSecId]=rxbuf[27];
-				 		 	slopedowntpointsv1[1][TmpSecId]=rxbuf[28];
-				 		 	slopedowntpointsv1[2][TmpSecId]=rxbuf[29];
-				 		 	slopedowntpointsv1[3][TmpSecId]=rxbuf[30];
+				 		 	slopedownipointsv1[0][TmpSecId]=rxbuf[25]*256+rxbuf[26];
+				 		 	slopedownipointsv1[1][TmpSecId]=rxbuf[27]*256+rxbuf[28];
+				 		 	slopedownipointsv1[2][TmpSecId]=rxbuf[29]*256+rxbuf[30];
 
-				 		 	imaxv2[TmpSecId]=rxbuf[31]*256+rxbuf[32];
-				 		 	iminv2[TmpSecId]=rxbuf[33]*256+rxbuf[34];
-				 		 	maxctrlv2[TmpSecId]=rxbuf[35];
-				 		 	minctrlv2[TmpSecId]=rxbuf[36];
+				 		 	slopedowntpointsv1[0][TmpSecId]=rxbuf[31];
+				 		 	slopedowntpointsv1[1][TmpSecId]=rxbuf[32];
+				 		 	slopedowntpointsv1[2][TmpSecId]=rxbuf[33];
+				 		 	slopedowntpointsv1[3][TmpSecId]=rxbuf[34];
 
-				 		 	slopeupipointsv2[0][TmpSecId]=rxbuf[37]*256+rxbuf[38];
-				 		 	slopeupipointsv2[1][TmpSecId]=rxbuf[39]*256+rxbuf[40];
-				 		 	slopeupipointsv2[2][TmpSecId]=rxbuf[41]*256+rxbuf[42];
+				 		 	imaxv2[TmpSecId]=rxbuf[35]*256+rxbuf[36];
+				 		 	iminv2[TmpSecId]=rxbuf[37]*256+rxbuf[38];
+				 		 	maxctrlv2[TmpSecId]=rxbuf[39];
+				 		 	minctrlv2[TmpSecId]=rxbuf[40];
 
-				 		 	slopeuptpointsv2[0][TmpSecId]=rxbuf[43];
-				 		 	slopeuptpointsv2[1][TmpSecId]=rxbuf[44];
-				 		 	slopeuptpointsv2[2][TmpSecId]=rxbuf[45];
-				 		 	slopeuptpointsv2[3][TmpSecId]=rxbuf[46];
+				 		 	i_0_v2[TmpSecId]=rxbuf[41]*256+rxbuf[42];
+				 		 	i_100_v2[TmpSecId]=rxbuf[43]*256+rxbuf[44];
 
-				 		 	slopedownipointsv2[0][TmpSecId]=rxbuf[47]*256+rxbuf[48];
-				 		 	slopedownipointsv2[1][TmpSecId]=rxbuf[49]*256+rxbuf[50];
-				 		 	slopedownipointsv2[2][TmpSecId]=rxbuf[51]*256+rxbuf[52];
+				 		 	slopeupipointsv2[0][TmpSecId]=rxbuf[45]*256+rxbuf[46];
+				 		 	slopeupipointsv2[1][TmpSecId]=rxbuf[47]*256+rxbuf[48];
+				 		 	slopeupipointsv2[2][TmpSecId]=rxbuf[49]*256+rxbuf[50];
 
-				 		 	slopedowntpointsv2[0][TmpSecId]=rxbuf[53];
-				 		 	slopedowntpointsv2[1][TmpSecId]=rxbuf[54];
-				 		 	slopedowntpointsv2[2][TmpSecId]=rxbuf[55];
-				 		 	slopedowntpointsv2[3][TmpSecId]=rxbuf[56];
+				 		 	slopeuptpointsv2[0][TmpSecId]=rxbuf[51];
+				 		 	slopeuptpointsv2[1][TmpSecId]=rxbuf[52];
+				 		 	slopeuptpointsv2[2][TmpSecId]=rxbuf[53];
+				 		 	slopeuptpointsv2[3][TmpSecId]=rxbuf[54];
+
+				 		 	slopedownipointsv2[0][TmpSecId]=rxbuf[55]*256+rxbuf[56];
+				 		 	slopedownipointsv2[1][TmpSecId]=rxbuf[57]*256+rxbuf[58];
+				 		 	slopedownipointsv2[2][TmpSecId]=rxbuf[59]*256+rxbuf[60];
+
+				 		 	slopedowntpointsv2[0][TmpSecId]=rxbuf[61];
+				 		 	slopedowntpointsv2[1][TmpSecId]=rxbuf[62];
+				 		 	slopedowntpointsv2[2][TmpSecId]=rxbuf[63];
+				 		 	slopedowntpointsv2[3][TmpSecId]=rxbuf[64];
 
 				 		 	piv1[TmpSecId]=(imaxv1[TmpSecId]-iminv1[TmpSecId])/(maxctrlv1[TmpSecId]-minctrlv1[TmpSecId]);
 				 		 	piv2[TmpSecId]=(imaxv2[TmpSecId]-iminv2[TmpSecId])/(maxctrlv2[TmpSecId]-minctrlv2[TmpSecId]);
 				 		 	qiv1[TmpSecId]=-piv1[TmpSecId]*minctrlv1[TmpSecId];
 				 		 	qiv2[TmpSecId]=-piv2[TmpSecId]*minctrlv2[TmpSecId];
 
+				 		 	membaseaddress=sectionparamsize*TmpSecId;
+				 		 	for(i=0;i<sectionparamsize;i++)
+				 		 	{
+				 		 		membuffer[membaseaddress+i]=rxbuf[i+2];
+				 		 	}
+
+				 		 	flash_status=Flash002_EraseSector(FLASH002_SECTOR11_BASE);
+
+				 			if(flash_status==DAVEApp_SUCCESS)
+				 			{
+				 				flash_status=Flash002_WritePage(FLASH002_SECTOR11_BASE,membuffer);
+				 				if(flash_status==DAVEApp_SUCCESS)
+				 				{
+				 					txbuf[1]=0x01;
+				 				}
+				 				else
+				 				{
+				 					txbuf[1]=0x00;
+				 				}
+				 			}
+				 			else
+				 			{
+				 				txbuf[1]=0x00;
+				 			}
+
 				 		 	txlen=4;
 				 		 	txbuf[0]=0x07;
-				 		 	txbuf[1]=0x01;
+
 				 		 	CalculateTxChecksum(txlen);
 				 		 	sendflag=1;
 				 		 	//UART001_WriteDataBytes(&UART001_Handle0,&txbuf[0],txlen);
@@ -1640,48 +1741,53 @@ void SetupDiagnoMsg(void)
 {
 	int32_t diagnocurr;
 
-	if(diagnoindex>=0 && diagnoindex<=7)
+	if(startdiagno>0 && startdiagno<=8)
 	{
 		txbuf[0]=0x02;
-		txbuf[1]=diagnoindex;
+		txbuf[1]=startdiagno-1;
 
-		if(sectionconf & (1 << diagnoindex))
+		if(sectionconf & startdiagno)
 		{
-			diagnocurr=actualcurr[diagnoindex]*0.725;
-			if(acttargcurr[diagnoindex]<0)
+			diagnocurr=actualcurr[startdiagno-1]*0.725;
+			if(acttargcurr[startdiagno-1]<0)
 			{
 				diagnocurr=-diagnocurr;
 			}
 			txbuf[2]=diagnocurr/256;
 			txbuf[3]=diagnocurr%256;
+
+			diagnocurr=inputlevel[startdiagno-1];
+
+			txbuf[4]=diagnocurr/256;
+			txbuf[5]=diagnocurr%256;
 		}
 		else
 		{
 			//Stato Ingressi
 		}
 
-		txbuf[4]=sectionstatus[diagnoindex];
-		txlendiagno=7;
+		txbuf[6]=sectionstatus[startdiagno-1];
+		txlendiagno=9;
 		CalculateTxChecksum(txlendiagno);
 	}
-	else if(diagnoindex==8)
+	else if(startdiagno==9)
 	{
 		txbuf[0]=0x09;
 		txbuf[1]=0x80; //Mettere valore di temperatura;
 		txlendiagno=4;
 		CalculateTxChecksum(txlendiagno);
 	}
-	else if(diagnoindex==9)
+	else if(startdiagno==10)
 	{
 		txbuf[0]=0x0A;
 		txbuf[1]=0x00; //Mettere valore di Stato Generale;
 		txlendiagno=4;
 		CalculateTxChecksum(txlendiagno);
 	}
-	else if(diagnoindex>=10 && diagnoindex<=11)
+	else if(startdiagno>=11 && startdiagno<=12)
 	{
 		txbuf[0]=0x0B;
-		if(diagnoindex==10)
+		if(startdiagno==11)
 		{
 			txbuf[1]=0x00;
 
@@ -1701,7 +1807,7 @@ void SetupDiagnoMsg(void)
 			txbuf[11]=0x00; //Valore analogico Low-Byte Input 5
 
 		}
-		else if(diagnoindex==11)
+		else if(startdiagno==12)
 		{
 			txbuf[1]=0x01;
 
@@ -1728,6 +1834,8 @@ void SetupDiagnoMsg(void)
 
 void MAIN_CLOCK_HANDLER(void)
 {
+	int k=0;
+
 	if(uarttimeout>0)
 	{
 		uarttimeout--;
@@ -1737,7 +1845,7 @@ void MAIN_CLOCK_HANDLER(void)
 			uartmsglen=1;
 		}
 	}
-	if(startdiagno==1)
+	if(startdiagno!=0)
 	{
 		if(diagnodem<11)
 		{
@@ -1750,18 +1858,42 @@ void MAIN_CLOCK_HANDLER(void)
 				SetupDiagnoMsg();
 				UART001_WriteDataBytes(&UART001_Handle0,&txbuf[0],txlendiagno);
 				diagnodem=0;
-				if(diagnoindex<12)
-				{
-					diagnoindex++;
-				}
-				else
-				{
-					diagnoindex=0;
-				}
 			}
 		}
 	}
 
+	for(k=0;k<8;k++)
+	{
+		if(sectionstatus[k]!=0)
+		{
+			sectionrecoverydelay[k]++;
+			if(sectionrecoverydelay[k]>sectionrecoverydelaythr)
+			{
+				sectionrecoverydelay[k]=0;
+				sectionstatus[k]=0;
+				switch(k)
+				{
+				case 0: PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle0);
+						break;
+				case 1: PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle1);
+						break;
+				case 2: PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle2);
+						break;
+				case 3: PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle3);
+						break;
+				case 4: PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle4);
+						break;
+				case 5: PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle5);
+						break;
+				case 6: PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle6);
+						break;
+				case 7: PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle7);
+						break;
+
+				}
+			}
+		}
+	}
 	/*if(spidatainenable==1 && auxreading==0)
 	{
 		GetSPIData();
