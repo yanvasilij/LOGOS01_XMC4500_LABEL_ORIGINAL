@@ -105,7 +105,7 @@ SPI001_ConfigType SPI001_Config0 =
    .LeadTrailDelay =  SPI001_ONE_SCLK_PERIOD,/* Leading/TrailingDelay */
    .NextFrameDelay = SPI001_ONE_SCLK_PERIOD,/* NextFrameDelay */
    .WordLen = (uint8_t) 8,/* Wordlength */
-   .FrameLen = (uint8_t) 64,/* Framelength */   
+   .FrameLen = (uint8_t) 8,/* Framelength */   
    .CESelected = (uint8_t) CE_A /* Default Chip Select line selection */
 };
 

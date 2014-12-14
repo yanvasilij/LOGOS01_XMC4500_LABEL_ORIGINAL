@@ -504,8 +504,8 @@ for reception and transmission.</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:IntegerParameter" name="Frame Length" evalFunction="&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;function ForwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Res = SCM.getResource(&quot;channel/sctr/fle&quot;); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Intvalue = SCM.getIntValue(currentResource);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res,Intvalue);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;function BackwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Res = SCM.getResource(&quot;channel/sctr/fle&quot;); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Intvalue = SCM.getIntValue(Res); &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,Intvalue);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;" URI="http://www.infineon.com/1.0.24/app/spi001/0/spi001_irwframelength" downWardmappedList="//@consumed.33" maxValue="40" minValue="8">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="8"/>
-    <localValue xsi:type="ResourceModel:StringValue" value="40"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="40"/>
+    <localValue xsi:type="ResourceModel:StringValue" value="8"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="8"/>
     <toolTipHelpDescription>This defines how many bits are transferred within a data frame.
 A data frame can consist of several concatenated data words
 Note: Frame Length should be exact multiple of Word Length
@@ -952,9 +952,9 @@ The Inactive level of SCLKOUT is 1 while no data is transferred</toolTipHelpDesc
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/channel/sctr/fle" upWardMappingList="//@provided.62" isSystemDefined="true">
-    <localValue xsi:type="ResourceModel:IntegerValue" value="40"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="8"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../USIC1/USIC1_1.dd#//@provided.3"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="40"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="8"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/channel/sctr/wle" upWardMappingList="//@provided.61" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="8"/>

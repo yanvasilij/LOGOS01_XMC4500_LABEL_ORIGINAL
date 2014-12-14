@@ -24,6 +24,7 @@
 
 #define teststep 1
 #define sectionparamsize 63
+#define memstep 1
 
 extern status_t Flash002_EraseSector  ( uint32_t  Address ) __attribute__ ((section (".ram_code")));
 extern void FLASH002_Init (void) __attribute__ ((section (".ram_code")));
@@ -35,11 +36,10 @@ void CalcActPwm(int secid,uint32_t tmpcurr);
 void SetActPwm(int secid);
 void CalculateTxChecksum(uint8_t len);
 uint16_t CalculateRxChecksum(void);
-void GetSPIData(void);
+void GetSPIData(char mode);
 
 uint8_t sectionrecoverydelaythr=11;
 uint8_t sectionrecoverydelay[8];
-uint32_t StartAddr = FLASH002_SECTOR11_BASE; //Page-0 of sector 11
 
 uint8_t sendflag=0;
 uint8_t sectionconf=0xFF;
@@ -48,7 +48,7 @@ uint8_t auxvolt;
 uint8_t sectionname[8][8];
 uint8_t analoginname[10][8];
 
-uint16_t spidatain[8];
+uint16_t spidatain[16];
 uint8_t spidatainenable=0;
 uint8_t analoginenable=0;
 uint8_t auxreading=0;
@@ -107,9 +107,7 @@ float maxctrlv2[8];
 float minctrlv2[8];
 uint8_t configsec[8];
 float piv1[8];
-float qiv1[8];
 float piv2[8];
-float qiv2[8];
 
 float smoothdownv1[8];
 float smoothupv1[8];
@@ -138,7 +136,7 @@ uint16_t sentdata=0;
 
 uint32_t flash_status;
 uint32_t* address = FLASH002_SECTOR11_BASE;
-uint8_t membuffer[sectionparamsize*8];
+uint32_t membuffer[sectionparamsize*8];
 
 uint16_t NoMappedVal1;
 uint16_t G2Ch2Val;
@@ -172,74 +170,79 @@ int main(void)
 	membaseaddress=sectionparamsize*i;
 
 	loopfreq[i] = *(address+membaseaddress);
-	ditherampl[i] = *(address+membaseaddress+1);
-	configsec[i] = *(address+membaseaddress+2);
+	ditherampl[i] = *(address+membaseaddress+1*memstep);
+	configsec[i] = *(address+membaseaddress+2*memstep);
 
-	imaxv1[i] = *(address+membaseaddress+3) * 256 + *(address+membaseaddress+4);
-	iminv1[i] = *(address+membaseaddress+5) * 256 + *(address+membaseaddress+6);
-	maxctrlv1[i] = *(address+membaseaddress+7);
-	minctrlv1[i] = *(address+membaseaddress+8);
+	imaxv1[i] = *(address+membaseaddress+3*memstep) * 256 + *(address+membaseaddress+4*memstep);
+	iminv1[i] = *(address+membaseaddress+5*memstep) * 256 + *(address+membaseaddress+6*memstep);
+	maxctrlv1[i] = *(address+membaseaddress+7*memstep);
+	minctrlv1[i] = *(address+membaseaddress+8*memstep);
 
-	i_0_v1[i] = *(address+membaseaddress+9) * 256 + *(address+membaseaddress+10);
-	i_100_v1[i] = *(address+membaseaddress+11) * 256 + *(address+membaseaddress+12);
+	i_0_v1[i] = *(address+membaseaddress+9*memstep) * 256 + *(address+membaseaddress+10*memstep);
+	i_100_v1[i] = *(address+membaseaddress+11*memstep) * 256 + *(address+membaseaddress+12*memstep);
 
-	slopeupipointsv1[0][i] = *(address+membaseaddress+13) * 256 + *(address+membaseaddress+14);
-	slopeupipointsv1[1][i] = *(address+membaseaddress+15) * 256 + *(address+membaseaddress+16);
-	slopeupipointsv1[2][i] = *(address+membaseaddress+17) * 256 + *(address+membaseaddress+18);
+	slopeupipointsv1[0][i] = *(address+membaseaddress+13*memstep) * 256 + *(address+membaseaddress+14*memstep);
+	slopeupipointsv1[1][i] = *(address+membaseaddress+15*memstep) * 256 + *(address+membaseaddress+16*memstep);
+	slopeupipointsv1[2][i] = *(address+membaseaddress+17*memstep) * 256 + *(address+membaseaddress+18*memstep);
 
-	slopeuptpointsv1[0][i] = *(address+membaseaddress+19);
-	slopeuptpointsv1[1][i] = *(address+membaseaddress+20);
-	slopeuptpointsv1[2][i] = *(address+membaseaddress+21);
-	slopeuptpointsv1[3][i] = *(address+membaseaddress+22);
+	slopeuptpointsv1[0][i] = *(address+membaseaddress+19*memstep);
+	slopeuptpointsv1[1][i] = *(address+membaseaddress+20*memstep);
+	slopeuptpointsv1[2][i] = *(address+membaseaddress+21*memstep);
+	slopeuptpointsv1[3][i] = *(address+membaseaddress+22*memstep);
 
-	slopedownipointsv1[0][i] = *(address+membaseaddress+23) * 256 + *(address+membaseaddress+24);
-	slopedownipointsv1[1][i] = *(address+membaseaddress+25) * 256 + *(address+membaseaddress+26);
-	slopedownipointsv1[2][i] = *(address+membaseaddress+27) * 256 + *(address+membaseaddress+28);
+	slopedownipointsv1[0][i] = *(address+membaseaddress+23*memstep) * 256 + *(address+membaseaddress+24*memstep);
+	slopedownipointsv1[1][i] = *(address+membaseaddress+25*memstep) * 256 + *(address+membaseaddress+26*memstep);
+	slopedownipointsv1[2][i] = *(address+membaseaddress+27*memstep) * 256 + *(address+membaseaddress+28*memstep);
 
-	slopedowntpointsv1[0][i] = *(address+membaseaddress+29);
-	slopedowntpointsv1[1][i] = *(address+membaseaddress+30);
-	slopedowntpointsv1[2][i] = *(address+membaseaddress+31);
-	slopedowntpointsv1[3][i] = *(address+membaseaddress+32);
+	slopedowntpointsv1[0][i] = *(address+membaseaddress+29*memstep);
+	slopedowntpointsv1[1][i] = *(address+membaseaddress+30*memstep);
+	slopedowntpointsv1[2][i] = *(address+membaseaddress+31*memstep);
+	slopedowntpointsv1[3][i] = *(address+membaseaddress+32*memstep);
 
-	imaxv2[i] = *(address+membaseaddress+33) * 256 + *(address+membaseaddress+34);
-	iminv2[i] = *(address+membaseaddress+35) * 256 + *(address+membaseaddress+36);
-	maxctrlv2[i] = *(address+membaseaddress+37);
-	minctrlv2[i] = *(address+membaseaddress+38);
+	imaxv2[i] = *(address+membaseaddress+33*memstep) * 256 + *(address+membaseaddress+34*memstep);
+	iminv2[i] = *(address+membaseaddress+35*memstep) * 256 + *(address+membaseaddress+36*memstep);
+	maxctrlv2[i] = *(address+membaseaddress+37*memstep);
+	minctrlv2[i] = *(address+membaseaddress+38*memstep);
 
-	i_0_v2[i] = *(address+membaseaddress+39) * 256 + *(address+membaseaddress+40);
-	i_100_v2[i] = *(address+membaseaddress+41) * 256 + *(address+membaseaddress+42);
+	i_0_v2[i] = *(address+membaseaddress+39*memstep) * 256 + *(address+membaseaddress+40*memstep);
+	i_100_v2[i] = *(address+membaseaddress+41*memstep) * 256 + *(address+membaseaddress+42*memstep);
 
-	slopeupipointsv2[0][i] = *(address+membaseaddress+43) * 256 + *(address+membaseaddress+44);
-	slopeupipointsv2[1][i] = *(address+membaseaddress+45) * 256 + *(address+membaseaddress+46);
-	slopeupipointsv2[2][i] = *(address+membaseaddress+47) * 256 + *(address+membaseaddress+48);
+	slopeupipointsv2[0][i] = *(address+membaseaddress+43*memstep) * 256 + *(address+membaseaddress+44*memstep);
+	slopeupipointsv2[1][i] = *(address+membaseaddress+45*memstep) * 256 + *(address+membaseaddress+46*memstep);
+	slopeupipointsv2[2][i] = *(address+membaseaddress+47*memstep) * 256 + *(address+membaseaddress+48*memstep);
 
-	slopeuptpointsv2[0][i] = *(address+membaseaddress+49);
-	slopeuptpointsv2[1][i] = *(address+membaseaddress+50);
-	slopeuptpointsv2[2][i] = *(address+membaseaddress+51);
-	slopeuptpointsv2[3][i] = *(address+membaseaddress+52);
+	slopeuptpointsv2[0][i] = *(address+membaseaddress+49*memstep);
+	slopeuptpointsv2[1][i] = *(address+membaseaddress+50*memstep);
+	slopeuptpointsv2[2][i] = *(address+membaseaddress+51*memstep);
+	slopeuptpointsv2[3][i] = *(address+membaseaddress+52*memstep);
 
-	slopedownipointsv2[0][i] = *(address+membaseaddress+53) * 256 + *(address+membaseaddress+54);
-	slopedownipointsv2[1][i] = *(address+membaseaddress+55) * 256 + *(address+membaseaddress+56);
-	slopedownipointsv2[2][i] = *(address+membaseaddress+57) * 256 + *(address+membaseaddress+58);
+	slopedownipointsv2[0][i] = *(address+membaseaddress+53*memstep) * 256 + *(address+membaseaddress+54*memstep);
+	slopedownipointsv2[1][i] = *(address+membaseaddress+55*memstep) * 256 + *(address+membaseaddress+56*memstep);
+	slopedownipointsv2[2][i] = *(address+membaseaddress+57*memstep) * 256 + *(address+membaseaddress+58*memstep);
 
-	slopedowntpointsv2[0][i] = *(address+membaseaddress+59);
-	slopedowntpointsv2[1][i] = *(address+membaseaddress+60);
-	slopedowntpointsv2[2][i] = *(address+membaseaddress+61);
-	slopedowntpointsv2[3][i] = *(address+membaseaddress+62);
+	slopedowntpointsv2[0][i] = *(address+membaseaddress+59*memstep);
+	slopedowntpointsv2[1][i] = *(address+membaseaddress+60*memstep);
+	slopedowntpointsv2[2][i] = *(address+membaseaddress+61*memstep);
+	slopedowntpointsv2[3][i] = *(address+membaseaddress+62*memstep);
 
 	piv1[i] = (imaxv1[i] - iminv1[i])
 			/ (maxctrlv1[i] - minctrlv1[i]);
 	piv2[i] = (imaxv2[i] - iminv2[i])
 			/ (maxctrlv2[i] - minctrlv2[i]);
-	qiv1[i] = -piv1[i] * minctrlv1[i];
-	qiv2[i] = -piv2[i] * minctrlv2[i];
 
+	smoothdownv1[i]=iminv1[i]/minctrlv1[i];
+	smoothdownv2[i]=iminv2[i]/minctrlv2[i];
+
+	smoothupv1[i]=i_100_v1[i]-imaxv1[i]/100-maxctrlv1[i];
+	smoothupv2[i]=i_100_v2[i]-imaxv2[i]/100-maxctrlv2[i];
 	}
+
 
 	for(i=0;i<8;i++)
 	{
 		pwmtar[i]=3333;
 		loopfreq[i]=10; // 10=100Hz
+
 	}
 
 	ditheractive[0]=1;
@@ -252,7 +255,7 @@ int main(void)
 	ditherampl[2]=2;
 	ditherampl[3]=2;
 
-	piv1[0]=5.882;
+	/*piv1[0]=5.882;
 	//qiv1[0]=500;
 	piv2[0]=5.882;
 	//qiv2[0]=500;
@@ -300,9 +303,9 @@ int main(void)
 	minctrlv1[4]=1;
 	maxctrlv1[4]=99;
 	minctrlv2[4]=-1;
-	maxctrlv2[4]=-99;
+	maxctrlv2[4]=-99;*/
 
-	smoothdownv1[0]=500;
+	/*smoothdownv1[0]=500;
 	smoothdownv1[1]=500;
 	smoothdownv1[2]=500;
 	smoothdownv1[3]=500;
@@ -324,9 +327,10 @@ int main(void)
 	smoothupv2[1]=150;
 	smoothupv2[2]=150;
 	smoothupv2[3]=150;
-	smoothupv2[4]=150;
+	smoothupv2[4]=150;*/
 
-	/*slopeupipointsv1[0][0]=690/0.725;
+	/* OLD
+	 * slopeupipointsv1[0][0]=690/0.725;
 	slopeupipointsv1[1][0]=700/0.725;
 	slopeupipointsv1[2][0]=710/0.725;
 
@@ -342,7 +346,7 @@ int main(void)
 	slopedownipointsv2[1][0]=780/0.725;
 	slopedownipointsv2[2][0]=770/0.725;*/
 
-	slopeupipointsv1[0][0]=550/0.725;
+	/*slopeupipointsv1[0][0]=550/0.725;
 	slopeupipointsv1[1][0]=650/0.725;
 	slopeupipointsv1[2][0]=700/0.725;
 
@@ -395,9 +399,10 @@ int main(void)
 	configsec[1]=0x00;
 	configsec[2]=0x00;
 	configsec[3]=0x00;
-	configsec[4]=0x00;
+	configsec[4]=0x00;*/
 
-	/*slopeupv1[0][0]=1; //20;
+	/* OLD
+	 * slopeupv1[0][0]=1; //20;
 	slopeupv1[1][0]=1;
 	slopeupv1[2][0]=1;
 	slopeupv1[3][0]=0.5;
@@ -437,7 +442,8 @@ int main(void)
 	slopedownv2[2][1]=-0.1;
 	slopedownv2[3][1]=-100;*/
 
-	/*slopeupv1[0][3]=1;
+	/* OLD
+	 * slopeupv1[0][3]=1;
 	slopeupv1[1][3]=1;
 	slopeupv1[2][3]=1;
 	slopeupv1[3][3]=1;
@@ -457,6 +463,12 @@ int main(void)
 	slopedownv2[2][3]=-1;
 	slopedownv2[3][3]=-1;*/
 
+	configsec[0]=0x00;
+	configsec[1]=0x00;
+	configsec[2]=0x00;
+	configsec[3]=0x00;
+	configsec[4]=0x00;
+
 	inoutmap[0]=9;
 	inoutmap[1]=1;
 	inoutmap[2]=8;
@@ -464,14 +476,14 @@ int main(void)
 
 	inoutmap[4]=4;
 
-	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle0);
+	/*PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle0);
 	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle1);
 	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle2);
 	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle3);
 	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle4);
 	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle5);
 	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle6);
-	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle7);
+	PWMSP002_ResetTrapFlag((PWMSP002_HandleType*)&PWMSP002_Handle7);*/
 
 	PWMSP003_Start(&PWMSP003_Handle0);
 
@@ -483,7 +495,7 @@ int main(void)
 	ADC002_InitializeQueue(&ADC002_Handle2);
 	ADC002_InitializeQueue(&ADC002_Handle3);
 
-	//spidatainenable=1;
+	spidatainenable=1;
 	analoginenable=1;
 
 	//WriteData2Flash();
@@ -990,49 +1002,221 @@ void SetActPwm(int secid)
 	}
 }
 
-void GetSPIData(void)
+
+void HandleCanMessageBasic(uint8_t Data[8])
 {
-	int i;
-	uint8_t Status1 = 0;
-	uint8_t Status2 = 0;
-	uint16_t DummyData = 0;
-	EnableStartOfFrame(SPI001_Handle0);
+	float X_Pos,Y_Pos;
+	uint8_t PB1,PB2,PB3,PB4,PB5;
+	int TmpData;
+	int k;
 
-	for(i=0;i<8;i++)
-	{
-		SPI001_ClearFlag(&SPI001_Handle0, SPI001_RECV_IND_FLAG);
-		SPI001_ClearFlag(&SPI001_Handle0, SPI001_ALT_RECV_IND_FLAG);
+	X_Pos = Data[1] * 4 + (Data[0] / 64);
+	Y_Pos = Data[3] * 4 + (Data[2] / 64);
 
-		DummyData=i;
-		/* Send read page command */
-		SPI001_WriteData(&SPI001_Handle0, &DummyData, SPI001_STANDARD);
+	PB1 = ((Data[5] & 0xC0) >> 6); //BIANCO
+	PB2 = ((Data[5] & 0x30) >> 4); //VERDE
+	PB3 = ((Data[5] & 0x0C) >> 2); //ROSSO
+	PB4 = (Data[5] & 0x03); //Azzurro Basso
+	PB5 = ((Data[6] & 0xC0) >> 6); //Azzurro Alto
 
-		/*wait for dummy to be received*/
-		do {
-			Status1 = SPI001_GetFlagStatus(&SPI001_Handle0,
-					SPI001_RECV_IND_FLAG);
-			Status2 = SPI001_GetFlagStatus(&SPI001_Handle0,
-					SPI001_ALT_RECV_IND_FLAG);
-		} while (!((Status1 == SPI001_SET) || (Status2 == SPI001_SET)));
+	for (k = 0; k < 8; k++) {
+		switch (inoutmap[k]) {
+		case (1):
+			TmpData = Data[2];
+			if (TmpData & 0x01) {
+				inputlevel[k] = 0;
+			} else if (TmpData & 0x04) {
+				inputlevel[k] = (Y_Pos * 100) / 1000.0;
+			} else if (TmpData & 0x10) {
+				inputlevel[k] = (-Y_Pos * 100) / 1000.0;
+			}
+			CalcTarCurr(k);
+			break;
 
-		SPI001_ReadData(&SPI001_Handle0, &spidatain[i]); // dummy read
+		case (2):
+			TmpData = Data[0];
+			if (TmpData & 0x01) {
+				inputlevel[k] = 0;
+			} else if (TmpData & 0x04) {
+				inputlevel[k] = (X_Pos * 100) / 1000.0;
+			} else if (TmpData & 0x10) {
+				inputlevel[k] = (-X_Pos * 100) / 1000.0;
+			}
+
+			CalcTarCurr(k);
+			break;
+		case (3):
+			if (PB1) {
+
+			}
+			break;
+		case (4):
+			if (PB4) {
+				inputlevel[k] = 100;
+			} else if (PB2) {
+				inputlevel[k] = -100;
+			} else {
+				inputlevel[k] = 0;
+			}
+
+			CalcTarCurr(k);
+			break;
+		case (5):
+			break;
+		case (6):
+			break;
+		case (7):
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void HandleCanMessageExtended(uint8_t Data[8])
+{
+	float Z_Pos, W_Pos;
+	int TmpData;
+	int k;
+
+	Z_Pos = Data[1] * 4 + (Data[0] / 64);
+	W_Pos = Data[3] * 4 + (Data[2] / 64);
+
+	for (k = 0; k < 8; k++) {
+		switch (inoutmap[k]) {
+		case (8):
+			TmpData = Data[0];
+			if (TmpData & 0x01) {
+				inputlevel[k] = 0;
+			} else if (TmpData & 0x04) {
+				inputlevel[k] = (Z_Pos * 100) / 1000.0;
+			} else if (TmpData & 0x10) {
+				inputlevel[k] = (-Z_Pos * 100) / 1000.0;
+			}
+			CalcTarCurr(k);
+			break;
+
+		case (9):
+			TmpData = Data[2];
+			if (TmpData & 0x01) {
+				inputlevel[k] = 0;
+			} else if (TmpData & 0x04) {
+				inputlevel[k] = (W_Pos * 100) / 1000.0;
+			} else if (TmpData & 0x10) {
+				inputlevel[k] = (-W_Pos * 100) / 1000.0;
+			}
+
+			CalcTarCurr(k);
+			break;
+		}
 	}
 
-	 /* Enable end of frame */
-	EnableEndOfFrame(SPI001_Handle0);
+}
 
-	SPI001_ClearFlag(&SPI001_Handle0,SPI001_RECV_IND_FLAG);
-	SPI001_ClearFlag(&SPI001_Handle0,SPI001_ALT_RECV_IND_FLAG);
+void GetSPIData(char mode) {
+	static uint8_t Data[8] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+	uint16_t i,k;
+	uint8_t Status1 = 0;
+	uint8_t Status2 = 0;
+    uint16_t DummyData = 0;
+    uint16_t DummyRead = 0;
+
+    if (mode == 1) {
+
+		for (i = 0; i <=8 ; i++) {
+			EnableStartOfFrame(SPI001_Handle0);
+			SPI001_ClearFlag(&SPI001_Handle0, SPI001_RECV_IND_FLAG);
+			SPI001_ClearFlag(&SPI001_Handle0, SPI001_ALT_RECV_IND_FLAG);
+
+			DummyData = i;
+			/* Send read page command */
+			SPI001_WriteData(&SPI001_Handle0, &DummyData, SPI001_STANDARD);
+
+			/*wait for dummy to be received*/
+			do {
+				Status1 = SPI001_GetFlagStatus(&SPI001_Handle0,
+						SPI001_RECV_IND_FLAG);
+				Status2 = SPI001_GetFlagStatus(&SPI001_Handle0,
+						SPI001_ALT_RECV_IND_FLAG);
+			} while (!((Status1 == SPI001_SET) || (Status2 == SPI001_SET)));
+
+			if(i>0)
+			{
+				SPI001_ReadData(&SPI001_Handle0, &spidatain[i-1]);
+			}
+			else
+			{
+				SPI001_ReadData(&SPI001_Handle0, &DummyRead); // dummy read
+			}
+			/* Enable end of frame */
+			EnableEndOfFrame(SPI001_Handle0);
+
+			SPI001_ClearFlag(&SPI001_Handle0, SPI001_RECV_IND_FLAG);
+			SPI001_ClearFlag(&SPI001_Handle0, SPI001_ALT_RECV_IND_FLAG);
+
+			for(k=0;k<10000;k++)
+			{
+				;
+			}
+		}
+
+		for (i = 0; i < 8; i++) {
+			Data[i] = spidatain[i];
+		}
+		HandleCanMessageBasic(Data);
+	}
+
+	else if (mode == 2) {
+
+		for (i = 8; i <= 16; i++) {
+			EnableStartOfFrame(SPI001_Handle0);
+			SPI001_ClearFlag(&SPI001_Handle0, SPI001_RECV_IND_FLAG);
+			SPI001_ClearFlag(&SPI001_Handle0, SPI001_ALT_RECV_IND_FLAG);
+
+			DummyData = i;
+			/* Send read page command */
+			SPI001_WriteData(&SPI001_Handle0, &DummyData, SPI001_STANDARD);
+
+			/*wait for dummy to be received*/
+			do {
+				Status1 = SPI001_GetFlagStatus(&SPI001_Handle0,
+						SPI001_RECV_IND_FLAG);
+				Status2 = SPI001_GetFlagStatus(&SPI001_Handle0,
+						SPI001_ALT_RECV_IND_FLAG);
+			} while (!((Status1 == SPI001_SET) || (Status2 == SPI001_SET)));
+
+			if(i>8)
+			{
+				SPI001_ReadData(&SPI001_Handle0, &spidatain[i-1]);
+			}
+			else
+			{
+				SPI001_ReadData(&SPI001_Handle0, &DummyRead); // dummy read
+			}
+			/* Enable end of frame */
+			EnableEndOfFrame(SPI001_Handle0);
+
+			SPI001_ClearFlag(&SPI001_Handle0, SPI001_RECV_IND_FLAG);
+			SPI001_ClearFlag(&SPI001_Handle0, SPI001_ALT_RECV_IND_FLAG);
+
+			for(k=0;k<10000;k++)
+			{
+				;
+			}
+
+		}
+
+		for (i = 8; i < 16; i++) {
+			Data[i - 8] = spidatain[i];
+		}
+		HandleCanMessageExtended(Data);
+	}
 
 }
 
 void CAN_Basic_RX_Handler()
 {
-	uint8_t Data[8] = {0xAA,0x23,0x22,0xA5,0xBC,0xFF,0x45,0xAF};
-	float X_Pos,Y_Pos;
-	uint8_t PB1,PB2,PB3,PB4,PB5;
-	int TmpData;
-	int k;
+	static uint8_t Data[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
 	/* Check receive pending status */
 	if(CAN001_GetMOFlagStatus(&CAN001_Handle0,1,RECEIVE_PENDING) == CAN_SET)
@@ -1051,81 +1235,8 @@ void CAN_Basic_RX_Handler()
 		Data[6]=CanRecMsgObj.data[6];
 		Data[7]=CanRecMsgObj.data[7];
 
-		X_Pos=Data[1]*4+(Data[0]/64);
-		Y_Pos=Data[3]*4+(Data[2]/64);
+		HandleCanMessageBasic(Data);
 
-		PB1=((Data[5]&0xC0)>>6); //BIANCO
-		PB2=((Data[5]&0x30)>>4); //VERDE
-		PB3=((Data[5]&0x0C)>>2); //ROSSO
-		PB4=(Data[5]&0x03);		 //Azzurro Basso
-		PB5=((Data[6]&0xC0)>>6); //Azzurro Alto
-
-		for(k=0;k<8;k++)
-		{
-			switch(inoutmap[k])
-			{
-				case(1):TmpData=Data[2];
-						if(TmpData & 0x01)
-						{
-							inputlevel[k]=0;
-						}
-						else if(TmpData & 0x04)
-						{
-							inputlevel[k]=(Y_Pos*100)/1000.0;
-						}
-						else if(TmpData & 0x10)
-						{
-							inputlevel[k]=(-Y_Pos*100)/1000.0;
-						}
-						CalcTarCurr(k);
-						break;
-
-				case(2):TmpData=Data[0];
-						if(TmpData & 0x01)
-						{
-							inputlevel[k]=0;
-						}
-						else if(TmpData & 0x04)
-						{
-							inputlevel[k]=(X_Pos*100)/1000.0;
-						}
-						else if(TmpData & 0x10)
-						{
-							inputlevel[k]=(-X_Pos*100)/1000.0;
-						}
-
-						CalcTarCurr(k);
-						break;
-				case(3):if(PB1)
-						{
-
-						}
-						break;
-				case(4):if(PB4)
-						{
-							inputlevel[k]=100;
-						}
-						else if(PB2)
-						{
-							inputlevel[k]=-100;
-						}
-						else
-						{
-							inputlevel[k]=0;
-						}
-
-						CalcTarCurr(k);
-						break;
-				case(5):
-						break;
-				case(6):
-						break;
-				case(7):
-						break;
-				default:
-						break;
-			}
-		}
 	}
 	if(CAN001_GetNodeFlagStatus(&CAN001_Handle0,CAN001_ALERT_STATUS) == CAN_SET)
 	{
@@ -1136,10 +1247,7 @@ void CAN_Basic_RX_Handler()
 
 void CAN_Extended_RX_Handler()
 {
-	uint8_t Data[8] = {0xAA,0x23,0x22,0xA5,0xBC,0xFF,0x45,0xAF};
-	float Z_Pos,W_Pos;
-	int TmpData;
-	int k;
+	static uint8_t Data[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
 	if(CAN001_GetMOFlagStatus(&CAN001_Handle0,2,RECEIVE_PENDING) == CAN_SET)
 	{
@@ -1154,52 +1262,11 @@ void CAN_Extended_RX_Handler()
 		Data[5]=CanExtRecMsgObj.data[5];
 		Data[6]=CanExtRecMsgObj.data[6];
 
-		Z_Pos=Data[1]*4+(Data[0]/64);
-		W_Pos=Data[3]*4+(Data[2]/64);
-
-		for(k=0;k<8;k++)
-		{
-			switch(inoutmap[k])
-			{
-				case(8):TmpData=Data[0];
-						if(TmpData & 0x01)
-						{
-							inputlevel[k]=0;
-						}
-						else if(TmpData & 0x04)
-						{
-							inputlevel[k]=(Z_Pos*100)/1000.0;
-						}
-						else if(TmpData & 0x10)
-						{
-							inputlevel[k]=(-Z_Pos*100)/1000.0;
-						}
-						CalcTarCurr(k);
-						break;
-
-				case(9):TmpData=Data[2];
-						if(TmpData & 0x01)
-						{
-							inputlevel[k]=0;
-						}
-						else if(TmpData & 0x04)
-						{
-							inputlevel[k]=(W_Pos*100)/1000.0;
-						}
-						else if(TmpData & 0x10)
-						{
-							inputlevel[k]=(-W_Pos*100)/1000.0;
-						}
-
-						CalcTarCurr(k);
-						break;
-			}
-		}
+		HandleCanMessageExtended(Data);
 	}
 
 	if(CAN001_GetNodeFlagStatus(&CAN001_Handle0,CAN001_ALERT_STATUS) == CAN_SET)
 	{
-
 		CAN001_ClearNodeFlagStatus(&CAN001_Handle0,CAN001_ALERT_STATUS);
 	}
 }
@@ -1258,7 +1325,7 @@ void RxUartEventHandler()
 			 			 break;
 			 	 case 6: uartmsglen=3;
 			 			 break;
-			 	 case 7: uartmsglen=58;
+			 	 case 7: uartmsglen=66;
 			 			 break;
 			 	 default:
 			 		 	 break;
@@ -1509,8 +1576,6 @@ void RxUartEventHandler()
 
 				 		 	piv1[TmpSecId]=(imaxv1[TmpSecId]-iminv1[TmpSecId])/(maxctrlv1[TmpSecId]-minctrlv1[TmpSecId]);
 				 		 	piv2[TmpSecId]=(imaxv2[TmpSecId]-iminv2[TmpSecId])/(maxctrlv2[TmpSecId]-minctrlv2[TmpSecId]);
-				 		 	qiv1[TmpSecId]=-piv1[TmpSecId]*minctrlv1[TmpSecId];
-				 		 	qiv2[TmpSecId]=-piv2[TmpSecId]*minctrlv2[TmpSecId];
 
 				 		 	membaseaddress=sectionparamsize*TmpSecId;
 				 		 	for(i=0;i<sectionparamsize;i++)
@@ -1894,15 +1959,23 @@ void MAIN_CLOCK_HANDLER(void)
 			}
 		}
 	}
-	/*if(spidatainenable==1 && auxreading==0)
+
+	if((spidatainenable==1 && auxreading==0) || (spidatainenable==1 && auxreading==8))
 	{
-		GetSPIData();
-		auxreading=1;
-	}*/
-	if(analoginenable==1 && auxreading==0)
+		if(auxreading==0)
+		{
+			GetSPIData(1);
+			auxreading++;
+		}
+		else if(auxreading==8)
+		{
+			GetSPIData(2);
+			auxreading++;
+		}
+	}
+	else if((analoginenable==1 && (auxreading!=0 && auxreading!=8)))
 	{
 		//Leggo le analogiche ausiliarie
-
 		ADCCH001_GetResult(&ADCCH001_Handle10, &NoMappedVal1);
 		ADCCH001_GetResult(&ADCCH001_Handle11, &G2Ch2Val);
 		ADCCH001_GetResult(&ADCCH001_Handle12, &G2Ch1Val);
@@ -1917,7 +1990,7 @@ void MAIN_CLOCK_HANDLER(void)
 		ADCCH001_GetResult(&ADCCH001_Handle19, &G3Ch2Val);
 		ADCCH001_GetResult(&ADCCH001_Handle3, &NoMappedVal2);
 
-		/* Clear the channel event */
+		// Clear the channel event
 		ADCCH001_ClearResultEvtFlag(&ADCCH001_Handle10);
 		ADCCH001_ClearResultEvtFlag(&ADCCH001_Handle11);
 		ADCCH001_ClearResultEvtFlag(&ADCCH001_Handle12);
@@ -1932,9 +2005,16 @@ void MAIN_CLOCK_HANDLER(void)
 		ADCCH001_ClearResultEvtFlag(&ADCCH001_Handle19);
 		ADCCH001_ClearResultEvtFlag(&ADCCH001_Handle3);
 
-		auxreading=0;
-		//Facciamo le letture dei 12 ingressi analogici
+		if(auxreading==9)
+		{
+			auxreading=0;
+		}
+		else
+		{
+			auxreading++;
+		}
 	}
+
 }
 
 void LSCURR1_2_Handler(void)

@@ -125,8 +125,8 @@ In Loop Back Mode CAN Node is connected to internal CAN bus </toolTipHelpDescrip
     <globalValue xsi:type="ResourceModel:StringValue" value="0"/>
     <toolTipHelpDescription>Message object selected for configuration</toolTipHelpDescription>
     <item name="LMO1" evalFunction="&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function ForwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res0 = SCM.getResource(&quot;can001_Dummy&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value0 = SCM.getIntValue(Res0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = SCM.getResource(&quot;index&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res1,1);&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function BackwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res = SCM.getResource(&quot;can001_Dummy&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value = SCM.getIntValue(Res);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(value > 0 ) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = SCM.getResource(&quot;index&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value1 = SCM.getIntValue(Res1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(value1 == 1) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}else{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var reserved = SCM.getReserverd();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setValue(currentResource,reserved);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;" URI="http://www.infineon.com/1.0.12/app/can001/1/can001_erwnodemsgconfigsel/item_1" downWardmappedList="//@consumed.2" maxValue="1" minValue="0">
-      <localValue xsi:type="ResourceModel:StringValue" value="0"/>
-      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:StringValue" value="1"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
       <toolTipHelpDescription>Message 1 selected</toolTipHelpDescription>
     </item>
     <item name="LMO2" evalFunction="&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function ForwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res = SCM.getResource(&quot;can001_Dummy&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value = SCM.getIntValue(Res);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = SCM.getResource(&quot;index&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(Res1,2);&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;function BackwardMapping()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;{&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res = SCM.getResource(&quot;can001_Dummy&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value = SCM.getIntValue(Res);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(value > 1) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = SCM.getResource(&quot;index&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var value1 = SCM.getIntValue(Res1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(value1 == 2) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,1);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setIntValue(currentResource,0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}else{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var reserved = SCM.getReserverd();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SCM.setValue(currentResource,reserved);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;" URI="http://www.infineon.com/1.0.12/app/can001/1/can001_erwnodemsgconfigsel/item_2" downWardmappedList="//@consumed.2" maxValue="1" minValue="0">
@@ -532,8 +532,8 @@ signal to NVIC002 App signal through signal connectivity</toolTipHelpDescription
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/index" upWardMappingList="//@provided.27/@item.0 //@provided.27/@item.1 //@provided.27/@item.2 //@provided.27/@item.3 //@provided.27/@item.4 //@provided.27/@item.5 //@provided.27/@item.6 //@provided.27/@item.7 //@provided.27/@item.8 //@provided.27/@item.9 //@provided.40/@item.0 //@provided.40/@item.1 //@provided.41/@item.0 //@provided.41/@item.1 //@provided.42/@item.0 //@provided.43/@item.0 //@provided.44/@item.0 //@provided.44/@item.1 //@provided.45 //@provided.46 //@provided.47 //@provided.48" isSystemDefined="true">
-    <localValue xsi:type="ResourceModel:IntegerValue" value="a"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="a"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/can001_tseg1dummy" upWardMappingList="//@provided.30 //@provided.34" isSystemDefined="true">
@@ -703,12 +703,12 @@ signal to NVIC002 App signal through signal connectivity</toolTipHelpDescription
     <downWardmappedList xsi:type="ResourceModel:RegisterParameter" href="../../CAN/CAN_0.dd#//@provided.54"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/mofcr/txie" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/mofcr/txie" upWardMappingList="//@provided.42/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CAN/CAN_0.dd#//@provided.54/@bitFields.6"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/mofcr/rxie" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/mofcr/rxie" upWardMappingList="//@provided.43/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CAN/CAN_0.dd#//@provided.54/@bitFields.5"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
@@ -718,22 +718,22 @@ signal to NVIC002 App signal through signal connectivity</toolTipHelpDescription
     <downWardmappedList xsi:type="ResourceModel:RegisterParameter" href="../../CAN/CAN_0.dd#//@provided.55"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/moamr/am" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/moamr/am" upWardMappingList="//@provided.46 //@provided.48" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="1fffffff"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CAN/CAN_0.dd#//@provided.56"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1fffffff"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/moamr/mide" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/moamr/mide" upWardMappingList="//@provided.44/@item.0 //@provided.44/@item.1" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CAN/CAN_0.dd#//@provided.57"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/moar/ide" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/moar/ide" upWardMappingList="//@provided.41/@item.0 //@provided.41/@item.1" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CAN/CAN_0.dd#//@provided.58"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/moar/id" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/moar/id" upWardMappingList="//@provided.45 //@provided.47" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CAN/CAN_0.dd#//@provided.59"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
@@ -748,7 +748,7 @@ signal to NVIC002 App signal through signal connectivity</toolTipHelpDescription
     <downWardmappedList xsi:type="ResourceModel:RegisterParameter" href="../../CAN/CAN_0.dd#//@provided.61"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/mostat/dir" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/can001/1/message1/mostat/dir" upWardMappingList="//@provided.40/@item.0 //@provided.40/@item.1" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../CAN/CAN_0.dd#//@provided.62"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>

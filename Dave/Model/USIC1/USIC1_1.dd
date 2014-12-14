@@ -190,8 +190,8 @@
   <provided xsi:type="ResourceModel:BitField" name="FLE" URI="http://www.infineon.com/0.1.30/peripheral/usic/1/channel/0/sctr/fle" maxValue="63" minValue="0" startPos="16" stopPos="21" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../SPI001/1.0.24/spi001_0.app#//@consumed.33"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="40"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="40"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="8"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="8"/>
     <toolTipHelpDescription>Frame Length</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="WLE" URI="http://www.infineon.com/0.1.30/peripheral/usic/1/channel/0/sctr/wle" maxValue="15" minValue="0" startPos="24" stopPos="27" accessPermission="rw">
