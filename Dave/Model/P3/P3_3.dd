@@ -56,43 +56,43 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_2/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_2/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/2/pad" padClass="A2" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.4"/>
-  </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC2_4" URI="http://www.infineon.com/0.1.29/port/p/3/pad/2/iocr_oe" maxValue="1" minValue="0" startPos="23" stopPos="23" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.5"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.4"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC2_3" URI="http://www.infineon.com/0.1.29/port/p/3/pad/2/iocr_po" maxValue="1" minValue="0" startPos="22" stopPos="22" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.6"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.5"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC2_2_0" URI="http://www.infineon.com/0.1.29/port/p/3/pad/2/iocr_pcr" maxValue="7" minValue="0" startPos="19" stopPos="21" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.7"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.6"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PS2" URI="http://www.infineon.com/0.1.29/port/p/3/pad/2/omr_ps" maxValue="1" minValue="0" startPos="2" stopPos="2" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.8"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.7"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PD2" URI="http://www.infineon.com/0.1.29/port/p/3/pad/2/pdr_pd" maxValue="7" minValue="0" startPos="8" stopPos="10" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.9"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.8"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Pad Driver Mode for Pn.2</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/2/pad" padClass="A2" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_0.app#//@consumed.9"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P3.1 / #6" URI="http://www.infineon.com/0.1.29/port/p/3/pad/1">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.0"/>
@@ -117,43 +117,43 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_1/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_1/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/1/pad" padClass="A2" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.4"/>
-  </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC1_4" URI="http://www.infineon.com/0.1.29/port/p/3/pad/1/iocr_oe" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.5"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.4"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC1_3" URI="http://www.infineon.com/0.1.29/port/p/3/pad/1/iocr_po" maxValue="1" minValue="0" startPos="14" stopPos="14" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.6"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.5"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC1_2_0" URI="http://www.infineon.com/0.1.29/port/p/3/pad/1/iocr_pcr" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.7"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.6"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PS1" URI="http://www.infineon.com/0.1.29/port/p/3/pad/1/omr_ps" maxValue="1" minValue="0" startPos="1" stopPos="1" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.8"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.7"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PD1" URI="http://www.infineon.com/0.1.29/port/p/3/pad/1/pdr_pd" maxValue="7" minValue="0" startPos="4" stopPos="6" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.9"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.8"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Pad Driver Mode for Pn.1</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/1/pad" padClass="A2" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_1.app#//@consumed.9"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P3.0 / #7" URI="http://www.infineon.com/0.1.29/port/p/3/pad/0">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.0"/>
@@ -178,43 +178,43 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_0/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_0/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/0/pad" padClass="A2" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.4"/>
-  </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC0_4" URI="http://www.infineon.com/0.1.29/port/p/3/pad/0/iocr_oe" maxValue="1" minValue="0" startPos="7" stopPos="7" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.5"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.4"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC0_3" URI="http://www.infineon.com/0.1.29/port/p/3/pad/0/iocr_po" maxValue="1" minValue="0" startPos="6" stopPos="6" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.6"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.5"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC0_2_0" URI="http://www.infineon.com/0.1.29/port/p/3/pad/0/iocr_pcr" maxValue="7" minValue="0" startPos="3" stopPos="5" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.7"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.6"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 0 to 3</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PS0" URI="http://www.infineon.com/0.1.29/port/p/3/pad/0/omr_ps" maxValue="1" minValue="0" startPos="0" stopPos="0" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.8"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.7"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PD0" URI="http://www.infineon.com/0.1.29/port/p/3/pad/0/pdr_pd" maxValue="7" minValue="0" startPos="0" stopPos="2" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.9"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.8"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Pad Driver Mode for Pn.0</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/0/pad" padClass="A2" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_2.app#//@consumed.9"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P3.13 / #8" URI="http://www.infineon.com/0.1.29/port/p/3/pad/13">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.0"/>
@@ -239,43 +239,43 @@
     <resourcesList name="altin" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_13/altin" isResolved="true"/>
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_13/pad" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/13/pad" padClass="A2" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.4"/>
-  </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC13_4" URI="http://www.infineon.com/0.1.29/port/p/3/pad/13/iocr_oe" maxValue="1" minValue="0" startPos="15" stopPos="15" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.5"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.4"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC13_3" URI="http://www.infineon.com/0.1.29/port/p/3/pad/13/iocr_po" maxValue="1" minValue="0" startPos="14" stopPos="14" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.6"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.5"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC13_2_0" URI="http://www.infineon.com/0.1.29/port/p/3/pad/13/iocr_pcr" maxValue="7" minValue="0" startPos="11" stopPos="13" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.7"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.6"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port Control for Port n Pin 12 to 15</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PS13" URI="http://www.infineon.com/0.1.29/port/p/3/pad/13/omr_ps" maxValue="1" minValue="0" startPos="13" stopPos="13" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.8"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.7"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Port n Set Bit x</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PD13" URI="http://www.infineon.com/0.1.29/port/p/3/pad/13/pdr_pd" maxValue="7" minValue="0" startPos="20" stopPos="22" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.9"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.8"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>Pad Driver Mode for Pn.13</toolTipHelpDescription>
+  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/13/pad" padClass="A2" isVisible="true">
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO002/1.0.30/io002_3.app#//@consumed.9"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P3.7 / #14" URI="http://www.infineon.com/0.1.29/port/p/3/pad/7">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../IO004/1.0.22/io004_0.app#//@consumed.0"/>
@@ -880,7 +880,7 @@
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../SPI001/1.0.24/spi001_0.app#//@consumed.80"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P3.15 / #133" URI="http://www.infineon.com/0.1.29/port/p/3/pad/15">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.22/uart001_0.app#//@consumed.6"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.24/uart001_0.app#//@consumed.6"/>
     <resourcesList name="out_p" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/out/p15" isResolved="true"/>
     <resourcesList name="omr_ps" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/omr/ps15" isResolved="true"/>
     <resourcesList name="omr_pr" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/omr/pr15" isResolved="true"/>
@@ -903,11 +903,11 @@
     <resourcesList name="pad" requiredResourceUri="http://www.infineon.com/0.1.29/port/p/3/pad_15/pad" isResolved="true"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="PAD" URI="http://www.infineon.com/0.1.29/port/p/3/pad/15/pad" padClass="A1Plus" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.22/uart001_0.app#//@consumed.20"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.24/uart001_0.app#//@consumed.23"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PD15" URI="http://www.infineon.com/0.1.29/port/p/3/pad/15/pdr_pd" maxValue="7" minValue="0" startPos="28" stopPos="30" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="2"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.22/uart001_0.app#//@consumed.48"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../UART001/1.0.24/uart001_0.app#//@consumed.49"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>Pad Driver Mode for Pn.15</toolTipHelpDescription>

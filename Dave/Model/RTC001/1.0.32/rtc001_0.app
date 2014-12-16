@@ -394,7 +394,7 @@ entered through UI.</toolTipHelpDescription>
     <requiredResource uriString="peripheral/rtc/0/rtc" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="function resourceCondition()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;    var value = Solver.getSoftwareId().substring(0,1).compareTo(&quot;4&quot;);&#x9;&#x9;&#x9;&#x9;&#x9;   &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if (value  == 0 ) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    return true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; }" URI="http://www.infineon.com/1.0.32/app/rtc001/0/clockapp">
-    <downWardmappedList xsi:type="ResourceModel:App" href="../../CLK001/1.0.42/clk001_0.app#/"/>
+    <downWardmappedList xsi:type="ResourceModel:App" href="../../CLK001/1.0.44/clk001_0.app#/"/>
     <requiredResource uriString="app/clk001/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="function resourceCondition()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;    var value = Solver.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;);&#x9;&#x9;&#x9;&#x9;&#x9;   &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if (value  == 0 ) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;    return true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; }" URI="http://www.infineon.com/1.0.32/app/rtc001/0/clockapp2">
@@ -512,7 +512,7 @@ entered through UI.</toolTipHelpDescription>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.32/app/rtc001/0/clockapp/clk001_erwenablehibernate" upWardMappingList="//@provided.6/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <downWardmappedList xsi:type="ResourceModel:EnumerationParameter" href="../../CLK001/1.0.42/clk001_0.app#//@provided.45"/>
+    <downWardmappedList xsi:type="ResourceModel:EnumerationParameter" href="../../CLK001/1.0.44/clk001_0.app#//@provided.45"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.32/app/rtc001/0/nvic_sr101/nvic_sr101_erwrtcperiodiceventenableint/0" isSystemDefined="true"/>

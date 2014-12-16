@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="CCU43" description="Capture/Compare Unit 4 (CAPCOM4)" URI="http://www.infineon.com/0.1.28/peripheral/ccu4/3">
   <provided xsi:type="ResourceModel:ResourceGroup" name="global" URI="http://www.infineon.com/0.1.28/peripheral/ccu4/3/global">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CCU4GLOBAL/1.0.20/ccu4global_0.app#//@consumed.0"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CCU4GLOBAL/1.0.22/ccu4global_0.app#//@consumed.0"/>
     <resourcesList name="gctrl" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/ccu4/3/gctrl" isResolved="true"/>
     <resourcesList name="gctrl_pcis" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/ccu4/3/gctrl/pcis" isResolved="true"/>
     <resourcesList name="gstat" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/ccu4/3/gstat" isResolved="true"/>
@@ -14,10 +14,10 @@
     <resourcesList name="global_signal" requiredResourceUri="http://www.infineon.com/0.1.28/peripheral/ccu4/3/global_signal" isResolved="true"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="global_signal" description="global_signal" URI="http://www.infineon.com/0.1.28/peripheral/ccu4/3/global/global_signal" signalType="SINGAL" direction="OUT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CCU4GLOBAL/1.0.20/ccu4global_0.app#//@consumed.4"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CCU4GLOBAL/1.0.22/ccu4global_0.app#//@consumed.4"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="clk" description="clk" URI="http://www.infineon.com/0.1.28/peripheral/ccu4/3/global/clk" signalType="SINGAL" direction="IN" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CCU4GLOBAL/1.0.20/ccu4global_0.app#//@consumed.5"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CCU4GLOBAL/1.0.22/ccu4global_0.app#//@consumed.5"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="3" URI="http://www.infineon.com/0.1.28/peripheral/ccu4/3/cc4/3">
     <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../PWMSP003/1.0.8/pwmsp003_0.app#//@consumed.22"/>

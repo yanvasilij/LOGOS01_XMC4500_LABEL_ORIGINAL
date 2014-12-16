@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="DMA003" description="Simple DMA App for single &#xA; block transfers. " descriptionURL="/doc/html/group___d_m_a003___app.html" URI="http://www.infineon.com/1.0.18/app/dma003/12" userLabel="DMA_ADC1_CH9">
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../NVIC002/1.0.26/nvic002_8.app#//@consumed.3"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../NVIC002/1.0.28/nvic002_8.app#//@consumed.3"/>
   <provided xsi:type="ResourceModel:VirtualSignal" name="Channel Interrupt Signal" URI="http://www.infineon.com/1.0.18/app/dma003/12/channel_int_vs" requiredSignalResource="channel/dma_int">
     <localValue xsi:type="ResourceModel:StringValue" value="-1"/>
     <globalValue xsi:type="ResourceModel:StringValue" value="-1"/>
@@ -387,7 +387,7 @@ Note: If the destination is memory, then IntDstTran interrupts should be
     <requiredResource uriString="peripheral/dma4/0/ch/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/dma003/12/nvic_dma001">
-    <downWardmappedList xsi:type="ResourceModel:App" href="../../NVIC_DMA001/1.0.16/nvic_dma001_2.app#/"/>
+    <downWardmappedList xsi:type="ResourceModel:App" href="../../NVIC_DMA001/1.0.20/nvic_dma001_2.app#/"/>
     <requiredResource uriString="app/nvic_dma001/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.18/app/dma003/12/dummy_chen" upWardMappingList="//@provided.6 //@provided.6/@item.0" isSystemDefined="true">

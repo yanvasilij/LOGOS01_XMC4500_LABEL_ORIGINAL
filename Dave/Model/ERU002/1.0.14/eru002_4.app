@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="ERU002" description="ERU App which provides configuration &amp; &#xA;connectivity options for Pattern &#xA;detection and Output Trigger Gating." descriptionURL="/doc/html/group___event___request___o_g_u___e_r_u002_app.html" URI="http://www.infineon.com/1.0.14/app/eru002/4" userLabel="HSCUR9_10OUTERU">
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_4.app#//@consumed.13"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_4.app#//@consumed.13"/>
   <provided xsi:type="ResourceModel:VirtualSignal" name="Pattern Detect Input" URI="http://www.infineon.com/1.0.14/app/eru002/4/eru002_pdin" requiredSignalResource="ogu/pdin">
     <localValue xsi:type="ResourceModel:StringValue" value="-1"/>
     <globalValue xsi:type="ResourceModel:StringValue" value="-1"/>
@@ -66,7 +66,7 @@
     </item>
   </provided>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../ERU1/ERU1_1.dd#//@provided.83"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../ERU1/ERU1_1.dd#//@provided.62"/>
     <requiredResource uriString="peripheral/eru/*/ogu/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var value1 = Solver.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(value1  == 0 ) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}" URI="http://www.infineon.com/1.0.14/app/eru002/4/resetapp">
@@ -74,35 +74,35 @@
     <requiredResource uriString="app/reset001/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu/pdin" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.84"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.63"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu/tout" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.85"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.64"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu/exocon/gp" upWardMappingList="//@provided.6/@item.0 //@provided.6/@item.1 //@provided.6/@item.2 //@provided.6/@item.3" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../ERU1/ERU1_1.dd#//@provided.86"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../ERU1/ERU1_1.dd#//@provided.65"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu/exocon/geen" upWardMappingList="//@provided.7/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../ERU1/ERU1_1.dd#//@provided.87"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../ERU1/ERU1_1.dd#//@provided.66"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu/gout" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.88"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.67"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu/trin" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.89"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.68"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu/pdout" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.90"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.69"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/ogu/iout" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.91"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../ERU1/ERU1_1.dd#//@provided.70"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/SignalConfigurator_287663880" bindingMode="READ" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:App" href="../../NVIC002/1.0.26/nvic002_26.app#/"/>
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.14/app/eru002/4/SignalConfigurator_1579846308" bindingMode="READ" isSystemDefined="true">
+    <downWardmappedList xsi:type="ResourceModel:App" href="../../NVIC002/1.0.28/nvic002_26.app#/"/>
     <requiredResource uriString="app/nvic002/26" uriType="LOCALTYPE"/>
   </consumed>
   <propertyConstants name="uridevice" value="device/">
@@ -126,7 +126,7 @@
   <datagenerate fileName="ERU002_Extern.h" fileType="HFILE" templateFileName="ERU002_Externh.jet"/>
   <datagenerate fileName="ERU002_Conf.c" templateFileName="ERU002Confc.jet"/>
   <datagenerate fileName="ERU002_Conf.h" fileType="HFILE" templateFileName="ERU002Confh.jet"/>
-  <connections sourceSignal="app/eru002/4/eru002_iout" targetSignal="SignalConfigurator_287663880/nvic002_vs" isSystemDefined="false"/>
+  <connections sourceSignal="app/eru002/4/eru002_iout" targetSignal="SignalConfigurator_1579846308/nvic002_vs" isSystemDefined="false"/>
   <softwareIdList>45.0.1</softwareIdList>
   <softwareIdList>45.0.2</softwareIdList>
   <softwareIdList>45.0.3</softwareIdList>

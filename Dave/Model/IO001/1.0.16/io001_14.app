@@ -73,7 +73,7 @@
     </item>
   </provided>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var value = Solver.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;);&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var constr = &quot;&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if (value == 0) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;constr=&quot;reserved([port,p,AA,pad,_],app_pin) \n uri_element_range(AA,[2])&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;constr=&quot;reserved([port,p,AA,pad,_],app_pin) \n uri_element_range(AA,[14,15])&quot;;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Solver.setConstraintString(constr);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}" URI="http://www.infineon.com/1.0.16/app/io001/14/pin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P15/P15_15.dd#//@provided.32"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P15/P15_15.dd#//@provided.20"/>
     <requiredResource uriString="port/p/15/pad/4" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.16/app/io001/14/io001_inputchardummy" upWardMappingList="//@provided.2 //@provided.2/@item.0 //@provided.2/@item.1 //@provided.2/@item.2 //@provided.2/@item.3 //@provided.2/@item.4 //@provided.2/@item.5 //@provided.2/@item.6 //@provided.2/@item.7" isSystemDefined="true">
@@ -87,16 +87,16 @@
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.16/app/io001/14/pin/pad" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P15/P15_15.dd#//@provided.33"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P15/P15_15.dd#//@provided.21"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.16/app/io001/14/pin/pdisc_pdis" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P15/P15_15.dd#//@provided.34"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P15/P15_15.dd#//@provided.22"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.16/app/io001/14/pin/iocr_pcr" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P15/P15_15.dd#//@provided.35"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P15/P15_15.dd#//@provided.23"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <categoryDescription description="Peripheral Specific Apps" name="Peripheral Specific Apps">

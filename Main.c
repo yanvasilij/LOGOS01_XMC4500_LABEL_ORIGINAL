@@ -24,6 +24,8 @@
 
 #define teststep 1
 #define sectionparamsize 63
+#define boardconfigsize 156
+#define boardconfigoffset sectionparamsize*8
 #define memstep 1
 
 extern status_t Flash002_EraseSector  ( uint32_t  Address ) __attribute__ ((section (".ram_code")));
@@ -136,7 +138,7 @@ uint16_t sentdata=0;
 
 uint32_t flash_status;
 uint32_t* address = FLASH002_SECTOR11_BASE;
-uint32_t membuffer[sectionparamsize*8];
+uint32_t membuffer[(sectionparamsize*8)+boardconfigsize];
 
 uint16_t NoMappedVal1;
 uint16_t G2Ch2Val;
@@ -155,7 +157,7 @@ uint16_t NoMappedVal2;
 int main(void)
 {
 //	status_t status;		// Declaration of return variable for DAVE3 APIs (toggle comment if required)
-	int i;
+	uint32_t i,k;
 	uint32_t membaseaddress;
 
 	DAVE_Init();			// Initialization of DAVE Apps
@@ -164,9 +166,32 @@ int main(void)
 	P2_1_set_mode(INPUT);
 	P2_1_set_hwsel(HW1);
 
+	for(i=0;i<(sectionparamsize*8)+boardconfigsize;i++)
+	{
+		membuffer[i]=*(address+i);
+	}
+
+	sectionconf = *(address+boardconfigoffset);
+	for (i = 0; i < 10; i++) {
+		analoginmode[i] = *(address+boardconfigoffset+1+i);
+	}
+
+	auxvolt = *(address+boardconfigoffset+12);
+
+	for (i = 0; i < 8; i++) {
+		for (k = 0; k < 8; k++) {
+			sectionname[i][k] = *(address+boardconfigoffset+13+(i * 8)+k);
+		}
+	}
+
+	for (i = 0; i < 10; i++) {
+		for (k = 0; k < 8; k++) {
+			analoginname[i][k] = *(address+boardconfigoffset+78+(i * 8)+k);
+		}
+	}
+
 	for(i=0;i<8;i++)
 	{
-
 	membaseaddress=sectionparamsize*i;
 
 	loopfreq[i] = *(address+membaseaddress);
@@ -242,7 +267,6 @@ int main(void)
 	{
 		pwmtar[i]=3333;
 		loopfreq[i]=10; // 10=100Hz
-
 	}
 
 	ditheractive[0]=1;
@@ -498,7 +522,6 @@ int main(void)
 	spidatainenable=1;
 	analoginenable=1;
 
-	//WriteData2Flash();
 
 	while(1)
 	{
@@ -1298,6 +1321,13 @@ void CalculateTxChecksum(uint8_t len)
 
 }
 
+void ResetUartIndex(void)
+{
+	uarttimeout=0;
+	rxindex=0;
+	uartmsglen=1;
+}
+
 /* Fifo standard receive buffer event handler */
 void RxUartEventHandler()
 {
@@ -1310,9 +1340,12 @@ void RxUartEventHandler()
 	{
 		/* Read the received data to the buffer */
 		DataRead=UART001_ReadDataBytes(&UART001_Handle0,&rxbuf[rxindex],uartmsglen);
-		uarttimeout=2;
+		UART001_ClearFlag(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG);
+		rxindex=rxindex+DataRead;
 
-		 if(uartmsglen==1 && rxindex==0)
+		uarttimeout=100;
+
+		 if(uartmsglen==1 && sendflag==0)
 		 {
 			 switch(rxbuf[0]){
 			 	 case 1: uartmsglen=3;
@@ -1332,7 +1365,7 @@ void RxUartEventHandler()
 			 }
 
 		 }
-		 else if(rxindex==uartmsglen)
+		 else if(rxindex==uartmsglen+1  && sendflag==0)
 		 {
 			 if(CalculateRxChecksum()==(rxbuf[uartmsglen-1]*256+rxbuf[uartmsglen]))
 			 {
@@ -1344,6 +1377,7 @@ void RxUartEventHandler()
 				 		 	txbuf[0]=0x01;
 					 	    txbuf[1]=0x01;
 					 	    CalculateTxChecksum(txlen);
+					 	    ResetUartIndex();
 					 	    sendflag=1;
 					 	    //UART001_WriteDataBytes(&UART001_Handle0,&txbuf[0],txlen);
 				 		 	break;
@@ -1352,6 +1386,7 @@ void RxUartEventHandler()
 				 			txbuf[0]=0x03;
 					 	 	txbuf[1]=0x01;
 					 	 	CalculateTxChecksum(txlen);
+					 	 	ResetUartIndex();
 					 	 	sendflag=1;
 					 	 	//UART001_WriteDataBytes(&UART001_Handle0,&txbuf[0],txlen);
 				 		 	break;
@@ -1379,6 +1414,7 @@ void RxUartEventHandler()
 				 	 	 		}
 				 	 	 	}
 				 	 	 	CalculateTxChecksum(txlen);
+				 	 	 	ResetUartIndex();
 				 	 	 	sendflag=1;
 				 	 	 	/*sentdata=0;
 				 	 	 	while(sentdata<txlen)
@@ -1409,10 +1445,35 @@ void RxUartEventHandler()
 				 		 		}
 				 		 	}
 
+				 		 	/*membaseaddress=boardconfigoffset;
+				 		 	for(i=0;i<boardconfigsize;i++)
+				 		 	{
+				 		 		membuffer[membaseaddress+i]=rxbuf[i+1];
+				 		 	}
+
+				 		 	flash_status=Flash002_EraseSector(FLASH002_SECTOR11_BASE);
+
+				 			if(flash_status==DAVEApp_SUCCESS)
+				 			{
+				 				flash_status=Flash002_WritePage(FLASH002_SECTOR11_BASE,membuffer);
+				 				if(flash_status==DAVEApp_SUCCESS)
+				 				{
+				 					txbuf[1]=0x01;
+				 				}
+				 				else
+				 				{
+				 					txbuf[1]=0x00;
+				 				}
+				 			}
+				 			else
+				 			{
+				 				txbuf[1]=0x00;
+				 			}*/
+
 				 		 	txlen=4;
 				 			txbuf[0]=0x05;
-					 	 	txbuf[1]=0x01;
 					 	 	CalculateTxChecksum(txlen);
+					 	 	ResetUartIndex();
 					 	 	sendflag=1;
 				 		 	break;
 
@@ -1508,6 +1569,7 @@ void RxUartEventHandler()
 				 	 	 	txbuf[64]=slopedowntpointsv2[3][TmpSecId];
 
 				 	 	 	CalculateTxChecksum(txlen);
+				 	 	 	ResetUartIndex();
 				 	 	 	sendflag=1;
 				 	 	 	/*sentdata=0;
 				 	 	 	while(sentdata<txlen)
@@ -1606,20 +1668,21 @@ void RxUartEventHandler()
 				 		 	txbuf[0]=0x07;
 
 				 		 	CalculateTxChecksum(txlen);
+				 		 	ResetUartIndex();
 				 		 	sendflag=1;
 				 		 	//UART001_WriteDataBytes(&UART001_Handle0,&txbuf[0],txlen);
 				 		    break;
 				 	 default:
+				 		    ResetUartIndex();
 				 		 	break;
 				 }
 			 }
 		 }
-		 rxindex=rxindex+DataRead;
-		UART001_ClearFlag(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG);
 	}
 	else
 	{
-		UART001_ClearFlag(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG);
+		rxindex=0;
+		uartmsglen=1;
 	}
 }
 

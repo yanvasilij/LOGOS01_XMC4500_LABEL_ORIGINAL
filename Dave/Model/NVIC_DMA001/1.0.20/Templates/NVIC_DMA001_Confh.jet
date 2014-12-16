@@ -1,0 +1,99 @@
+<%@ jet package="CodeGenerator" class="nvic_dma001_confh_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+<% String AppBaseuri = "app/nvic_dma001/";%>
+/*CODE_BLOCK_BEGIN[NVIC_DMA001_Conf.h]*/
+/**************************************************************************//**
+ *
+ * Copyright (C) 2014 Infineon Technologies AG. All rights reserved.
+ *
+ * Infineon Technologies AG (Infineon) is supplying this software for use with 
+ * Infineon's microcontrollers.  
+ * This file can be freely distributed within development tools that are 
+ * supporting such microcontrollers. 
+ *
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, 
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC4000 Series                                         **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR   : App Developer                                                   **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: Yes                                       **
+**                                                                            **
+**                                                                            **
+*******************************************************************************/
+/**
+ * @file   NVIC_DMA001_Conf.h
+ *
+ *
+ * @brief  Configuration file generated based on UI settings 
+ *         of NVIC_DMA001 App
+ *
+ */
+ /*
+ * Revision History
+ * 18 Jan 2013 v1.0.11 Initial version
+ * 17 Jun 2014 v1.0.20 Fix compilation incompatibility with Apps that
+ *                     consume NVIC_DMA001 (eg: CRC003)
+ */
+#ifndef _CONF_NVIC_DMA001_H_
+#define _CONF_NVIC_DMA001_H_
+
+#ifdef  __cplusplus
+extern "C"
+{
+#endif
+
+/******************************************************************************
+**                      Include Files                                        **
+******************************************************************************/
+
+#include <uc_id.h>
+#include <types.h>
+/*
+ * Conditional includes for various
+ * XMC devices.
+ */
+#if (__TARGET_DEVICE__ == XMC45)
+# include <XMC4500.h>
+#elif (__TARGET_DEVICE__ == XMC44)
+# include <XMC4400.h>
+#elif (__TARGET_DEVICE__ == XMC42) || (__TARGET_DEVICE__ == XMC41)
+# include <XMC4200.h>
+#else
+# error "Unsupported XMC family"
+#endif
+
+#include "../../inc/NVIC_DMA001/DMA_Types.h"
+
+<% String MappedUri = null; %>
+<% String appInst  = null; %>
+
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/nvic_dma001/"));
+ for (String appIns : appsList ) {
+ appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+<% MappedUri = app.getMappedUri(AppBaseuri + appInst + "/nvicnodedma"); %>
+<% if((MappedUri != null) && (MappedUri != "")) { %>
+extern NVIC_DMA001_HandleType NVIC_DMA001_Handle<%=appInst%>;
+<% } %>
+<% else { %>
+/* DMA UNIT 0 NOT MAPPED */
+<% } %>
+<%} %> 
+
+#ifdef  __cplusplus
+}
+#endif
+
+#endif  /* ifndef _CONF_NVIC_DMA001_H_ */
+
+/*CODE_BLOCK_END*/

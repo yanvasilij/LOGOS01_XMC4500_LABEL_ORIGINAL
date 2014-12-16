@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="SCU" description="SCU " URI="http://www.infineon.com/0.1.33/peripheral/scu/0">
   <provided xsi:type="ResourceModel:ResourceGroup" name="extclk" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/extclk">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.24"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.24"/>
     <resourcesList name="clkcr" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/extclkcr" isResolved="true"/>
     <resourcesList name="extclk" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/scu_extclk" isResolved="true"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="scu_extclk" description="scu_extclk" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/extclk/extclk" signalType="SINGAL" direction="OUT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.28"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.28"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="hibernate" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/pwrctrl/0/hibernate">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.25"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.25"/>
     <resourcesList name="pwrstat_hiben" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/pwrstat/hiben" isResolved="true"/>
     <resourcesList name="pwrstat_hpss" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/pwrstat/hpss" isResolved="true"/>
     <resourcesList name="pwrset_hib" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/pwrset/hib" isResolved="true"/>
     <resourcesList name="pwrclr_hib" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/pwrclr/hib" isResolved="true"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="RTCCLKSEL" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/rtcclksel">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.26"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.26"/>
     <resourcesList name="hdcr_rcs" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/hdcr/rcs" isResolved="true"/>
     <resourcesList name="hib_rtc_xtal1" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/hib_rtc_xtal1" isResolved="true"/>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="RCS" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/rtcclksel/hdcr_rcs" maxValue="1" minValue="0" startPos="6" stopPos="6" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.60"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.58"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>RTC Clock Selection</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="pll" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.13"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.13"/>
     <resourcesList name="pllstat" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/pllstat" isResolved="true"/>
     <resourcesList name="pllcon0" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/pllcon0" isResolved="true"/>
     <resourcesList name="pllcon1" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/pllcon1" isResolved="true"/>
@@ -39,13 +39,13 @@
   </provided>
   <provided xsi:type="ResourceModel:RegisterParameter" name="PLLCON0" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/pllcon0" accessPermission="rw" addressOffset="0x0714" resetValue="00030003" resetMask="0xFFFFFFFF">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="00030003"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.31"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.29"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="00030003"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="00030003"/>
     <toolTipHelpDescription>PLL Configuration 0 Register</toolTipHelpDescription>
     <bitFields name="VCOBYP" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/pllcon0/vcobyp" maxValue="1" minValue="0" startPos="0" stopPos="0" accessPermission="rw">
       <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-      <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.32"/>
+      <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.30"/>
       <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
       <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
       <toolTipHelpDescription>VCO Bypass</toolTipHelpDescription>
@@ -125,35 +125,35 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PDIV" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/pllcon1/pdiv" maxValue="15" minValue="0" startPos="24" stopPos="27" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.33"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.31"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>P-Divider Value</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="K2DIV" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/pllcon1/k2div" maxValue="127" minValue="0" startPos="16" stopPos="22" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.34"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.32"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
     <toolTipHelpDescription>K2-Divider Value</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="K1DIV" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/pllcon1/k1div" maxValue="127" minValue="0" startPos="0" stopPos="6" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.35"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.33"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>K1-Divider Value</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="NDIV" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/pllcon1/ndiv" maxValue="127" minValue="0" startPos="8" stopPos="14" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.36"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.34"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="28"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="28"/>
     <toolTipHelpDescription>N-Divider Value</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:RegisterParameter" name="PLLCON1" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/pllcon1" accessPermission="rw" addressOffset="0x0718" resetValue="00000000" resetMask="0xFFFFFFFF">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.37"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.35"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="00000000"/>
     <toolTipHelpDescription>PLL Configuration 1 Register</toolTipHelpDescription>
@@ -184,7 +184,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PINSEL" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/pllcon2/pinsel" maxValue="1" minValue="0" startPos="0" stopPos="0" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.38"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.36"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>P-Divider Input Selection</toolTipHelpDescription>
@@ -193,7 +193,7 @@
   </provided>
   <provided xsi:type="ResourceModel:RegisterParameter" name="USBPLLCON" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/pll/usbpllcon" accessPermission="rw" addressOffset="0x0724" resetValue="00010003" resetMask="0xFFFFFFFF">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="00010003"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.39"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.37"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="00010003"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="00010003"/>
     <toolTipHelpDescription>USB PLL Configuration Register</toolTipHelpDescription>
@@ -265,23 +265,23 @@
     </bitFields>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="sys" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/sys">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.16"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.16"/>
     <resourcesList name="clkcr" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/sysclkcr" isResolved="true"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="cpu" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/cpu">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.17"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.17"/>
     <resourcesList name="clkcr" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/cpuclkcr" isResolved="true"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="perbridge" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/perbridge">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.18"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.18"/>
     <resourcesList name="clkcr" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/pbclkcr" isResolved="true"/>
     <resourcesList name="fpb" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/fpb" isResolved="true"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="fpb" description="fpb" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/perbridge/fpb" signalType="SINGAL" direction="OUT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.30"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.62"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="ebu" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/ebu">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.19"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.19"/>
     <resourcesList name="clkcr" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/ebuclkcr" isResolved="true"/>
     <resourcesList name="clkset_ebucen" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkset/ebucen" isResolved="true"/>
     <resourcesList name="clkclr_ebucdi" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkclr/ebucdi" isResolved="true"/>
@@ -289,7 +289,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="EBUCEN" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/ebu/clkset_ebucen" maxValue="1" minValue="0" startPos="3" stopPos="3" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.44"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.42"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>EBU Clock Enable</toolTipHelpDescription>
@@ -297,7 +297,7 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="enable clock"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="ccu" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/ccu">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.20"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.20"/>
     <resourcesList name="clkcr" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/ccuclkcr" isResolved="true"/>
     <resourcesList name="clkset_ccucen" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkset/ccucen" isResolved="true"/>
     <resourcesList name="clkclr_ccucdi" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkclr/ccucdi" isResolved="true"/>
@@ -306,7 +306,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="CCUCEN" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/ccu/clkset_ccucen" maxValue="1" minValue="0" startPos="4" stopPos="4" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.46"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.44"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>CCU Clock Enable</toolTipHelpDescription>
@@ -314,10 +314,10 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="enable clock"/>
   </provided>
   <provided xsi:type="ResourceModel:SignalDeclaration" name="fccu" description="fccu" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/ccu/fccu" signalType="SINGAL" direction="OUT" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.47"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.45"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="wdt" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/wdt">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.21"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.21"/>
     <resourcesList name="clkcr" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/wdtclkcr" isResolved="true"/>
     <resourcesList name="clkset_wdtcen" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkset/wdtcen" isResolved="true"/>
     <resourcesList name="clkclr_wdtcdi" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkclr/wdtcdi" isResolved="true"/>
@@ -325,7 +325,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="WDTCEN" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/wdt/clkset_wdtcen" maxValue="1" minValue="0" startPos="5" stopPos="5" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.48"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.46"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <toolTipHelpDescription>WDT Clock Enable</toolTipHelpDescription>
@@ -333,7 +333,7 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="enable clock"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="usb" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/usb">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.22"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.22"/>
     <resourcesList name="clkcr" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/usbclkcr" isResolved="true"/>
     <resourcesList name="clkset_usbcen" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkset/usbcen" isResolved="true"/>
     <resourcesList name="clkclr_usbcdi" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkclr/usbcdi" isResolved="true"/>
@@ -341,7 +341,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="USBCEN" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/usb/clkset_usbcen" maxValue="1" minValue="0" startPos="0" stopPos="0" accessPermission="w">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.51"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.49"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>USB Clock Enable</toolTipHelpDescription>
@@ -349,7 +349,7 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="enable clock"/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="sdmmc" URI="http://www.infineon.com/0.1.33/peripheral/scu/0/clkctrl/0/sdmmc">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.42/clk001_0.app#//@consumed.23"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../CLK001/1.0.44/clk001_0.app#//@consumed.23"/>
     <resourcesList name="clkset_mmccen" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkset/mmccen" isResolved="true"/>
     <resourcesList name="clkclr_mmccdi" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkclr/mmccdi" isResolved="true"/>
     <resourcesList name="clkstat_mmccst" requiredResourceUri="http://www.infineon.com/0.1.33/peripheral/scu/0/clkstat/mmccst" isResolved="true"/>

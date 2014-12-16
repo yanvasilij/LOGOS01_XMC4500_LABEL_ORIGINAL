@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="RESET001" description="App which provides APIs to &#xA;assert/deassert peripheral&#xA; modules." descriptionURL="/doc/html/group___r_e_s_e_t001_app.html" mode="SHARABLE" URI="http://www.infineon.com/1.0.14/app/reset001/0">
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CCU8GLOBAL/1.0.18/ccu8global_0.app#//@consumed.3"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CCU8GLOBAL/1.0.18/ccu8global_1.app#//@consumed.3"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ADCGLOB001/1.0.26/adcglob001_0.app#//@consumed.8"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../UART001/1.0.22/uart001_0.app#//@consumed.7"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CCU8GLOBAL/1.0.20/ccu8global_0.app#//@consumed.3"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CCU8GLOBAL/1.0.20/ccu8global_1.app#//@consumed.3"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ADCGLOB001/1.0.28/adcglob001_0.app#//@consumed.10"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../UART001/1.0.24/uart001_0.app#//@consumed.7"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CANGLOBAL/1.0.12/canglobal_0.app#//@consumed.2"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_0.app#//@consumed.1"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_1.app#//@consumed.1"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_2.app#//@consumed.1"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_3.app#//@consumed.1"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_4.app#//@consumed.1"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_5.app#//@consumed.1"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_6.app#//@consumed.1"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.14/eru001_7.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_0.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_1.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_2.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_3.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_4.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_5.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_6.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU001/1.0.16/eru001_7.app#//@consumed.1"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../USBCORE001/1.0.18/usbcore001_0.app#//@consumed.2"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CCU4GLOBAL/1.0.20/ccu4global_0.app#//@consumed.3"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../NVIC_DMA001/1.0.16/nvic_dma001_1.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CCU4GLOBAL/1.0.22/ccu4global_0.app#//@consumed.3"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../NVIC_DMA001/1.0.20/nvic_dma001_1.app#//@consumed.1"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU002/1.0.14/eru002_0.app#//@consumed.1"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../NVIC_DMA001/1.0.16/nvic_dma001_2.app#//@consumed.1"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../NVIC_DMA001/1.0.20/nvic_dma001_2.app#//@consumed.1"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU002/1.0.14/eru002_1.app#//@consumed.1"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU002/1.0.14/eru002_2.app#//@consumed.1"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ERU002/1.0.14/eru002_3.app#//@consumed.1"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="USBCDC001" description="This is CDC Class Driver module.&#xA; This module contains an &#xA;internal implementation of&#xA; the USB CDC-ACM class&#xA; Virtual Serial Ports, &#xA;for USB Device mode." descriptionURL="/doc/html/group___u_s_b___c_d_c_device___u_s_b_c_d_c001.html" mode="SHARABLE" URI="http://www.infineon.com/1.0.14/app/usbcdc001/0">
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../USBVC001/1.0.16/usbvc001_0.app#//@consumed.0"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../USBVC001/1.0.18/usbvc001_0.app#//@consumed.0"/>
   <provided xsi:type="ResourceModel:API" description="This function continuously checks the status of host port" URI="http://www.infineon.com/1.0.14/app/usbcdc001/0/usb_usbtask" APIName="USB_USBTask">
     <localValue xsi:type="ResourceModel:StringValue" value="-1"/>
     <globalValue xsi:type="ResourceModel:StringValue" value="-1"/>

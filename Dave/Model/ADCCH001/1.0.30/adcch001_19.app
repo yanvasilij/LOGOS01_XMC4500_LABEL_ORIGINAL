@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="ADCCH001" description="This App provides the &#xA; ADC Channel configurations and &#xA; ADC Conversion Result configurations. &#xA; Use this App with Queue(ADC002), &#xA; or Scan(ADC003) Request Source. &#xA; For standalone operation of this &#xA; App, use ADCGLOB001 App. " descriptionURL="/doc/html/group___a_d_c_c_h001_app.html" mode="SHARABLE" URI="http://www.infineon.com/1.0.30/app/adcch001/19">
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ADC002/1.0.26/adc002_3.app#//@consumed.19"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../ADC002/1.0.28/adc002_3.app#//@consumed.17"/>
   <provided xsi:type="ResourceModel:VirtualSignal" name="ADC Channel" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch001_ch_vs" requiredSignalResource="adcch/gch">
     <defaultValue xsi:type="ResourceModel:Blocked" value="Blocked"/>
     <localValue xsi:type="ResourceModel:StringValue" value="Blocked"/>
@@ -840,7 +840,7 @@ Channel event indicate that the conversion is finished.</toolTipHelpDescription>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="&#xD;&#xA;          function resourceCondition() {&#xD;&#xA;            var Res0 = Solver.getResource(&quot;adcch001_erwalias/0&quot;);&#xD;&#xA;            var alias = Solver.getIntValue(Res0);&#xD;&#xA;            if (alias == 1) {&#xD;&#xA;              var constr = &quot;reserved([peripheral,vadc,0,group,_,ch,Ch_no],app_alias_ch) \n uri_element_range(Ch_no,[0,1])&quot;;&#xD;&#xA;              Solver.setConstraintString(constr);&#xD;&#xA;            }&#xD;&#xA;&#xD;&#xA;            var value_45 = Solver.getSoftwareId().substring(0,2).compareTo(&quot;45&quot;);&#xD;&#xA;            if(value_45 == 0)&#xD;&#xA;            {&#xD;&#xA;                var boundary_ch = Solver.getResource(&quot;adcch001_erwenableboundaryflag/0&quot;);&#xD;&#xA;                var boundary = Solver.getIntValue(boundary_ch);&#xD;&#xA;&#xD;&#xA;                 if (boundary == 1)  {&#xD;&#xA;                  var constr = &quot;reserved([peripheral,vadc,0,group,_,ch,Ch_no1],app_boundary_ch) \n uri_element_range(Ch_no1,[0,1,2,3])&quot;;&#xD;&#xA;                  Solver.setConstraintString(constr);&#xD;&#xA;                  }&#xD;&#xA;            }&#xD;&#xA;&#xD;&#xA;            return true;&#xD;&#xA;          }" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../VADC/VADC_0.dd#//@provided.252"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../VADC/VADC_0.dd#//@provided.272"/>
     <requiredResource uriString="peripheral/vadc/0/group/*/ch/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="&#xD;&#xA;          function resourceCondition() {&#xD;&#xA;            var alias_res = Solver.getResource(&quot;adcch001_erwalias/0&quot;);&#xD;&#xA;            var alias = Solver.getIntValue(alias_res);&#xD;&#xA;&#xD;&#xA;                        if(alias == 0)&#xD;&#xA;                        {&#xD;&#xA;                  return true;&#xD;&#xA;                        }&#xD;&#xA;            return false;&#xD;&#xA;          }" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adc_pin" upWardMappingList="//@provided.27/@item.0">
@@ -850,7 +850,7 @@ Channel event indicate that the conversion is finished.</toolTipHelpDescription>
     <requiredResource uriString="app/io001/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="&#xD;&#xA;          function resourceCondition() {&#xD;&#xA;            var filter_res1 = Solver.getResource(&quot;adcch001_erwdatamodf/5&quot;);&#xD;&#xA;            var filter1 = Solver.getIntValue(filter_res1);&#xD;&#xA;            var filter_res2 = Solver.getResource(&quot;adcch001_erwdatamodf/6&quot;);&#xD;&#xA;            var filter2 = Solver.getIntValue(filter_res2);&#xD;&#xA;            var filter_res3 = Solver.getResource(&quot;adcch001_erwdatamodf/7&quot;);&#xD;&#xA;            var filter3 = Solver.getIntValue(filter_res3);&#xD;&#xA;            var filter_res4 = Solver.getResource(&quot;adcch001_erwdatamodf/8&quot;);&#xD;&#xA;            var filter4 = Solver.getIntValue(filter_res4);&#xD;&#xA;            var filter_res5 = Solver.getResource(&quot;adcch001_erwdatamodf/9&quot;);&#xD;&#xA;            var filter5 = Solver.getIntValue(filter_res5);&#xD;&#xA;            var filter_res6 = Solver.getResource(&quot;adcch001_erwdatamodf/10&quot;);&#xD;&#xA;            var filter6 = Solver.getIntValue(filter_res6);&#xD;&#xA;            var filter_res7 = Solver.getResource(&quot;adcch001_erwdatamodf/11&quot;);&#xD;&#xA;            var filter7 = Solver.getIntValue(filter_res7);&#xD;&#xA;            var filter_res8 = Solver.getResource(&quot;adcch001_erwdatamodf/12&quot;);&#xD;&#xA;            var filter8 = Solver.getIntValue(filter_res8);&#xD;&#xA;            var filter_res9 = Solver.getResource(&quot;adcch001_erwdatamodf/13&quot;);&#xD;&#xA;            var filter9 = Solver.getIntValue(filter_res9);&#xD;&#xA;            var filter_res10 = Solver.getResource(&quot;adcch001_erwdatamodf/14&quot;);&#xD;&#xA;            var filter10 = Solver.getIntValue(filter_res10);&#xD;&#xA;            var filter_res11 = Solver.getResource(&quot;adcch001_erwdatamodf/15&quot;);&#xD;&#xA;            var filter11 = Solver.getIntValue(filter_res11);&#xD;&#xA;            var filter_res12 = Solver.getResource(&quot;adcch001_erwdatamodf/16&quot;);&#xD;&#xA;            var filter12 = Solver.getIntValue(filter_res12);&#xD;&#xA;            var filter_res13 = Solver.getResource(&quot;adcch001_erwdatamodf/17&quot;);&#xD;&#xA;            var filter13 = Solver.getIntValue(filter_res13);&#xD;&#xA;            var filter_res14 = Solver.getResource(&quot;adcch001_erwdatamodf/18&quot;);&#xD;&#xA;            var filter14 = Solver.getIntValue(filter_res14);&#xD;&#xA;            var filter_res15 = Solver.getResource(&quot;adcch001_erwdatamodf/19&quot;);&#xD;&#xA;            var filter15 = Solver.getIntValue(filter_res15);&#xD;&#xA;            var filter_res16 = Solver.getResource(&quot;adcch001_erwdatamodf/20&quot;);&#xD;&#xA;            var filter16 = Solver.getIntValue(filter_res16);&#xD;&#xA;&#xD;&#xA;            var diff_res = Solver.getResource(&quot;adcch001_erwdatamodf/4&quot;);&#xD;&#xA;            var differencemode = Solver.getIntValue(diff_res);&#xD;&#xA;            var boundary_res = Solver.getResource(&quot;adcch001_erwenableboundaryflag/0&quot;);&#xD;&#xA;            var boundary = Solver.getIntValue(boundary_res);&#xD;&#xA;            var fifono_res = Solver.getResource(&quot;adcch001_irwfifono&quot;);&#xD;&#xA;            var fifono = Solver.getIntValue(fifono_res);&#xD;&#xA;&#xD;&#xA;        if ((filter1 == 1) || (filter2 == 1) || (filter3 == 1) || (filter4 == 1)&#xD;&#xA;         || (filter5 == 1) || (filter6 == 1) || (filter7 == 1) || (filter8 == 1) || (filter9 == 1) || (filter10 == 1)&#xD;&#xA;         || (filter11 == 1) || (filter12 == 1) || (filter13 == 1) || (filter14 == 1) || (filter15 == 1) || (filter16 == 1)) {&#xD;&#xA;              var constr = &quot;reserved([peripheral,vadc,0,group,Group0,ResultUri,Res0],app_res0) \n uri_element_range(ResultUri,[result_filter])&quot;;&#xD;&#xA;              Solver.setConstraintString(constr);&#xD;&#xA;            }&#xD;&#xA;            else if ((boundary == 1) &amp;&amp; (differencemode == 1)) {&#xD;&#xA;              var constr = &quot;reserved([peripheral,vadc,0,group,Group0,ResultUri,Res0],app_res0) \n uri_element_range(ResultUri,[result_adv]) \n uri_element_range(Res0,[1,2,3])&quot;;&#xD;&#xA;              Solver.setConstraintString(constr);&#xD;&#xA;            }&#xD;&#xA;            else if ((boundary == 1) &amp;&amp; (differencemode == 0)) {&#xD;&#xA;              var constr = &quot;reserved([peripheral,vadc,0,group,Group0,ResultUri,Res0],app_res0) \n uri_element_range(ResultUri,[result_adv])&quot;;&#xD;&#xA;              Solver.setConstraintString(constr);&#xD;&#xA;            }&#xD;&#xA;            return true;&#xD;&#xA;          }" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_a" constraintFunction="reserved([peripheral,vadc,0,group,Group0,_,Res0],app_res0)">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../VADC/VADC_0.dd#//@provided.253"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../VADC/VADC_0.dd#//@provided.284"/>
     <requiredResource uriString="peripheral/vadc/0/group/*/result/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="&#xD;&#xA;          function resourceCondition() {&#xD;&#xA;            var fifono_res = Solver.getResource(&quot;adcch001_irwfifono&quot;);&#xD;&#xA;            var fifono = Solver.getIntValue(fifono_res);&#xD;&#xA;&#xD;&#xA;            var fifo_res = Solver.getResource(&quot;adcch001_erwfifo/0&quot;);&#xD;&#xA;            var fifo = Solver.getIntValue(fifo_res);&#xD;&#xA;                        if(fifo == 1)&#xD;&#xA;                        {&#xD;&#xA;                if ((fifono > 1)) {&#xD;&#xA;                  return true;&#xD;&#xA;                }&#xD;&#xA;                        }&#xD;&#xA;            return false;&#xD;&#xA;          }" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_b" constraintFunction="reserved([peripheral,vadc,0,group,Group1,ResultUri1,Res1],app_res1)&#xD;&#xA;                    uri_element_range(ResultUri1,[result,result_filter, result_adv])&#xD;&#xA;                    linear_constraint(Res1,Res0,-1)&#xD;&#xA;                    linear_constraint(Group1,Group0,0)">
@@ -904,31 +904,19 @@ Channel event indicate that the conversion is finished.</toolTipHelpDescription>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_c/gbflout" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_b/gbflout" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/select" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#/1/@provided.284"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.261"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.295"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.241"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.273"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_l/rev" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_a/rev" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../VADC/VADC_0.dd#//@provided.286"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.285"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#/1/@provided.295"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.254"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.285"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_d/rev" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/res_sel" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#/1/@provided.285"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.262"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.296"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.242"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.274"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_p/rev" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/cev" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#/1/@provided.286"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.263"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.297"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.243"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.275"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_g/rev" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_c/rev" isSystemDefined="true"/>
@@ -936,58 +924,37 @@ Channel event indicate that the conversion is finished.</toolTipHelpDescription>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_h/rev" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/gchass_assch" upWardMappingList="//@provided.26 //@provided.26/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#/1/@provided.287"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.264"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.298"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.244"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.276"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/gchctr/iclsel" upWardMappingList="//@provided.28 //@provided.28/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#/1/@provided.288"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.265"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.299"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.245"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.277"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/gchctr/refsel" upWardMappingList="//@provided.29 //@provided.29/@item.0 //@provided.30 //@provided.30/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#/1/@provided.289"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.266"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.300"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.246"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.278"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/gchctr/sync" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#/1/@provided.290"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.267"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.301"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.247"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.279"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/gchctr/chevmode" upWardMappingList="//@provided.39 //@provided.39/@item.0 //@provided.47/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#/1/@provided.291"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.268"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.302"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.248"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.280"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/gchctr/bndselu" upWardMappingList="//@provided.40 //@provided.40/@item.1" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#/1/@provided.292"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.269"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.303"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.249"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.281"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/gchctr/bndsell" upWardMappingList="//@provided.41 //@provided.41/@item.0" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#/1/@provided.293"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.270"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.304"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.250"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.282"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adc_pin/io001_erwinputchar" upWardMappingList="//@provided.36" isSystemDefined="true">
@@ -996,10 +963,7 @@ Channel event indicate that the conversion is finished.</toolTipHelpDescription>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_a/res_sel" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.285"/>
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.286"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#/1/@provided.296"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.255"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_b/rev" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_o/rev" isSystemDefined="true"/>
@@ -1009,10 +973,7 @@ Channel event indicate that the conversion is finished.</toolTipHelpDescription>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_n/rev" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/result_a/gbflout" isSystemDefined="true"/>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/19/adcch/gch" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#/1/@provided.294"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.271"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.305"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.251"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../VADC/VADC_0.dd#//@provided.283"/>
   </consumed>
   <propertyConstants name="uriprefix_Name" value="http://www.infineon.com/peripheral/vX.Y/XX_PeripheralName/0"/>
   <categoryDescription description="Peripheral Specific Apps" name="Peripheral Specific Apps">

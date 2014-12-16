@@ -59,7 +59,7 @@
     <requiredResource uriString="app/reset001/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/canglobal/0/clockapp">
-    <downWardmappedList xsi:type="ResourceModel:App" href="../../CLK001/1.0.42/clk001_0.app#/"/>
+    <downWardmappedList xsi:type="ResourceModel:App" href="../../CLK001/1.0.44/clk001_0.app#/"/>
     <requiredResource uriString="app/clk001/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/canglobal/0/canglobal/fdr/step" upWardMappingList="//@provided.1" isSystemDefined="true">
@@ -74,7 +74,7 @@
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.12/app/canglobal/0/clockapp/clk001_iroactualfreqpb" upWardMappingList="//@provided.1 //@provided.2 //@provided.3 //@provided.4" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="78"/>
-    <downWardmappedList xsi:type="ResourceModel:IntegerParameter" href="../../CLK001/1.0.42/clk001_0.app#//@provided.42"/>
+    <downWardmappedList xsi:type="ResourceModel:IntegerParameter" href="../../CLK001/1.0.44/clk001_0.app#//@provided.42"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="78"/>
   </consumed>
   <propertyConstants name="uri_can" value="peripheral/can/0/">
