@@ -40,6 +40,8 @@ void CalculateTxChecksum(uint8_t len);
 uint16_t CalculateRxChecksum(void);
 void GetSPIData(char mode);
 
+uint32_t flashslotsize=FLASH002_PAGE_SIZE/4;
+
 uint8_t sectionrecoverydelaythr=11;
 uint8_t sectionrecoverydelay[8];
 
@@ -139,6 +141,8 @@ uint16_t sentdata=0;
 uint32_t flash_status;
 uint32_t* address = FLASH002_SECTOR11_BASE;
 uint32_t membuffer[(sectionparamsize*8)+boardconfigsize];
+uint32_t flashwritingbuffer[FLASH002_PAGE_SIZE/4];
+
 
 uint16_t NoMappedVal1;
 uint16_t G2Ch2Val;
@@ -1190,10 +1194,11 @@ void GetSPIData(char mode) {
 			SPI001_ClearFlag(&SPI001_Handle0, SPI001_RECV_IND_FLAG);
 			SPI001_ClearFlag(&SPI001_Handle0, SPI001_ALT_RECV_IND_FLAG);
 
-			for(k=0;k<10000;k++)
+			for(k=0;k<1000;k++)
 			{
 				;
 			}
+
 		}
 
 		for (i = 0; i < 8; i++) {
@@ -1235,7 +1240,7 @@ void GetSPIData(char mode) {
 			SPI001_ClearFlag(&SPI001_Handle0, SPI001_RECV_IND_FLAG);
 			SPI001_ClearFlag(&SPI001_Handle0, SPI001_ALT_RECV_IND_FLAG);
 
-			for(k=0;k<10000;k++)
+			for(k=0;k<1000;k++)
 			{
 				;
 			}
@@ -1346,8 +1351,11 @@ void RxUartEventHandler()
 {
     uint8_t DataRead;
     uint8_t TmpSecId;
-    uint8_t i,k;
+    uint32_t i,k;
     uint32_t membaseaddress;
+    uint32_t flashpageindex;
+    uint32_t flashtotalsize=sectionparamsize*8+boardconfigsize;
+    uint32_t flashupperindex=flashtotalsize/flashslotsize;
 
 	if(UART001_GetFlagStatus(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG) == UART001_SET)
 	{
@@ -1459,6 +1467,7 @@ void RxUartEventHandler()
 				 		 	}
 
 				 		 	membaseaddress=boardconfigoffset;
+
 				 		 	for(i=0;i<boardconfigsize;i++)
 				 		 	{
 				 		 		membuffer[membaseaddress+i]=rxbuf[i+1];
@@ -1468,15 +1477,29 @@ void RxUartEventHandler()
 
 				 			if(flash_status==DAVEApp_SUCCESS)
 				 			{
-				 				flash_status=Flash002_WritePage(FLASH002_SECTOR11_BASE,membuffer);
-				 				if(flash_status==DAVEApp_SUCCESS)
+
+				 				flashpageindex=0;
+				 				do
 				 				{
-				 					txbuf[1]=0x01;
-				 				}
-				 				else
-				 				{
-				 					txbuf[1]=0x00;
-				 				}
+				 					for(i=0;i<flashslotsize;i++)
+				 					{
+				 						flashwritingbuffer[i]=membuffer[i+flashpageindex*flashslotsize];
+				 					}
+
+				 					flash_status=Flash002_WritePage(FLASH002_SECTOR11_BASE+flashpageindex*FLASH002_PAGE_SIZE,flashwritingbuffer);
+
+				 					if(flash_status==DAVEApp_SUCCESS)
+					 				{
+					 					txbuf[1]=0x01;
+					 					flashpageindex++;
+					 				}
+					 				else
+					 				{
+					 					txbuf[1]=0x00;
+					 				}
+
+				 				}while((flashpageindex<=flashupperindex) && txbuf[1]==0x01);
+
 				 			}
 				 			else
 				 			{
@@ -1653,6 +1676,7 @@ void RxUartEventHandler()
 				 		 	piv2[TmpSecId]=(imaxv2[TmpSecId]-iminv2[TmpSecId])/(maxctrlv2[TmpSecId]-minctrlv2[TmpSecId]);
 
 				 		 	membaseaddress=sectionparamsize*TmpSecId;
+
 				 		 	for(i=0;i<sectionparamsize;i++)
 				 		 	{
 				 		 		membuffer[membaseaddress+i]=rxbuf[i+2];
@@ -1662,20 +1686,35 @@ void RxUartEventHandler()
 
 				 			if(flash_status==DAVEApp_SUCCESS)
 				 			{
-				 				flash_status=Flash002_WritePage(FLASH002_SECTOR11_BASE,membuffer);
-				 				if(flash_status==DAVEApp_SUCCESS)
+
+				 				flashpageindex=0;
+				 				do
 				 				{
-				 					txbuf[1]=0x01;
-				 				}
-				 				else
-				 				{
-				 					txbuf[1]=0x00;
-				 				}
+				 					for(i=0;i<flashslotsize;i++)
+				 					{
+				 						flashwritingbuffer[i]=membuffer[i+flashpageindex*flashslotsize];
+				 					}
+
+				 					flash_status=Flash002_WritePage(FLASH002_SECTOR11_BASE+flashpageindex*FLASH002_PAGE_SIZE,flashwritingbuffer);
+
+				 					if(flash_status==DAVEApp_SUCCESS)
+					 				{
+					 					txbuf[1]=0x01;
+					 					flashpageindex++;
+					 				}
+					 				else
+					 				{
+					 					txbuf[1]=0x00;
+					 				}
+
+				 				}while(flashpageindex<=(((sectionparamsize*8)+boardconfigsize)/flashslotsize) && txbuf[1]==0x01);
+
 				 			}
 				 			else
 				 			{
 				 				txbuf[1]=0x00;
 				 			}
+
 
 				 		 	txlen=4;
 				 		 	txbuf[0]=0x07;
