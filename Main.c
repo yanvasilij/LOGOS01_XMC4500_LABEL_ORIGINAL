@@ -534,6 +534,19 @@ int main(void)
 			}
 			sendflag=0;
 		}
+		if(auxreading!=0)
+		{
+			if(auxreading==1)
+			{
+				GetSPIData(1);
+				auxreading++;
+			}
+			else if(auxreading>=3)
+			{
+				GetSPIData(2);
+				auxreading=0;
+			}
+		}
 	}
 	return 0;
 }
@@ -1445,7 +1458,7 @@ void RxUartEventHandler()
 				 		 		}
 				 		 	}
 
-				 		 	/*membaseaddress=boardconfigoffset;
+				 		 	membaseaddress=boardconfigoffset;
 				 		 	for(i=0;i<boardconfigsize;i++)
 				 		 	{
 				 		 		membuffer[membaseaddress+i]=rxbuf[i+1];
@@ -1468,7 +1481,7 @@ void RxUartEventHandler()
 				 			else
 				 			{
 				 				txbuf[1]=0x00;
-				 			}*/
+				 			}
 
 				 		 	txlen=4;
 				 			txbuf[0]=0x05;
@@ -1678,11 +1691,6 @@ void RxUartEventHandler()
 				 }
 			 }
 		 }
-	}
-	else
-	{
-		rxindex=0;
-		uartmsglen=1;
 	}
 }
 
@@ -1962,6 +1970,9 @@ void SetupDiagnoMsg(void)
 
 void MAIN_CLOCK_HANDLER(void)
 {
+	uint8_t DataRead;
+	uint16_t DummyDataBuf[32];
+
 	int k=0;
 
 	if(uarttimeout>0)
@@ -1969,6 +1980,13 @@ void MAIN_CLOCK_HANDLER(void)
 		uarttimeout--;
 		if(uarttimeout==0)
 		{
+			do{
+				DataRead=UART001_ReadDataBytes(&UART001_Handle0,DummyDataBuf,32);
+			}while(DataRead>0);
+
+			UART001_ClearFlag(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG);
+			UART001_ClearFlag(&UART001_Handle0,UART001_FIFO_RECV_BUF_ERR_FLAG);
+
 			rxindex=0;
 			uartmsglen=1;
 		}
@@ -2023,20 +2041,12 @@ void MAIN_CLOCK_HANDLER(void)
 		}
 	}
 
-	if((spidatainenable==1 && auxreading==0) || (spidatainenable==1 && auxreading==8))
+	if(spidatainenable==1)
 	{
-		if(auxreading==0)
-		{
-			GetSPIData(1);
-			auxreading++;
-		}
-		else if(auxreading==8)
-		{
-			GetSPIData(2);
-			auxreading++;
-		}
+		auxreading++;
 	}
-	else if((analoginenable==1 && (auxreading!=0 && auxreading!=8)))
+
+	if(analoginenable==1)
 	{
 		//Leggo le analogiche ausiliarie
 		ADCCH001_GetResult(&ADCCH001_Handle10, &NoMappedVal1);
@@ -2067,15 +2077,6 @@ void MAIN_CLOCK_HANDLER(void)
 		ADCCH001_ClearResultEvtFlag(&ADCCH001_Handle18);
 		ADCCH001_ClearResultEvtFlag(&ADCCH001_Handle19);
 		ADCCH001_ClearResultEvtFlag(&ADCCH001_Handle3);
-
-		if(auxreading==9)
-		{
-			auxreading=0;
-		}
-		else
-		{
-			auxreading++;
-		}
 	}
 
 }
