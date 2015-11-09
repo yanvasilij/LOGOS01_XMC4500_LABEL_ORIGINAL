@@ -8,8 +8,8 @@
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../USBLD001/1.0.18/usbld001_0.app#//@consumed.3"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../RTC001/1.0.32/rtc001_0.app#//@consumed.4"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../SYSTM001/1.0.18/systm001_0.app#//@consumed.2"/>
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CCU4GLOBAL/1.0.22/ccu4global_0.app#//@consumed.1"/>
   <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../SPI001/1.0.24/spi001_0.app#//@consumed.27"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CCU4GLOBAL/1.0.22/ccu4global_0.app#//@consumed.1"/>
   <provided xsi:type="ResourceModel:VirtualSignal" name="Perbridge (fPB) Clock" URI="http://www.infineon.com/1.0.44/app/clk001/0/clk001_fpb_vs" requiredSignalResource="perbridge/fpb">
     <localValue xsi:type="ResourceModel:StringValue" value="-1"/>
     <globalValue xsi:type="ResourceModel:StringValue" value="-1"/>

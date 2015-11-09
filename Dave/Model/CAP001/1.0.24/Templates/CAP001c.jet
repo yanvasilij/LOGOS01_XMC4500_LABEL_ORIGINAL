@@ -1,0 +1,1123 @@
+<%@ jet package="CodeGenerator" class="cap001c_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+/*CODE_BLOCK_BEGIN[CAP001.c]*/
+
+
+/*******************************************************************************
+ Copyright (c) 2014, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+                                                                              **
+ Redistribution and use in source and binary forms, with or without           **
+ modification,are permitted provided that the following conditions are met:   **
+                                                                              **
+ *Redistributions of source code must retain the above copyright notice,      **
+ this list of conditions and the following disclaimer.                        **
+ *Redistributions in binary form must reproduce the above copyright notice,   **
+ this list of conditions and the following disclaimer in the documentation    **
+ and/or other materials provided with the distribution.                       **
+ *Neither the name of the copyright holders nor the names of its contributors **
+ may be used to endorse or promote products derived from this software without**
+ specific prior written permission.                                           **
+                                                                              **
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+ ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+ LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+ SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+ CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+ POSSIBILITY OF SUCH DAMAGE.                                                  **
+                                                                              **
+ To improve the quality of the software, users are encouraged to share        **
+ modifications, enhancements or bug fixes with Infineon Technologies AG       **
+ dave@infineon.com).                                                          **
+                                                                              **
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC4000/XMC1000 Series                                 **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR : App Developer                                                     **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/no]: Yes                                       **
+**                                                                            **
+** MODIFICATION DATE : Jan 23, 2014                                           **
+**                                                                            **
+*******************************************************************************/
+
+/**
+ * @file CAP001.c
+ *
+ * @brief
+ * This app is used to find out the frequency and duty cycle of the input signal.
+ *
+ * Use case:
+ * CCU4 slice is used in the capture mode with two capture channels.
+ * Capture channel 0 captures the period value
+ * and capture channel 1 captures duty value.
+ * Timer is cleared on the period edge thus giving absolute period value. For
+ * duty cycle value, duty capture value is subtracted from period capture value.
+ *
+ * Revision History
+ * 
+ * 11 Dec 2012  v1.0.12    DBG002_ prefix added to DBG002 app using macros
+ * 12 Feb 2013  v1.0.14    Ported to XMC4200 & XMC1000 devices.
+ * 23 Jan 2014  v1.0.22    Error codes are added in various functions, that can 
+ *                         be logged with DBG002 App.
+ *
+ */
+
+/******************************************************************************
+**                      Author(s) Identity                                   **
+*******************************************************************************
+**                                                                           **
+** Initials     Name                                                         **
+** KS           App Developer                                                **
+** --------------------------------------------------------------------------**
+
+*******************************************************************************/
+
+/*******************************************************************************
+ ** INCLUDE FILES                                                             **
+ ******************************************************************************/
+#include <DAVE3.h>
+#include "../../inc/CAP001/CAP001_Conf.h"
+
+<% String TempApps = null;
+   String MyAppName = null;
+   ArrayList<String> apps;
+   String TempLowerApps = null; 
+   boolean DBGApp = false;   
+   apps=(ArrayList<String>)(app.getApps());
+        for (int k = 0; k < apps.size(); k++) {
+              TempApps = apps.get(k);
+//            if(app.isAppInitProvider(apps.get(k)) == true) {
+              MyAppName = TempApps.substring(TempApps.indexOf("/app/") + 5, TempApps.lastIndexOf("/"));
+              TempLowerApps = MyAppName.toLowerCase();
+              if (TempLowerApps.equalsIgnoreCase("dbg002")) {DBGApp = true;}   
+//   }  
+  } %>
+
+<% if (!DBGApp) { %>  
+/*****************************************************************************
+              DUMMY DEFINTIONS OF DEBUG LOG MACROS
+*****************************************************************************/
+/*These definitions are included here to avoid compilation errors,
+ since the DBG002 app is not part of the project. All the macros are defined
+ as empty*/ 
+#ifndef _DBG002_H_
+
+#define DBG002_RegisterCallBack(A,B,C)
+#define DBG002_I(e) 
+#define DBG002_IG(e,g) 
+#define DBG002_IH(e,h) 
+#define DBG002_IP(e,p) 
+#define DBG002_IGH(e,g,h) 
+#define DBG002_IGP(e,g,p) 
+#define DBG002_IHP(e,h,p) 
+#define DBG002_IGHP(e,g,h,p) 
+#define DBG002_N(e) 
+#define DBG002_NG(e,g) 
+#define DBG002_NH(e,h) 
+#define DBG002_NP(e,p) 
+#define DBG002_NGH(e,g,h) 
+#define DBG002_NGP(e,g,p) 
+#define DBG002_NHP(e,h,p) 
+#define DBG002_NGHP(e,g,h,p) 
+#define DBG002_ID(e) 
+#define DBG002_IS(e) 
+#define DBG002_ISG(e,g) 
+#define DBG002_SAFETY_CRITICAL(groupid,messageid,length,value)
+#define DBG002_CRITICAL(groupid,messageid,length,value)
+#define DBG002_ERROR(groupid,messageid,length,value)
+#define DBG002_WARNING(groupid,messageid,length,value)
+#define DBG002_INFO(groupid,messageid,length,value)
+#define DBG002_TRACE(groupid,messageid,length,value)
+#define DBG002_FUNCTION_ENTRY(GID, Status) 
+#define DBG002_FUNCTION_EXIT(GID, Status) 
+#define DBG002_MESSAGEID_LITERAL 
+#endif/* End of definitions of dummy Debug Log macros*/
+<% } %>                  
+
+/**
+ * @cond INTERNAL_DOCS
+ */
+#define APP_GID DBG002_GID_CAP001
+/*******************************************************************************
+ **                      Private Type Definitions                              **
+ *******************************************************************************/
+
+/*******************************************************************************
+ **                      Global Constant Definitions                           **
+ *******************************************************************************/
+#define CAP001_STATUS_LEN 4U
+/*******************************************************************************
+ **                      Global Variable Definitions                           **
+ *******************************************************************************/
+
+/*******************************************************************************
+ **                      Private Constant Definitions                          **
+ *******************************************************************************/
+
+/**
+ * @ingroup CAP001_privateparam
+ * @{
+ */
+/**
+ * @brief This data structure stores the timer values that can be counted in floating prescalar mode.
+ * for each prescalar divider.
+*/
+uint32_t CAP001_TimerStep[16] = 
+{
+0UL,
+65535UL,
+196605UL,
+458745UL,
+983025UL,
+2031585UL,
+4128705UL,
+8322945UL,
+16711425UL,
+33488385UL,
+67042305UL,
+134150145UL,
+268365825UL,
+536797185UL,
+1073659905UL,
+2147385345UL,
+};
+
+/**
+* @}
+*/
+/*******************************************************************************
+**                 Private Function Declarations:
+*******************************************************************************/
+
+/**
+ * @addtogroup CAP001_PrivateAPI
+ * @{
+ */
+/**
+ * @brief This function initialises second slice in case of timer concatenation
+
+ *
+ * @param [in] HandlePtr pointer to the Instance variable<BR>
+ *
+ * @return  void<BR>
+ *
+ * <b>Reentrancy:  Yes</b><BR>
+ * <b>Sync/Async:  Synchronous</b><BR>
+ */
+void CAP001_lConfigureSecondSlice
+(
+    const CAP001_HandleType * HandlePtr
+);
+
+/**
+ * @brief This function finds the duty cycle and period of input signal.
+
+ *
+ * @param [in] HandlePtr pointer to the Instance variable<BR>
+ *
+ * @return  void<BR>
+ *
+ * <b>Reentrancy:  Yes</b><BR>
+ * <b>Sync/Async:  Synchronous</b><BR>
+ */
+void CAP001_lCalculateDutyPeriod
+(
+  const CAP001_HandleType* HandlePtr
+);
+
+/**
+ * @brief This function initialises the app.
+
+ *
+ * @param [in] void
+ *
+ * @return  void<BR>
+ *
+ * <b>Reentrancy:  Yes</b><BR>
+ * <b>Sync/Async:  Synchronous</b><BR>
+ */
+status_t CAP001_lInit
+(
+  const CAP001_HandleType* HandlePtr
+);
+/**
+ * @}
+ */
+
+/*******************************************************************************
+**                 Function like macro definitions                            **
+*******************************************************************************/
+
+
+/*******************************************************************************
+**                      Public Function Definitions                           **
+*******************************************************************************/
+/**
+ * @addtogroup CAP001_PublicFunctions
+ * @{
+ */
+<% String AppBaseuri = "app/cap001/"; %>
+<% String SliceUri = null; %>
+<% String ccu4globaluri = null; %>
+<% String globaluri = null; %>
+<% String globalNo = null; %>
+<% String kernelNo = null; %>
+<% String sliceNo = null; %>
+<% String temp = "3"; %>
+<% String appInst  = null; %>
+
+void CAP001_Init(void)
+{
+ status_t Error = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+
+    CCU4GLOBAL_Init();
+    <% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/cap001/"));
+  for (String appIns : appsList ) {
+  appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+
+    Error = CAP001_lInit( &CAP001_Handle<%=appInst%> );
+    /* Start the App if "Start after initialisation" is checked */
+    if(Error == (uint32_t)DAVEApp_SUCCESS)
+    {        
+      DBG002_N(Error != DAVEApp_SUCCESS);
+      if (CAP001_Handle<%=appInst%>.StartControl == (uint8_t)SET)
+      {
+        Error = CAP001_Start( &CAP001_Handle<%=appInst%> );
+        DBG002_N(Error != DAVEApp_SUCCESS);
+      }
+    }
+    <%}%>
+}
+
+/** This function initialises the  CCU4_CCy slice with
+ * the configured parameters to capture the period and duty cycle of input
+ * signal.*/
+status_t CAP001_lInit
+(
+    const CAP001_HandleType* HandlePtr
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID,(uint32_t)CAP001_FUNCTION_ENTRY);
+
+  /*<<<DD_CAP001_API_1_1>>>*/
+  if(HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+    /*<<<DD_CAP001_API_1_3>>>*/
+    CC4yRegsPtr->TCCLR = CAP001_SLICE_CLEAR;
+
+    /*Set edge-aligned mode */
+    CLR_BIT(CC4yRegsPtr->TC, (uint32_t)CCU4_CC4_TC_TCM_Pos);
+
+    CC4yRegsPtr->INS &= (uint32_t)~((uint32_t)(CCU4_CC4_INS_EV0EM_Msk ) | \
+        (uint32_t)(CCU4_CC4_INS_LPF0M_Msk ) |\
+        (uint32_t)(CCU4_CC4_INS_EV1EM_Msk ) |\
+        (uint32_t)(CCU4_CC4_INS_LPF1M_Msk ));
+
+    /* Set event0 as Period capture and Event1 as duty cycle capture
+     * Event0 edge is configured as per period capture
+     * Rising edge for rise-to-rise capture
+     * Falling edge for fall-to-fall capture.
+     * Event1 edge is the opposite of the Event0 edge.
+     * */
+    CC4yRegsPtr->INS |= (uint32_t)((((uint32_t)HandlePtr->kCaptureEvtEdgeforPeriod
+        << (uint32_t)CCU4_CC4_INS_EV0EM_Pos)& (uint32_t)CCU4_CC4_INS_EV0EM_Msk) |
+        (((uint32_t)HandlePtr->kLpf  << CCU4_CC4_INS_LPF0M_Pos)& (uint32_t)CCU4_CC4_INS_LPF0M_Msk ));
+
+    CC4yRegsPtr->INS |=
+        (uint32_t)((((uint32_t)HandlePtr->kCaptureEvtEdgeforDutyCycle <<CCU4_CC4_INS_EV1EM_Pos)&
+            (uint32_t)CCU4_CC4_INS_EV1EM_Msk ) |
+            (((uint32_t)HandlePtr->kLpf  << CCU4_CC4_INS_LPF1M_Pos)& (uint32_t)CCU4_CC4_INS_LPF1M_Msk ));
+
+    CC4yRegsPtr->CMC &=(uint32_t)~((CCU4_CC4_CMC_CAP0S_Msk ) |\
+        (CCU4_CC4_CMC_CAP1S_Msk ));
+
+    CC4yRegsPtr->CMC |= (uint32_t)(((CAP001_EVENT_0
+        << CCU4_CC4_CMC_CAP0S_Pos) & (uint32_t)CCU4_CC4_CMC_CAP0S_Msk )| ((CAP001_EVENT_1
+            << CCU4_CC4_CMC_CAP1S_Pos)& (uint32_t)CCU4_CC4_CMC_CAP1S_Msk ));
+
+    CC4yRegsPtr->TC &= (uint32_t)~((uint32_t)(CCU4_CC4_TC_CMOD_Msk )|\
+        (uint32_t)(CCU4_CC4_TC_CAPC_Msk )|\
+        (uint32_t)(CCU4_CC4_TC_STRM_Msk )|\
+        (uint32_t)(CCU4_CC4_TC_ENDM_Msk ));
+
+    /*<<<DD_CAP001_API_1_4>>>*/
+    if (HandlePtr->kPrescalarMode == CAP001_FLOATINGPRESCALAR)
+    {
+      SET_BIT(CC4yRegsPtr->TC, CCU4_CC4_TC_FPE_Pos );
+      CC4yRegsPtr->TC |=
+      ((((uint32_t)CAP001_CAPTURE_MODE  << (uint32_t)CCU4_CC4_TC_CMOD_Pos)& (uint32_t)CCU4_CC4_TC_CMOD_Msk )|\
+      (((uint32_t)CAP001_CLEAR_ON_CAPTURE_FPP <<(uint32_t)CCU4_CC4_TC_CAPC_Pos)& (uint32_t)CCU4_CC4_TC_CAPC_Msk ));
+    }
+    else
+    {
+      CC4yRegsPtr->TC |=
+      ((((uint32_t)CAP001_CAPTURE_MODE  << (uint32_t)CCU4_CC4_TC_CMOD_Pos)& (uint32_t)CCU4_CC4_TC_CMOD_Msk )|\
+      (((uint32_t)CAP001_CLEAR_ON_CAPTURE <<(uint32_t)CCU4_CC4_TC_CAPC_Pos)& (uint32_t)CCU4_CC4_TC_CAPC_Msk ));
+    }
+    /*Set different capture events */
+    CLR_BIT(CC4yRegsPtr->TC, CCU4_CC4_TC_SCE_Pos);
+
+    /* Overwrite capture value */
+    WR_REG(CC4yRegsPtr->TC, (uint32_t)CCU4_CC4_TC_CCS_Msk , (uint32_t)CCU4_CC4_TC_CCS_Pos,
+        HandlePtr->kOverwriteCaptureValue);
+
+    /* Prescalar value */
+    WR_REG(CC4yRegsPtr->PSC,(uint32_t)CCU4_CC4_PSC_PSIV_Msk ,(uint32_t)CCU4_CC4_PSC_PSIV_Pos,
+        HandlePtr->kPrescalarDiv);
+
+    /*<<<DD_CAP001_API_1_2>>>*/
+    /* If timer concatenation is needed, enable it in two slices. */
+    HandlePtr->CC4ySliceRegs0Ptr->INTE |= HandlePtr->InterruptControl;
+    if (HandlePtr->kPrescalarMode == CAP001_TIMERCONCATENATION)
+    {
+      CAP001_lConfigureSecondSlice(HandlePtr);
+    } /*End of "if (HandlePtr->kPrescalarMode == CAP001_TIMERCONCATENATION)"*/
+
+    /*Request SW shadow transfer for period, compare, dither and prescalar level*/
+    HandlePtr->CCU4xKernRegsPtr->GCSS |=
+        ((0x01UL << (4U * (uint32_t)HandlePtr->kFirstSlice)) |
+         (0x01UL << ((4U * (uint32_t)HandlePtr->kFirstSlice) + 1U)) |
+         (0x01UL << ((4U * (uint32_t)HandlePtr->kFirstSlice) + 2U)));
+    CC4yRegsPtr->SWR |= (uint32_t)CAP001_ALL_CCU4_INTR_CLEAR;
+
+    /* Update dynamic HandlePtr */
+    HandlePtr->DynamicHandlePtr->DutyCycle = 0UL;
+    HandlePtr->DynamicHandlePtr->Period = 0UL;
+    HandlePtr->DynamicHandlePtr->AppState = CAP001_INITIALIZED;
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+
+/*<<<DD_CAP001_API_2>>>*/
+/**This function will reset the App*/
+
+status_t CAP001_Deinit
+(
+    const CAP001_HandleType* HandlePtr
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  CCU4_GLOBAL_TypeDef* CCU4x_KernRegsPtr = HandlePtr->CCU4xKernRegsPtr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr1 = HandlePtr->CC4ySliceRegs1Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID,(uint32_t)CAP001_FUNCTION_ENTRY);
+
+  /*<<<DD_CAP001_API_2_1>>>*/
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+    DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    CC4yRegsPtr->TCCLR = (uint32_t)CAP001_SLICE_CLEAR;
+    CC4yRegsPtr->SWR = (uint32_t)CAP001_ALL_CCU4_INTR_CLEAR;
+    CC4yRegsPtr->INTE = 0x00UL;
+    /*<<<DD_CAP001_API_2_3>>>*/
+    /*Set IDLE mode for the first slice*/
+    CCU4x_KernRegsPtr->GIDLS |= ((0x01UL << ((uint32_t)CCU4_GIDLS_SS0I_Pos + \
+    		                                (uint32_t)HandlePtr->kFirstSlice)));
+    CC4yRegsPtr->INS = 0x00UL;
+    CC4yRegsPtr->CMC = 0x00UL;
+    CC4yRegsPtr->TCCLR = (uint32_t)CAP001_SLICE_CLEAR;
+    CC4yRegsPtr->TC = 0x00UL;
+    CC4yRegsPtr->PSC = 0x00UL;
+    CC4yRegsPtr->SWR = (uint32_t)CAP001_ALL_CCU4_INTR_CLEAR;
+
+    /*<<<DD_CAP001_API_2_2>>>*/
+    /* reset second slice in case of timer concatenation */
+    if (HandlePtr->kPrescalarMode == CAP001_TIMERCONCATENATION)
+    {
+      CC4yRegsPtr1->TCCLR = (uint32_t)CAP001_SLICE_CLEAR;
+      CC4yRegsPtr1->SWR = (uint32_t)CAP001_ALL_CCU4_INTR_CLEAR;
+      CC4yRegsPtr1->INTE = 0x00UL;
+/*Set IDLE mode for the second slice*/
+      CCU4x_KernRegsPtr->GIDLS |= (0x01UL << ((uint32_t)CCU4_GIDLS_SS0I_Pos +
+                                          (uint32_t)HandlePtr->kSecondSlice ));
+
+      CC4yRegsPtr1->INS = 0x00UL;
+      CC4yRegsPtr1->CMC = 0x00UL;
+      CC4yRegsPtr1->TCCLR = (uint32_t)CAP001_SLICE_CLEAR;
+      CC4yRegsPtr1->TC = 0x00UL;
+      CC4yRegsPtr1->PSC = 0x00UL;
+      CC4yRegsPtr1->SWR = (uint32_t)CAP001_ALL_CCU4_INTR_CLEAR;
+    } /*End of if (HandlePtr->kPrescalarMode == CAP001_TIMERCONCATENATION)*/
+
+    HandlePtr->DynamicHandlePtr->DutyCycle = 0UL;
+    HandlePtr->DynamicHandlePtr->Period = 0UL;
+    HandlePtr->DynamicHandlePtr->AppState = CAP001_UNINITIALIZED;
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+
+/**This function will start this APP which will start the CCU4_CCy or CCU8_CCy
+   slice*/
+/*<<<DD_CAP001_API_3>>>*/
+
+status_t CAP001_Start
+(
+    const CAP001_HandleType* HandlePtr
+)
+{
+  status_t Status =(uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+
+  CCU4_GLOBAL_TypeDef* CCU4x_KernRegsPtr = HandlePtr->CCU4xKernRegsPtr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr1 = HandlePtr->CC4ySliceRegs1Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID,(uint32_t)CAP001_FUNCTION_ENTRY);
+
+  if (HandlePtr->DynamicHandlePtr->AppState != CAP001_INITIALIZED)
+  {
+	DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    /*<<<DD_CAP001_API_3_1>>>*/
+    if (HandlePtr->kPrescalarMode == CAP001_TIMERCONCATENATION)
+    {
+      /* clear IDLE mode */
+      SET_BIT(CCU4x_KernRegsPtr->GIDLC,
+          ((uint32_t)CCU4_GIDLC_CS0I_Pos + (uint32_t)HandlePtr->kFirstSlice));
+      SET_BIT(CCU4x_KernRegsPtr->GIDLC,
+          ((uint32_t)CCU4_GIDLC_CS0I_Pos + (uint32_t)HandlePtr->kSecondSlice));
+
+      /* Set RUN bit */
+      SET_BIT(CC4yRegsPtr1->TCSET, (uint32_t)CCU4_CC4_TCSET_TRBS_Pos);
+
+    }/*End of if (HandlePtr->kPrescalarMode == CAP001_TIMERCONCATENATION)*/
+    else
+    {
+      /* clear IDLE mode */
+      SET_BIT(CCU4x_KernRegsPtr->GIDLC,
+          (uint32_t)((uint32_t)CCU4_GIDLC_CS0I_Pos + (uint32_t)HandlePtr->kFirstSlice));
+    }/*End of "else" */
+
+    /*<<<DD_CAP001_API_3_2>>>*/
+    /* Set RUN bit */
+    SET_BIT(CC4yRegsPtr->TCSET, (uint32_t)CCU4_CC4_TCSET_TRBS_Pos);
+
+    HandlePtr->DynamicHandlePtr->AppState = CAP001_RUNNING;
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**This function will stop this APP which will stop the CCU4_CCy or CCU8_CCy
+ * slice.
+ */
+/*<<<DD_CAP001_API_4>>>*/
+
+status_t CAP001_Stop
+(
+    const CAP001_HandleType* HandlePtr
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+
+  CCU4_GLOBAL_TypeDef* CCU4x_KernRegsPtr = HandlePtr->CCU4xKernRegsPtr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr1 = HandlePtr->CC4ySliceRegs1Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID, (uint32_t)CAP001_FUNCTION_ENTRY);
+
+  if (HandlePtr->DynamicHandlePtr->AppState != CAP001_RUNNING)
+  {
+     DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+
+/*<<<DD_CAP001_API_4_2>>>*/
+    CC4yRegsPtr->TCCLR = (uint32_t)CAP001_SLICE_CLEAR;
+    CC4yRegsPtr->SWR |= (uint32_t)CAP001_ALL_CCU4_INTR_CLEAR;
+/* Set the IDLE mode */
+    CCU4x_KernRegsPtr->GIDLS |=
+    ((0x01UL << ((uint32_t)CCU4_GIDLS_SS0I_Pos + (uint32_t)HandlePtr->kFirstSlice)));
+
+ /*<<<DD_CAP001_API_4_1>>>*/
+    if (HandlePtr->kPrescalarMode == CAP001_TIMERCONCATENATION)
+    {
+      CC4yRegsPtr1->TCCLR = (uint32_t)CAP001_SLICE_CLEAR;
+      CC4yRegsPtr1->SWR |= (uint32_t)CAP001_ALL_CCU4_INTR_CLEAR;
+      /* Set the IDLE mode */
+      CCU4x_KernRegsPtr->GIDLS |=
+            ((0x01UL << ((uint32_t)CCU4_GIDLS_SS0I_Pos + (uint32_t)HandlePtr->kSecondSlice)));
+    }/*End Of if (HandlePtr->kPrescalarMode == CAP001_TIMERCONCATENATION)*/
+    HandlePtr->DynamicHandlePtr->DutyCycle = 0UL;
+    HandlePtr->DynamicHandlePtr->Period = 0UL;
+    HandlePtr->DynamicHandlePtr->AppState = CAP001_INITIALIZED;
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+
+/**This function will read the capture registers.
+ * This function should be called from the capture interrupt handler
+ * to read the capture registers and the prescalar values at the time of the capture.
+ */
+/*<<<DD_CAP001_API_7>>>*/
+
+status_t CAP001_GetCapRegs
+(
+    const CAP001_HandleType* HandlePtr,
+    CAP001_CaptureDataType* CaptureReg
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  uint32_t Period = 0UL;
+  uint32_t Duty = 0UL;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr1 = HandlePtr->CC4ySliceRegs1Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID, (uint32_t)CAP001_FUNCTION_ENTRY);
+    /*<<<DD_CAP001_API_7_1>>>*/
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+     DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    /*<<<DD_CAP001_API_7_2>>>*/
+    Period = RD_REG(CC4yRegsPtr->CV[1], (uint32_t)CCU4_CC4_CV_CAPTV_Msk ,\
+        (uint32_t)CCU4_CC4_CV_CAPTV_Pos);
+
+    Duty = RD_REG(CC4yRegsPtr->CV[3],
+        (uint32_t)CCU4_CC4_CV_CAPTV_Msk , (uint32_t)CCU4_CC4_CV_CAPTV_Pos);
+
+    if (HandlePtr->kPrescalarMode != CAP001_TIMERCONCATENATION)
+    {
+      CaptureReg->PeriodCaptureValue = Period;
+      CaptureReg->DutyCaptureValue = Duty;
+      CaptureReg->PeriodPrescalarValue = RD_REG(CC4yRegsPtr->CV[1],
+          (uint32_t)CCU4_CC4_CV_FPCV_Msk , (uint32_t)CCU4_CC4_CV_FPCV_Pos);
+      CaptureReg->DutyPrescalarValue = RD_REG(CC4yRegsPtr->CV[3],
+          (uint32_t)CCU4_CC4_CV_FPCV_Msk , (uint32_t)CCU4_CC4_CV_FPCV_Pos);
+    } /* End of if (HandlePtr->kPrescalarMode != CAP001_TIMERCONCATENATION)*/
+
+    /*<<<DD_CAP001_API_7_3>>>*/
+    /* In case of timer concatenation, timer value is 32-bit
+     * MSB 16-bits of Slice1 and LSB 16-bits of Slice0
+     */
+    else
+    {
+      CaptureReg->PeriodCaptureValue = (((RD_REG(CC4yRegsPtr1->CV[1],
+          (uint32_t)CCU4_CC4_CV_CAPTV_Msk ,(uint32_t)CCU4_CC4_CV_CAPTV_Pos))
+          << (uint32_t)16) |(uint32_t)(Period));
+      CaptureReg->DutyCaptureValue = (((RD_REG(CC4yRegsPtr1->CV[3],
+          (uint32_t)CCU4_CC4_CV_CAPTV_Msk , (uint32_t)CCU4_CC4_CV_CAPTV_Pos))
+          << (uint32_t)16)|(uint32_t) (Duty));
+      CaptureReg->PeriodPrescalarValue = HandlePtr->kPrescalarDiv;
+      CaptureReg->DutyPrescalarValue = HandlePtr->kPrescalarDiv;
+    }
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**
+ * This function should be called from the capture interrupt handler
+ * to read the capture registers and the prescalar values at the time of the capture.
+ */
+status_t CAP001_ReadCapturedValues
+(
+    const CAP001_HandleType* HandlePtr
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  uint32_t Period = 0UL;
+  uint32_t Duty = 0UL;
+  uint8_t EvtStatus = 0U;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr1 = HandlePtr->CC4ySliceRegs1Ptr;
+  CAP001_CaptureDataType* CaptureReg = HandlePtr->DynamicHandlePtr->CaptureRegPtr;
+  DBG002_FUNCTION_ENTRY(APP_GID, (uint32_t)CAP001_FUNCTION_ENTRY);
+  /*<<<DD_CAP001_API_7_1>>>*/
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+	 DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    /* Check if Capture interrupt is set */
+    Status = CAP001_GetPendingEvent(HandlePtr, CAP001_PERIODCAPTUREEVENT, &EvtStatus);
+    if(EvtStatus == (uint8_t) RESET)
+    {
+   	 DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+    }
+    else
+    {
+      /* If Capture interrupt is set, read the capture register values and
+       * update the dynamic handle. These values will be used to find
+       * the duty cycle and period of the input signal.
+       */
+      /*<<<DD_CAP001_API_7_2>>>*/
+      /* First disable the event */
+      Status = CAP001_DisableEvent(HandlePtr, CAP001_PERIODCAPTUREEVENT);
+      DBG002_N(Status != DAVEApp_SUCCESS);
+      Period = RD_REG(CC4yRegsPtr->CV[1],
+          (uint32_t)CCU4_CC4_CV_CAPTV_Msk ,(uint32_t)CCU4_CC4_CV_CAPTV_Pos);
+      Duty = RD_REG(CC4yRegsPtr->CV[3],
+          (uint32_t)CCU4_CC4_CV_CAPTV_Msk , (uint32_t)CCU4_CC4_CV_CAPTV_Pos);
+      if (HandlePtr->kPrescalarMode != CAP001_TIMERCONCATENATION)
+      {
+        CaptureReg->PeriodCaptureValue = Period;
+        CaptureReg->DutyCaptureValue = Duty;
+        CaptureReg->PeriodPrescalarValue = RD_REG(CC4yRegsPtr->CV[1],
+            (uint32_t)CCU4_CC4_CV_FPCV_Msk , (uint32_t)CCU4_CC4_CV_FPCV_Pos);
+        CaptureReg->DutyPrescalarValue = RD_REG(CC4yRegsPtr->CV[3],
+            (uint32_t)CCU4_CC4_CV_FPCV_Msk , (uint32_t)CCU4_CC4_CV_FPCV_Pos);
+      } /* End of if (HandlePtr->kPrescalarMode != CAP001_TIMERCONCATENATION)*/
+
+      /*<<<DD_CAP001_API_7_3>>>*/
+      /* In case of timer concatenation, timer value is 32-bit
+       * MSB 16-bits of Slice1 and LSB 16-bits of Slice0
+       */
+      else
+      {
+        CaptureReg->PeriodCaptureValue = (((RD_REG(CC4yRegsPtr1->CV[1],
+            (uint32_t)CCU4_CC4_CV_CAPTV_Msk , (uint32_t)CCU4_CC4_CV_CAPTV_Pos))
+            << (uint32_t)16 ) |(uint32_t)(Period));
+        CaptureReg->DutyCaptureValue = (uint32_t)(((RD_REG(CC4yRegsPtr1->CV[3],
+            (uint32_t)CCU4_CC4_CV_CAPTV_Msk , (uint32_t)CCU4_CC4_CV_CAPTV_Pos))
+            << (uint32_t)16)| (uint32_t)(Duty));
+        CaptureReg->PeriodPrescalarValue = HandlePtr->kPrescalarDiv;
+        CaptureReg->DutyPrescalarValue = HandlePtr->kPrescalarDiv;
+      }
+      /* Clear the capture interrupt */
+      Status = CAP001_ClearPendingEvent(HandlePtr,CAP001_PERIODCAPTUREEVENT);
+      DBG002_N(Status != DAVEApp_SUCCESS);
+      Status = CAP001_EnableEvent(HandlePtr, CAP001_PERIODCAPTUREEVENT);
+      DBG002_N(Status != DAVEApp_SUCCESS);
+    }
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/*This function will read timer status - Running or idle.
+ * */
+/*<<<DD_CAP001_API_8>>>*/
+
+status_t CAP001_GetTimerStatus
+(
+    const CAP001_HandleType* HandlePtr,
+    uint32_t* TimerStatus
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  CCU4_CC4_TypeDef* CC4yRegsPtr1 = HandlePtr->CC4ySliceRegs1Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID, (uint32_t)(uint32_t)CAP001_FUNCTION_ENTRY);
+
+  /*<<<DD_CAP001_API_8_1>>>*/
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+	DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    /*<<<DD_CAP001_API_8_2>>>*/
+    if (HandlePtr->kPrescalarMode != CAP001_TIMERCONCATENATION)
+    {
+      *TimerStatus = RD_REG(CC4yRegsPtr->TCST,
+          (uint32_t)CCU4_CC4_TCST_TRB_Msk ,
+          (uint32_t)CCU4_CC4_TCST_TRB_Pos);
+    } /*End of if (HandlePtr->kPrescalarMode != CAP001_TIMERCONCATENATION)*/
+    /*<<<DD_CAP001_API_8_3>>>*/
+    /* in case of timer concatenation, read timer status of both slices */
+    else
+    {
+      *TimerStatus = RD_REG((uint32_t)(CC4yRegsPtr->TCST),(uint32_t)CCU4_CC4_TCST_TRB_Msk , (uint32_t)CCU4_CC4_TCST_TRB_Pos);
+      *TimerStatus &= RD_REG(CC4yRegsPtr1->TCST,(uint32_t)CCU4_CC4_TCST_TRB_Msk ,(uint32_t)CCU4_CC4_TCST_TRB_Pos);
+    }
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**This function will return duty cycle of the input signal.
+ * Duty cycle value is the ON time of the signal.
+ * Both duty cycle and period values are in terms of the resolution of the timer.
+ * E.G.
+ * if Resolution = 50ns \n
+ * SignalDuty = 5000 \n
+ * SignalPeriod = 10000 \n
+ * then ON time is 25000ns \n
+ *      Period is 50000ns \n
+ * User should find the percentage value from the Duty and period value
+ * %Duty = (Duty * 100 )/Period
+ * */
+status_t CAP001_GetDutyCycle
+(
+    const CAP001_HandleType* HandlePtr,
+    uint32_t* SignalDuty
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  DBG002_FUNCTION_ENTRY(APP_GID, (uint32_t)CAP001_FUNCTION_ENTRY);
+
+  /*<<<DD_CAP001_API_5_2>>>*/
+  if(HandlePtr->DynamicHandlePtr->AppState != CAP001_RUNNING)
+  {
+	 DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    CAP001_lCalculateDutyPeriod(HandlePtr);
+    *SignalDuty = HandlePtr->DynamicHandlePtr->DutyCycle;
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**This function will return period of the input signal.
+ * Period value is given in terms of the resolution of the timer.
+ * E.G.
+ * if Resolution = 50ns \n
+ * SignalPeriod = 10000 \n
+ * then Period is 50000ns \n
+ * */
+status_t CAP001_GetPeriod
+(
+    const CAP001_HandleType* HandlePtr,
+    uint32_t* SignalPeriod
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  DBG002_FUNCTION_ENTRY(APP_GID, CAP001_FUNCTION_ENTRY);
+  /*<<<DD_CAP001_API_6_2>>>*/
+  if(HandlePtr->DynamicHandlePtr->AppState != CAP001_RUNNING)
+  {
+	 DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    CAP001_lCalculateDutyPeriod(HandlePtr);
+    *SignalPeriod = HandlePtr->DynamicHandlePtr->Period;
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**This function will return duty cycle and period of the input signal.
+ * Duty cycle value is the ON time of the signal.
+ * Both duty cycle and period values are in terms of the resolution of the timer.
+ * E.G.
+ * if Resolution = 50ns \n
+ * SignalDuty = 5000 \n
+ * SignalPeriod = 10000 \n
+ * then ON time is 25000ns \n
+ *      Period is 50000ns \n
+ * User should find the percentage value from the Duty and period value
+ * %Duty = (Duty * 100 )/Period
+ * */
+status_t CAP001_GetDutyPeriod
+(
+    const CAP001_HandleType* HandlePtr,
+    uint32_t* SignalDuty,
+    uint32_t* SignalPeriod
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+
+  DBG002_FUNCTION_ENTRY(APP_GID, CAP001_FUNCTION_ENTRY);
+  /*<<<DD_CAP001_API_12_2>>>*/
+  if(HandlePtr->DynamicHandlePtr->AppState != CAP001_RUNNING)
+  {
+	 DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    CAP001_lCalculateDutyPeriod(HandlePtr);
+    *SignalDuty = HandlePtr->DynamicHandlePtr->DutyCycle;
+    *SignalPeriod = HandlePtr->DynamicHandlePtr->Period;
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/** This function will calculate duty cycle and period value from the capture
+ * registers. Depending upon prescalar setting, CAP001_TIMERCONCATENATION
+ * or CAP001_FLOATINGPRESCALAR
+ * values are calculated and updated in dynamic HandlePtr.
+ */
+void CAP001_lCalculateDutyPeriod
+(
+    const CAP001_HandleType* HandlePtr
+)
+{
+  uint32_t Duty = 0UL;
+  uint8_t DutyPrescalar = 0U;
+  uint8_t PeriodPrescalar = 0U;
+  uint32_t Period = 0UL;
+
+  /* Get the previously captured values from the dynamic handle */
+  Duty = HandlePtr->DynamicHandlePtr->CaptureRegPtr->DutyCaptureValue;
+  DutyPrescalar = (uint8_t)HandlePtr->DynamicHandlePtr->CaptureRegPtr->DutyPrescalarValue;
+  Period = HandlePtr->DynamicHandlePtr->CaptureRegPtr->PeriodCaptureValue;
+  PeriodPrescalar = (uint8_t)HandlePtr->DynamicHandlePtr->CaptureRegPtr->PeriodPrescalarValue;
+
+  /*<<<DD_CAP001_9_4>>>*/
+  if(HandlePtr->kPrescalarMode == CAP001_FLOATINGPRESCALAR)
+  {
+    Duty = (Duty * ((uint32_t)1<<(DutyPrescalar-HandlePtr->kPrescalarDiv)))
+                                                                + CAP001_TimerStep[DutyPrescalar];
+
+    Period = (Period * ((uint32_t)1<<(PeriodPrescalar-HandlePtr->kPrescalarDiv)))
+                                                                + CAP001_TimerStep[PeriodPrescalar];
+    Period += Duty;
+  }
+  /*<<<DD_CAP001_9_5>>>*/
+  if(HandlePtr->kIsDutyFirstPart == 0UL)
+  {
+    Duty = Period - Duty;
+  }
+  HandlePtr->DynamicHandlePtr->DutyCycle = Duty;
+  HandlePtr->DynamicHandlePtr->Period = Period;
+
+}
+
+
+/**
+ * This function initialises the second slice if timer concatenation
+ * is required to find the duty cycle and period of the input signal.
+ */
+void CAP001_lConfigureSecondSlice( const CAP001_HandleType * HandlePtr)
+{
+  CCU4_CC4_TypeDef* CC4yRegsPtr1 = HandlePtr->CC4ySliceRegs1Ptr;
+  
+  CC4yRegsPtr1->TCCLR = (uint32_t)CAP001_SLICE_CLEAR;
+
+  /*Set edge-aligned mode */
+  CLR_BIT(CC4yRegsPtr1->TC, CCU4_CC4_TC_TCM_Pos);
+  /* Configure second slice */
+  SET_BIT(CC4yRegsPtr1->CMC, (uint32_t)CCU4_CC4_CMC_TCE_Pos);
+
+  CC4yRegsPtr1->INS &=(uint32_t)~((uint32_t)(CCU4_CC4_INS_EV0EM_Msk ) | \
+      (uint32_t)(CCU4_CC4_INS_LPF0M_Msk ) |\
+      (uint32_t)(CCU4_CC4_INS_EV1EM_Msk ) |\
+      (uint32_t)(CCU4_CC4_INS_LPF1M_Msk ));
+  /* Set event0 as Period capture and Event1 as duty cycle capture
+   * Event0 edge is configured as per period capture
+   * Rising edge for rise-to-rise capture
+   * Falling edge for fall-to-fall capture.
+   * Event1 edge is the opposite of the Event0 edge.
+   * */
+  CC4yRegsPtr1->INS |= (uint32_t)((((uint32_t)HandlePtr->kCaptureEvtEdgeforPeriod
+      << CCU4_CC4_INS_EV0EM_Pos)& (uint32_t)CCU4_CC4_INS_EV0EM_Msk ) | (uint32_t)(((uint32_t)HandlePtr->kLpf  << \
+          CCU4_CC4_INS_LPF0M_Pos)& (uint32_t)CCU4_CC4_INS_LPF0M_Msk ));
+
+  CC4yRegsPtr1->INS |= (uint32_t)((uint32_t)(((uint32_t)HandlePtr->kCaptureEvtEdgeforDutyCycle <<CCU4_CC4_INS_EV1EM_Pos)&
+      (uint32_t) CCU4_CC4_INS_EV1EM_Msk ) |
+      (uint32_t)(((uint32_t)HandlePtr->kLpf  << CCU4_CC4_INS_LPF1M_Pos)& (uint32_t)CCU4_CC4_INS_LPF1M_Msk ));
+
+  CC4yRegsPtr1->CMC &=(uint32_t)~((uint32_t)(CCU4_CC4_CMC_CAP0S_Msk ) |\
+      (uint32_t)(CCU4_CC4_CMC_CAP1S_Msk ));
+
+  CC4yRegsPtr1->CMC |= (uint32_t)((uint32_t)((uint32_t)(CAP001_EVENT_0
+      << CCU4_CC4_CMC_CAP0S_Pos)& (uint32_t)CCU4_CC4_CMC_CAP0S_Msk ) |(uint32_t)((uint32_t)((uint32_t)CAP001_EVENT_1
+          << CCU4_CC4_CMC_CAP1S_Pos)& (uint32_t)CCU4_CC4_CMC_CAP1S_Msk ));
+
+  CC4yRegsPtr1->TC &= (uint32_t)~((uint32_t)(CCU4_CC4_TC_CMOD_Msk )|\
+      (uint32_t)(CCU4_CC4_TC_CAPC_Msk )|\
+      (uint32_t)(CCU4_CC4_TC_STRM_Msk )|\
+      (uint32_t)(CCU4_CC4_TC_ENDM_Msk ));
+  CC4yRegsPtr1->TC |=
+      (uint32_t)((uint32_t)(((uint32_t)CAP001_CAPTURE_MODE  << CCU4_CC4_TC_CMOD_Pos)& (uint32_t)CCU4_CC4_TC_CMOD_Msk )|\
+          (uint32_t)(((uint32_t)CAP001_CLEAR_ON_CAPTURE << CCU4_CC4_TC_CAPC_Pos)& (uint32_t)CCU4_CC4_TC_CAPC_Msk ));
+
+  /*Set different capture events */
+  CLR_BIT(CC4yRegsPtr1->TC, CCU4_CC4_TC_SCE_Pos);
+
+  /* overwrite capture value */
+  WR_REG(CC4yRegsPtr1->TC, (uint32_t)CCU4_CC4_TC_CCS_Msk , (uint32_t)CCU4_CC4_TC_CCS_Pos,
+      HandlePtr->kOverwriteCaptureValue);
+  /* prescalar divider*/
+  WR_REG(CC4yRegsPtr1->PSC, (uint32_t)CCU4_CC4_PSC_PSIV_Msk , (uint32_t)CCU4_CC4_PSC_PSIV_Pos,
+      HandlePtr->kPrescalarDiv);
+
+  CC4yRegsPtr1->SWR |= CAP001_ALL_CCU4_INTR_CLEAR;
+}
+
+/**
+ * This function sets the enable event bit for the event given in the argument.
+ */
+status_t CAP001_EnableEvent
+(
+    const CAP001_HandleType * HandlePtr,
+    const CAP001_EventNameType Event
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+
+  DBG002_FUNCTION_ENTRY(APP_GID, CAP001_FUNCTION_ENTRY);
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+    Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+    DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    SET_BIT(CC4yRegsPtr->INTE, (uint8_t)Event);
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**
+ * This function clears the enable event bit for the event given in the argument.
+ */
+status_t CAP001_DisableEvent
+(
+    const CAP001_HandleType * HandlePtr,
+    const CAP001_EventNameType Event
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID, CAP001_FUNCTION_ENTRY);
+
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+    Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+    DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    CLR_BIT(CC4yRegsPtr->INTE,(uint8_t) Event);
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**
+ * This function clears the interrupt by software.
+ */
+status_t CAP001_ClearPendingEvent
+(
+    const CAP001_HandleType * HandlePtr,
+    const CAP001_EventNameType Event
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID, CAP001_FUNCTION_ENTRY);
+
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+    Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+    DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    SET_BIT(CC4yRegsPtr->SWR,(uint8_t) Event);
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**
+ * This function sets the interrupt by software Interrupt pulse is generated
+ * if source is enabled.
+ */
+status_t CAP001_SetPendingEvent
+(
+    const CAP001_HandleType * HandlePtr,
+    const CAP001_EventNameType Event
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+  DBG002_FUNCTION_ENTRY(APP_GID, CAP001_FUNCTION_ENTRY);
+
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+    Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+    DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    SET_BIT(CC4yRegsPtr->SWS,(uint8_t) Event);
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**
+ * This function check whether given interrupt is set
+ */
+status_t CAP001_GetPendingEvent
+(
+    const CAP001_HandleType * HandlePtr,
+    const CAP001_EventNameType Event,
+    uint8_t* EvtStatus
+)
+{
+  status_t Status = (uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+  CCU4_CC4_TypeDef* CC4yRegsPtr = HandlePtr->CC4ySliceRegs0Ptr;
+
+  DBG002_FUNCTION_ENTRY(APP_GID, CAP001_FUNCTION_ENTRY);
+  if (HandlePtr->DynamicHandlePtr->AppState == CAP001_UNINITIALIZED)
+  {
+    Status =(uint32_t)CAP001_OPER_NOT_ALLOWED_ERROR;
+    DBG002_INFO(APP_GID, DBG002_MESSAGEID_LITERAL, CAP001_STATUS_LEN, &Status);
+  }
+  else
+  {
+    if(RD_REG(CC4yRegsPtr->INTS,(((uint32_t)0x01)<<(uint32_t)Event),(uint32_t)Event))
+    {
+      *EvtStatus = (uint8_t)SET;
+    }
+    else
+    {
+      *EvtStatus = (uint8_t)RESET;
+    }
+    /**EvtStatus = RD_REG(CC4yRegsPtr->INTS, ((0x01U)<<(uint8_t)Event),(uint8_t)Event)\
+     ?(uint8_t) SET :(uint8_t) RESET; */
+    Status = (uint32_t)DAVEApp_SUCCESS;
+  }
+  DBG002_FUNCTION_EXIT(APP_GID, (uint32_t)CAP001_FUNCTION_EXIT);
+  return (Status);
+}
+
+/**
+ * @}
+ */
+
+/**
+ * @endcond
+ */
+
+
+ 

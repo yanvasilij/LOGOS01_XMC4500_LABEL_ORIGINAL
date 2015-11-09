@@ -221,7 +221,6 @@
     <toolTipHelpDescription>Priority of interrupt 14</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="CCU43_1_IRQHandler" URI="http://www.infineon.com/0.1.29/peripheral/cpu/0/nvic/interrupt/57">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../NVIC002/1.0.28/nvic002_13.app#//@consumed.0"/>
     <resourcesList name="iser_setena" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/cpu/0/iser1/setena25" isResolved="true"/>
     <resourcesList name="icer_clrena" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/cpu/0/icer1/clrena25" isResolved="true"/>
     <resourcesList name="ispr_setpend" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/cpu/0/ispr1/setpend25" isResolved="true"/>
@@ -230,12 +229,9 @@
     <resourcesList name="ipr_pri" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/cpu/0/ipr14/pri_57" isResolved="true"/>
     <resourcesList name="signal_in" requiredResourceUri="http://www.infineon.com/0.1.29/peripheral/cpu/0/ccu43_1_irqhandler" isResolved="true"/>
   </provided>
-  <provided xsi:type="ResourceModel:SignalDeclaration" name="CCU43_1_IRQHandler" description="CCU43_1_IRQHandler" URI="http://www.infineon.com/0.1.29/peripheral/cpu/0/nvic/interrupt/57/signal_in" signalType="INTERRUPT" interruptVectorAddress="72" isVisible="true">
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../NVIC002/1.0.28/nvic002_13.app#//@consumed.1"/>
-  </provided>
+  <provided xsi:type="ResourceModel:SignalDeclaration" name="CCU43_1_IRQHandler" description="CCU43_1_IRQHandler" URI="http://www.infineon.com/0.1.29/peripheral/cpu/0/nvic/interrupt/57/signal_in" signalType="INTERRUPT" interruptVectorAddress="72" isVisible="true"/>
   <provided xsi:type="ResourceModel:BitField" name="pri_57" URI="http://www.infineon.com/0.1.29/peripheral/cpu/0/nvic/interrupt/57/ipr_pri" maxValue="255" minValue="0" startPos="8" stopPos="15" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../NVIC002/1.0.28/nvic002_13.app#//@consumed.2"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="fc"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="fc"/>
     <toolTipHelpDescription>Priority of interrupt 57</toolTipHelpDescription>

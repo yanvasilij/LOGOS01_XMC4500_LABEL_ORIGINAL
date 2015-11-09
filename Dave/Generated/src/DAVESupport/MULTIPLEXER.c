@@ -117,6 +117,38 @@ void DAVE_MUX_Init(void)
             	         
                                               
    	 
+           	    
+  //********* MODULE DLR CONFIGURATIONS *************************	                        				
+  /*DLR Line 0 Mux Related SFR/Bitfields Configurations*/     				  
+ WR_REG(DLR->SRSEL0, DLR_SRSEL0_RS0_Msk, DLR_SRSEL0_RS0_Pos,13); 
+                    				
+  /*DLR Line 1 Mux Related SFR/Bitfields Configurations*/     				  
+ WR_REG(DLR->SRSEL0, DLR_SRSEL0_RS1_Msk, DLR_SRSEL0_RS1_Pos,13); 
+                    				
+  /*DLR Line 2 Mux Related SFR/Bitfields Configurations*/     				  
+ WR_REG(DLR->SRSEL0, DLR_SRSEL0_RS2_Msk, DLR_SRSEL0_RS2_Pos,13); 
+                    				
+  /*DLR Line 3 Mux Related SFR/Bitfields Configurations*/     				  
+ WR_REG(DLR->SRSEL0, DLR_SRSEL0_RS3_Msk, DLR_SRSEL0_RS3_Pos,13); 
+                    				
+  /*DLR Line 4 Mux Related SFR/Bitfields Configurations*/     				                    				
+  /*DLR Line 5 Mux Related SFR/Bitfields Configurations*/     				                    				
+  /*DLR Line 6 Mux Related SFR/Bitfields Configurations*/     				                    				
+  /*DLR Line 7 Mux Related SFR/Bitfields Configurations*/     				             				
+  /*DLR Line 8 Mux Related SFR/Bitfields Configurations*/     				  
+ WR_REG(DLR->SRSEL1, DLR_SRSEL1_RS8_Msk, DLR_SRSEL1_RS8_Pos,1); 
+             				
+  /*DLR Line 9 Mux Related SFR/Bitfields Configurations*/     				  
+ WR_REG(DLR->SRSEL1, DLR_SRSEL1_RS9_Msk, DLR_SRSEL1_RS9_Pos,1); 
+             				
+  /*DLR Line 10 Mux Related SFR/Bitfields Configurations*/     				  
+ WR_REG(DLR->SRSEL1, DLR_SRSEL1_RS10_Msk, DLR_SRSEL1_RS10_Pos,1); 
+             				
+  /*DLR Line 11 Mux Related SFR/Bitfields Configurations*/     				  
+ WR_REG(DLR->SRSEL1, DLR_SRSEL1_RS11_Msk, DLR_SRSEL1_RS11_Pos,1); 
+   	          	         
+                                              
+   	 
       
 //********* MODULE USIC CONFIGURATIONS *************************	        
         
@@ -172,43 +204,7 @@ void DAVE_MUX_Init(void)
    WR_REG(USIC1_CH1->CCR, USIC_CH_CCR_MODE_Msk, USIC_CH_CCR_MODE_Pos,UsicCcrMode[3]);
                	         
                                               
-   	 
-           	    
-  //********* MODULE DLR CONFIGURATIONS *************************	                        				
-  /*DLR Line 0 Mux Related SFR/Bitfields Configurations*/     				  
- WR_REG(DLR->SRSEL0, DLR_SRSEL0_RS0_Msk, DLR_SRSEL0_RS0_Pos,13); 
-                    				
-  /*DLR Line 1 Mux Related SFR/Bitfields Configurations*/     				  
- WR_REG(DLR->SRSEL0, DLR_SRSEL0_RS1_Msk, DLR_SRSEL0_RS1_Pos,13); 
-                    				
-  /*DLR Line 2 Mux Related SFR/Bitfields Configurations*/     				  
- WR_REG(DLR->SRSEL0, DLR_SRSEL0_RS2_Msk, DLR_SRSEL0_RS2_Pos,13); 
-                    				
-  /*DLR Line 3 Mux Related SFR/Bitfields Configurations*/     				  
- WR_REG(DLR->SRSEL0, DLR_SRSEL0_RS3_Msk, DLR_SRSEL0_RS3_Pos,13); 
-                    				
-  /*DLR Line 4 Mux Related SFR/Bitfields Configurations*/     				                    				
-  /*DLR Line 5 Mux Related SFR/Bitfields Configurations*/     				                    				
-  /*DLR Line 6 Mux Related SFR/Bitfields Configurations*/     				                    				
-  /*DLR Line 7 Mux Related SFR/Bitfields Configurations*/     				             				
-  /*DLR Line 8 Mux Related SFR/Bitfields Configurations*/     				  
- WR_REG(DLR->SRSEL1, DLR_SRSEL1_RS8_Msk, DLR_SRSEL1_RS8_Pos,1); 
-             				
-  /*DLR Line 9 Mux Related SFR/Bitfields Configurations*/     				  
- WR_REG(DLR->SRSEL1, DLR_SRSEL1_RS9_Msk, DLR_SRSEL1_RS9_Pos,1); 
-             				
-  /*DLR Line 10 Mux Related SFR/Bitfields Configurations*/     				  
- WR_REG(DLR->SRSEL1, DLR_SRSEL1_RS10_Msk, DLR_SRSEL1_RS10_Pos,1); 
-             				
-  /*DLR Line 11 Mux Related SFR/Bitfields Configurations*/     				  
- WR_REG(DLR->SRSEL1, DLR_SRSEL1_RS11_Msk, DLR_SRSEL1_RS11_Pos,1); 
-   	          	         
-                                              
         //********* Capture/Compare Unit 4 (CAPCOM4) CONFIGURATIONS ************************* 
-                       
-    // Configuring CCU43_CC43SRS  =  Service Request Selector
-
-    WR_REG(CCU43_CC43->SRS, CCU4_CC4_SRS_POSR_Msk, CCU4_CC4_SRS_POSR_Pos, CCU_SR1);    
    	 
             	         
                                               

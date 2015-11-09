@@ -100,13 +100,13 @@ void SystemInit_DAVE3(void);
 	#include "../../inc/TMPS001/TMPS001.h" 
 	#include "../../inc/IO004/IO004.h" 
 	#include "../../inc/NVIC002/NVIC002.h" 
-	#include "../../inc/CCU4GLOBAL/CCU4GLOBAL.h" 
-	#include "../../inc/PWMSP003/PWMSP003.h" 
 	#include "../../inc/NVIC_DMA001/NVIC_DMA001.h" 
 	#include "../../inc/DMA003/DMA003.h" 
 	#include "../../inc/ERU002/ERU002.h" 
 	#include "../../inc/FLASH002/FLASH002.h" 
 	#include "../../inc/SPI001/SPI001.h" 
+	#include "../../inc/CCU4GLOBAL/CCU4GLOBAL.h" 
+	#include "../../inc/CAP001/CAP001.h" 
 
                          
 

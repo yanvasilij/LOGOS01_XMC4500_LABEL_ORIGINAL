@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="CCU4GLOBAL" description="This is the global app &#xA; with which CCU4 &#xA; slices of the same module &#xA; are configured. " descriptionURL="/doc/html/group___c_c_u4_g_l_o_b_a_l_app.html" mode="SHARABLE" URI="http://www.infineon.com/1.0.22/app/ccu4global/0">
-  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../PWMSP003/1.0.8/pwmsp003_0.app#//@consumed.23"/>
+  <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CAP001/1.0.24/cap001_0.app#//@consumed.9"/>
   <provided xsi:type="ResourceModel:VirtualSignal" name="Clock" evalFunction="" URI="http://www.infineon.com/1.0.22/app/ccu4global/0/ccu4global_clk_vs" requiredSignalResource="global/clk">
     <defaultValue xsi:type="ResourceModel:Blocked" value="Blocked"/>
     <localValue xsi:type="ResourceModel:StringValue" value="Blocked"/>
@@ -13,7 +13,7 @@
   </provided>
   <provided xsi:type="ResourceModel:IntegerParameter" name="Clock Frequency" evalFunction="&#xD;&#xA;        function ForwardMapping(){&#xD;&#xA; &#x9;&#x9;&#x9; var XMC1xxx=SCM.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;);  &#xD;&#xA;   &#x9;&#x9;&#x9; if(XMC1xxx==0)&#xD;&#xA;&#x9;&#x9;&#x9; var Res2 = SCM.getResource(&quot;clkapp2/clk002_irPCLK&quot;);&#xD;&#xA;&#x9;&#x9;&#x9; else&#xD;&#xA;&#x9;&#x9;&#x9;  {                  &#xD;&#xA;             var Res2 = SCM.getResource(&quot;clkapp/clk001_iroActualFreqCCU&quot;);          &#xD;&#xA;             var Res1 = SCM.getResource(&quot;clkapp/clk001_erwCCUClkEnable&quot;); &#xD;&#xA;             SCM.setIntValue(Res1,1);&#xD;&#xA;&#x9;&#x9;&#x9;  }&#xD;&#xA;&#x9;&#x9;&#x9;var Clock = SCM.getDoubleValue(Res2);&#xD;&#xA;         }&#xD;&#xA;        &#xD;&#xA;        function BackwardMapping(){&#xD;&#xA;&#x9;&#x9;&#x9;var XMC1xxx=SCM.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;);  &#xD;&#xA;   &#x9;&#x9;&#x9; if(XMC1xxx==0)&#xD;&#xA;&#x9;&#x9;&#x9; var Res2 = SCM.getResource(&quot;clkapp2/clk002_irPCLK&quot;);&#xD;&#xA;&#x9;&#x9;&#x9; else&#xD;&#xA;             var Res2 = SCM.getResource(&quot;clkapp/clk001_iroActualFreqCCU&quot;);&#xD;&#xA;&#xD;&#xA;             var Clock = SCM.getDoubleValue(Res2);&#xD;&#xA;            SCM.setDoubleValue(currentResource,Clock);    &#xD;&#xA;        }&#xD;&#xA;" URI="http://www.infineon.com/1.0.22/app/ccu4global/0/ccu4global_irclock" downWardmappedList="//@consumed.7" maxValue="78" minValue="0">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="40"/>
-    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../PWMSP003/1.0.8/pwmsp003_0.app#//@consumed.74"/>
+    <upWardMappingList xsi:type="ResourceModel:ProxyResource" href="../../CAP001/1.0.24/cap001_0.app#//@consumed.36"/>
     <localValue xsi:type="ResourceModel:IntegerValue" value="-1"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="78"/>
     <toolTipHelpDescription>This displays the Clock frequency for the CCU and POSIF modules.</toolTipHelpDescription>
@@ -23,7 +23,7 @@
     <globalValue xsi:type="ResourceModel:StringValue" value="-1"/>
   </provided>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/ccu4global/0/global">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../CCU43/CCU43_3.dd#//@provided.0"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../CCU43/CCU43_3.dd#//@provided.19"/>
     <requiredResource uriString="peripheral/ccu4/*/global" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var value1 = Solver.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if((value1  == 0 )) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}" URI="http://www.infineon.com/1.0.22/app/ccu4global/0/clkapp">
@@ -38,10 +38,10 @@
     <requiredResource uriString="app/reset001/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/ccu4global/0/global/global_signal" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../CCU43/CCU43_3.dd#//@provided.1"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../CCU43/CCU43_3.dd#//@provided.20"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/ccu4global/0/global/clk" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../CCU43/CCU43_3.dd#//@provided.2"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../CCU43/CCU43_3.dd#//@provided.21"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/ccu4global/0/clkapp/clk001_iroactualfreqccu" upWardMappingList="//@provided.2" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="78"/>

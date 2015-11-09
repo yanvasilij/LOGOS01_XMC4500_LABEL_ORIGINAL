@@ -1,0 +1,186 @@
+<%@ jet package="CodeGenerator" class="cap001confc_template"
+imports="java.util.* java.text.*  com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+/*CODE_BLOCK_BEGIN[CAP001Conf.c]*/
+
+/*******************************************************************************
+ Copyright (c) 2013, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+                                                                              **
+ Redistribution and use in source and binary forms, with or without           **
+ modification,are permitted provided that the following conditions are met:   **
+                                                                              **
+ *Redistributions of source code must retain the above copyright notice,      **
+ this list of conditions and the following disclaimer.                        **
+ *Redistributions in binary form must reproduce the above copyright notice,   **
+ this list of conditions and the following disclaimer in the documentation    **
+ and/or other materials provided with the distribution.                       **
+ *Neither the name of the copyright holders nor the names of its contributors **
+ may be used to endorse or promote products derived from this software without**
+ specific prior written permission.                                           **
+                                                                              **
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  **
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    **
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE   **
+ ARE  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE   **
+ LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR         **
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF         **
+ SUBSTITUTE GOODS OR  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS    **
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN      **
+ CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)       **
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE   **
+ POSSIBILITY OF SUCH DAMAGE.                                                  **
+                                                                              **
+ To improve the quality of the software, users are encouraged to share        **
+ modifications, enhancements or bug fixes with Infineon Technologies AG       **
+ dave@infineon.com).                                                          **
+                                                                              **
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC4000/XMC1000 Series                                 **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR : App Developer                                                     **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/Yes]: Yes                                      **
+**                                                                            **
+** MODIFICATION DATE : Dec 12, 2013                                           **
+**                                                                            **
+*******************************************************************************/
+
+/*******************************************************************************
+**                       Author(s) Identity                                   **
+********************************************************************************
+**                                                                            **
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** KS           App Developer                                                 **
+*******************************************************************************/
+<% String AppBaseuri = "app/cap001/"; %>
+/**
+ * @file  CAP001_Conf.c
+ * @App Version CAP001 <<%=app.getAppVersion(AppBaseuri) %>>
+ * @brief This file contains App parameter data as per GUI configurations
+ *
+ * Revision History
+ * 
+ * 12 Feb 2013  v1.0.14    Ported to XMC4200 & XMC1000 Devices. Removed Periuri 
+ *                         string and modified uri index to get the kernelNo. 
+ * 						   Replaced getDoubleValue API with 
+ *                         getFormattedDoubleValue to support German format.
+ * 12 Dec 2013  v1.0.20    Bug fix(37099):If "InterruptControl" is enabled 
+ *                         during intialisation, code Generation is modified to 
+ *                         enable both Duty and Period interrupts. 
+ */
+
+#include <DAVE3.h>
+
+
+<% String SliceUri = null; %>
+<% String Slice1Uri = null; %>
+<% String kernelNo = null; %>
+<% String sliceNo = null; %>
+<% String slice1No = null; %>
+<% String appInst  = null; %>
+<% int int_enable  = 0; %>
+
+<% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/cap001/"));
+for (String appIns : appsList ) {
+appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+
+<% SliceUri = app.getMappedUri(AppBaseuri + appInst +"/slice"); %>
+<% if ((SliceUri != null) && (SliceUri.trim() != "")) { %>
+<% kernelNo = SliceUri.substring(SliceUri.indexOf("/ccu4")+6,SliceUri.indexOf("/cc4")); %>
+
+<% sliceNo = SliceUri.substring(SliceUri.length() -1); %>
+<% Slice1Uri = app.getMappedUri(AppBaseuri + appInst +"/slice1"); %>
+<% if ((Slice1Uri != null) && (Slice1Uri.trim() != "")) { %>
+  <% slice1No = Slice1Uri.substring(Slice1Uri.length() -1); %>
+<%}else{ slice1No = "0"; }%>
+<% int_enable = app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwcapture/0"); %>
+
+<% int timermode = 0; 
+int mode = app.getIntegerValue(AppBaseuri + appInst + "/cap001_irtimerconcat");
+if(mode == 0) {timermode = 0; }
+else {
+  mode =  app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwtimermode/0");
+  if(mode == 1) {timermode = 1;}
+  else {timermode = 2;}
+}
+%>
+
+<%
+double clock = app.getFormattedDoubleValue((AppBaseuri + appInst + "/cap001_irclock"),"0.000");
+double resolution = 1000 / clock; 
+%>
+CAP001_CaptureDataType CAP001_CaptureRegs<%=appInst %> = 
+{
+  .PeriodCaptureValue = 0x00U,
+  .PeriodPrescalarValue = 0x00U,
+  .DutyCaptureValue = 0x00U,
+  .DutyPrescalarValue = 0x00U
+};
+
+CAP001_DynamicDataType CAP001_DynamicHandle<%=appInst %> =
+{
+  .DutyCycle = 0x00U,
+  .Period = 0x00U,
+  .CaptureRegPtr = &CAP001_CaptureRegs<%=appInst %>,
+  .AppState = CAP001_UNINITIALIZED
+
+};
+
+const CAP001_HandleType CAP001_Handle<%=appInst %> =
+{
+  .StartControl = <%= app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwstart/0")%>U,
+  .InterruptControl = <%if(int_enable == 1){%>0x300<%}else{%>0x0<%}%>U,
+  .kIsDutyFirstPart = 
+  <% if ((app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwperiod/0") == 1 && app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwduty/0") == 1)
+  || (app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwperiod/1") == 1 && app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwduty/1") == 1)){ %>1U,
+  <% } else { %> 0U,<%}%>
+
+  .kCaptureEvtEdgeforDutyCycle = <% if ((app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwperiod/0") == 1)){%>CAP001_FALLINGEDGE <%}else {%> CAP001_RISINGEDGE <%}%>,
+
+  .kCaptureEvtEdgeforPeriod = <% if ((app.getIntegerValue(AppBaseuri + appInst + "/cap001_erwperiod/0") == 1)){%>CAP001_RISINGEDGE <%}else {%> CAP001_FALLINGEDGE <%}%>,
+
+  .kLpf = <%= app.getIntegerValue(AppBaseuri + appInst + "/slice/ins/lpf0m")%>U,
+
+  .kOverwriteCaptureValue = <%= app.getIntegerValue(AppBaseuri + appInst + "/slice/tc/ccs")%>U,
+
+  .kPrescalarDiv = <% if(timermode != 1) {%><%= app.getIntegerValue(AppBaseuri + appInst + "/cap001_irprescalar")%>U,<%}%>
+  <%else if (timermode == 1){%>0U, <%}%>  
+  
+  .kResolution = <% if(timermode != 1) {%> <%=app.getFormattedDoubleValue((AppBaseuri + appInst + "/cap001_irselresolution"),"0.000")%>, <%}%>
+  <%else if (timermode == 1){%><%=resolution%>, <%}%>
+
+  .kFirstSlice = <% if (timermode == 2){ %>CAP001_SLICE<%=slice1No%>
+   <%} else {%> CAP001_SLICE<%=sliceNo%> <%}%>,
+
+  .kSecondSlice = CAP001_SLICE<%=sliceNo%>,
+
+  .DynamicHandlePtr = &CAP001_DynamicHandle<%=appInst %>,
+
+  .kPrescalarMode = <% if((timermode == 0) && (app.getIntegerValue(AppBaseuri + appInst + "/cap001_irprescalar") == 0)){ %> CAP001_NOPRESCALAR,
+  <% } else if((timermode == 0) && (app.getIntegerValue(AppBaseuri + appInst + "/cap001_irprescalar") != 0)){ %> CAP001_NORMALPRESCALAR,
+  <% } else if (timermode == 1) {%> CAP001_FLOATINGPRESCALAR,
+  <% } else if (timermode == 2) {%> CAP001_TIMERCONCATENATION, <%}%>
+
+  .CCU4xKernRegsPtr = (CCU4_GLOBAL_TypeDef*) CCU4<%= kernelNo%>_BASE,
+
+  .CC4ySliceRegs0Ptr = <% if (timermode == 2){ %>(CCU4_CC4_TypeDef*)CCU4<%= kernelNo%>_CC4<%=slice1No%> 
+  <%} else {%> (CCU4_CC4_TypeDef*)CCU4<%= kernelNo%>_CC4<%=sliceNo%> <%}%>,
+
+  .CC4ySliceRegs1Ptr = (CCU4_CC4_TypeDef*)CCU4<%= kernelNo%>_CC4<%=sliceNo%>
+};
+
+<%}%>
+<% else { %>
+// This app is not mapped to any CCU4 slice.
+<%}%>
+<%}%>
+
+/*CODE_BLOCK_END*/
+

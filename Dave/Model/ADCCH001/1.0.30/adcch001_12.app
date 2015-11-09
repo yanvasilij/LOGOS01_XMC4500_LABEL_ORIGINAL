@@ -232,10 +232,10 @@ used for the ADC conversion.</toolTipHelpDescription>
       <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
       <toolTipHelpDescription>Standard Reference Input - Varef </toolTipHelpDescription>
     </item>
-    <item name="CH0" evalFunction="function ForwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var value = SCM.getIntValue(currentResource);&#xD;&#xA;              var Res = SCM.getResource(&quot;adcch/gchctr/refsel&quot;);&#xD;&#xA;              if (value == 1 ) {&#xD;&#xA;                SCM.setIntValue(Res,1);&#xD;&#xA;              }&#xD;&#xA;            }&#xD;&#xA;            function BackwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var Res = SCM.getResource(&quot;adcch/gchctr/refsel&quot;);&#xD;&#xA;              var value = SCM.getIntValue(Res);&#xD;&#xA;              if (value === 1 ) {&#xD;&#xA;                SCM.setIntValue(currentResource,1);&#xD;&#xA;              }&#xD;&#xA;              else {&#xD;&#xA;                SCM.setIntValue(currentResource,0);&#xD;&#xA;              }&#xD;&#xA;            }        " URI="http://www.infineon.com/1.0.30/app/adcch001/12/adcch001_erwrefinput/1" maxValue="1" minValue="0">
+    <item name="CH0" evalFunction="function ForwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var value = SCM.getIntValue(currentResource);&#xD;&#xA;              var Res = SCM.getResource(&quot;adcch/gchctr/refsel&quot;);&#xD;&#xA;              if (value == 1 ) {&#xD;&#xA;                SCM.setIntValue(Res,1);&#xD;&#xA;              }&#xD;&#xA;            }&#xD;&#xA;            function BackwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var Res = SCM.getResource(&quot;adcch/gchctr/refsel&quot;);&#xD;&#xA;              var value = SCM.getIntValue(Res);&#xD;&#xA;              if (value === 1 ) {&#xD;&#xA;                SCM.setIntValue(currentResource,1);&#xD;&#xA;              }&#xD;&#xA;              else {&#xD;&#xA;                SCM.setIntValue(currentResource,0);&#xD;&#xA;              }&#xD;&#xA;            }        " URI="http://www.infineon.com/1.0.30/app/adcch001/12/adcch001_erwrefinput/1" downWardmappedList="//@consumed.54" maxValue="1" minValue="0">
       <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-      <localValue xsi:type="ResourceModel:StringValue" value="0"/>
-      <globalValue xsi:type="ResourceModel:StringValue" value="0"/>
+      <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
       <toolTipHelpDescription>Alternate Reference Input from Channel 0</toolTipHelpDescription>
     </item>
   </provided>
@@ -932,7 +932,7 @@ Channel event indicate that the conversion is finished.</toolTipHelpDescription>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.152"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/12/adcch/gchctr/refsel" upWardMappingList="//@provided.29 //@provided.29/@item.0 //@provided.30 //@provided.30/@item.0" isSystemDefined="true">
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.30/app/adcch001/12/adcch/gchctr/refsel" upWardMappingList="//@provided.29 //@provided.29/@item.0 //@provided.30 //@provided.30/@item.0 //@provided.29/@item.1" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <downWardmappedList xsi:type="ResourceModel:BitField" href="../../VADC/VADC_0.dd#//@provided.153"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>

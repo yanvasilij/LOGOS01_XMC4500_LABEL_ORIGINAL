@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ifx.davex.uimodel:UIDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ifx.davex.uimodel="com.ifx.davex.uimodel">
+  <controls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="DefaultPage" displayName="Configurations" className="IfxGroupBox" controlId="1319810483418">
+    <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group94" displayName="Timer Settings" className="IfxGroupBox" controlId="1320034541352">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_irwresolution" displayName="Resolution" image="" className="IntegerType" paramName="app/cap001/0/cap001_irwresolution:CCU8 clock resolution" controlId="1320033158987" defaultType="nsec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>nsec</conversionType>
+        <conversionType>usec</conversionType>
+        <conversionType>msec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_irselresolution" displayName="Actual Resolution" readonly="true" className="IntegerType" paramName="app/cap001/0/cap001_irselresolution:Selected Resolution" controlId="1320389505230" defaultType="nsec" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT" verticalSpan="2"/>
+        <conversionType>nsec</conversionType>
+        <conversionType>usec</conversionType>
+        <conversionType>msec</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_erwtimermode" displayName="Timer Mode" className="EnumerationType" constraint="if(CM.getParamValue(&quot;app/cap001/0/cap001_irtimerconcat&quot;) == &quot;0&quot;) {&#xD;&#xA;CM.setEnable(false);&#xD;&#xA;CM.setVisible(true);&#xD;&#xA;}&#xD;&#xA;else&#xD;&#xA;{&#xD;&#xA;CM.setEnable(true);&#xD;&#xA;CM.setVisible(true);&#xD;&#xA;}" paramName="app/cap001/0/cap001_erwtimermode:Timer Mode" controlId="1335526335339">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="App/cap001/0/cap001_erwlpf" displayName="Low Pass Filter" className="EnumerationType" paramName="App/cap001/0/cap001_erwlpf:Low Pass Filter" controlId="1321438161626">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group60" displayName="Initialization settings" className="IfxGroupBox" controlId="1326712822728">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_erwstart" displayName="Start" className="EnumerationType" paramName="app/cap001/0/cap001_erwstart:Start" controlId="1326712825255">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_erwcapture" displayName="Capture Interrupt" className="EnumerationType" paramName="app/cap001/0/cap001_erwcapture:Capture Interrupt" controlId="1326712829249">
+          <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+        </subControls>
+        <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <subControls xsi:type="com.ifx.davex.uimodel:CompoundWidget" propertyId="Group74" displayName="Capture Settings" className="IfxGroupBox" controlId="1320034550182">
+      <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_minfreq" displayName="Min Frequency" className="IntegerType" paramName="app/cap001/0/cap001_minfreq:Min Frequency" controlId="1320034571835" defaultType="Hz" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>Hz</conversionType>
+        <conversionType>KHz</conversionType>
+        <conversionType>MHz</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_maxfreq" displayName="Max Frequency" readonly="true" className="IntegerType" paramName="app/cap001/0/cap001_maxfreq:Max Frequency" controlId="1320034574814" defaultType="Hz" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>Hz</conversionType>
+        <conversionType>KHz</conversionType>
+        <conversionType>MHz</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_maxposfreq" displayName="Possible Max Frequency" readonly="true" className="IntegerType" paramName="app/cap001/0/cap001_maxposfreq:Possible Max Frequency" controlId="1336035076454" defaultType="Hz" customControl="true">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData" horizontalAlignment="RIGHT"/>
+        <conversionType>Hz</conversionType>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_erwperiod" displayName="Period" className="EnumerationType" paramName="app/cap001/0/cap001_erwperiod:Edge for period capture" controlId="1320033176256">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_erwduty" displayName="Duty" className="EnumerationType" paramName="app/cap001/0/cap001_erwduty:Edge for duty capture" controlId="1320033178159">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <subControls xsi:type="com.ifx.davex.uimodel:SimpleWidget" propertyId="app/cap001/0/cap001_erwoverwrite" displayName="Overwrite Capture value" className="EnumerationType" paramName="app/cap001/0/cap001_erwoverwrite:Overwrite Capture value" controlId="1320033195663">
+        <layoutData xsi:type="com.ifx.davex.uimodel:IfxGridData"/>
+      </subControls>
+      <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout"/>
+    </subControls>
+    <layout xsi:type="com.ifx.davex.uimodel:IfxGridLayout" numColumns="2"/>
+  </controls>
+</com.ifx.davex.uimodel:UIDataModel>

@@ -1,0 +1,85 @@
+<%@ jet package="CodeGenerator" class="cap001confh_template"
+imports="java.util.* com.ifx.davex.appjetinteract.App2JetInterface" %>
+<% App2JetInterface app = (App2JetInterface) argument; %>
+
+/*CODE_BLOCK_BEGIN[CAP001Conf.h]*/
+
+/**************************************************************************//**
+ *
+ * Copyright (C) 2013 Infineon Technologies AG. All rights reserved.
+ *
+ * Infineon Technologies AG (Infineon) is supplying this software for use with
+ * Infineon's microcontrollers.
+ * This file can be freely distributed within development tools that are
+ * supporting such microcontrollers.
+ *
+ * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+ * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+ * INFINEON SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL,
+ * OR CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+ *
+********************************************************************************
+**                                                                            **
+**                                                                            **
+** PLATFORM : Infineon XMC4000/XMC1000 Series                                 **
+**                                                                            **
+** COMPILER : Compiler Independent                                            **
+**                                                                            **
+** AUTHOR : App Developer                                                     **
+**                                                                            **
+** MAY BE CHANGED BY USER [yes/Yes]: Ys                                       **
+**                                                                            **
+** MODIFICATION DATE : Dec 12, 2013                                           **
+**                                                                            **
+*******************************************************************************/
+
+/*******************************************************************************
+**                       Author(s) Identity                                   **
+********************************************************************************
+**                                                                            **
+** Initials     Name                                                          **
+** ---------------------------------------------------------------------------**
+** KS          App Developer                                                  **
+*******************************************************************************/
+
+/**
+ * @file  CAP001_Conf.h
+ *
+ * @brief This file contains App parameter data as per GUI configurations
+ *
+ * Revision History
+ * 
+ * 12 Feb 2013  v1.0.14    Ported to XMC4200 & XMC1000 devices.
+ * 12 Dec 2013  v1.0.20    added c++ support 
+ */
+#ifndef CAP001CONF_H_
+#define CAP001CONF_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <DAVE3.h>
+
+<% String AppBaseuri = "app/cap001/"; %>
+<% String appInst  = null; %>
+
+    <% ArrayList<String> appsList = (ArrayList<String>)(app.getApps("app/cap001/"));
+  for (String appIns : appsList ) {
+  appInst = appIns.substring(appIns.lastIndexOf("/")+1);%>
+
+extern const CAP001_HandleType CAP001_Handle<%= appInst%>;
+<%}%>
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* CAP001CONF_H_ */
+
+/**
+ * @}
+ */
+ 
+/*CODE_BLOCK_END*/

@@ -147,12 +147,6 @@ void DAVE_Init(void)
 	//  Initialization of app 'NVIC002'		     
 	NVIC002_Init();
 	 
-	//  Initialization of app 'CCU4GLOBAL'		     
-	CCU4GLOBAL_Init();
-	 
-	//  Initialization of app 'PWMSP003'		     
-	PWMSP003_Init();
-	 
 	//  Initialization of app 'NVIC_DMA001'		     
 	NVIC_DMA001_Init();
 	 
@@ -167,6 +161,12 @@ void DAVE_Init(void)
 	 
 	//  Initialization of app 'SPI001'		     
 	SPI001_Init();
+	 
+	//  Initialization of app 'CCU4GLOBAL'		     
+	CCU4GLOBAL_Init();
+	 
+	//  Initialization of app 'CAP001'		     
+	CAP001_Init();
 	
       
 	//  MUX configurations

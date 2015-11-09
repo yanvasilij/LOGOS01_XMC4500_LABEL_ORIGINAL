@@ -67,6 +67,16 @@
                 <Type>C File</Type>
             </Source_File>
             <Source_File>
+                <File_Name>CAP001.c</File_Name>
+                <Path>\Dave\Generated\src\CAP001\CAP001.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
+                <File_Name>CAP001_Conf.c</File_Name>
+                <Path>\Dave\Generated\src\CAP001\CAP001_Conf.c</Path>
+                <Type>C File</Type>
+            </Source_File>
+            <Source_File>
                 <File_Name>CCU4GLOBAL.c</File_Name>
                 <Path>\Dave\Generated\src\CCU4GLOBAL\CCU4GLOBAL.c</Path>
                 <Type>C File</Type>
@@ -229,16 +239,6 @@
             <Source_File>
                 <File_Name>PWMSP002_Conf.c</File_Name>
                 <Path>\Dave\Generated\src\PWMSP002\PWMSP002_Conf.c</Path>
-                <Type>C File</Type>
-            </Source_File>
-            <Source_File>
-                <File_Name>PWMSP003.c</File_Name>
-                <Path>\Dave\Generated\src\PWMSP003\PWMSP003.c</Path>
-                <Type>C File</Type>
-            </Source_File>
-            <Source_File>
-                <File_Name>PWMSP003_Conf.c</File_Name>
-                <Path>\Dave\Generated\src\PWMSP003\PWMSP003_Conf.c</Path>
                 <Type>C File</Type>
             </Source_File>
             <Source_File>
@@ -461,6 +461,16 @@
             <Header_File>
                 <File_Name>CANGLOBAL.h</File_Name>
                 <Path>\Dave\Generated\inc\CANGLOBAL\CANGLOBAL.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>CAP001.h</File_Name>
+                <Path>\Dave\Generated\inc\CAP001\CAP001.h</Path>
+                <Type>H File</Type>
+            </Header_File>
+            <Header_File>
+                <File_Name>CAP001_Conf.h</File_Name>
+                <Path>\Dave\Generated\inc\CAP001\CAP001_Conf.h</Path>
                 <Type>H File</Type>
             </Header_File>
             <Header_File>
@@ -691,21 +701,6 @@
             <Header_File>
                 <File_Name>PWMSP002_Conf.h</File_Name>
                 <Path>\Dave\Generated\inc\PWMSP002\PWMSP002_Conf.h</Path>
-                <Type>H File</Type>
-            </Header_File>
-            <Header_File>
-                <File_Name>PWMSP003.h</File_Name>
-                <Path>\Dave\Generated\inc\PWMSP003\PWMSP003.h</Path>
-                <Type>H File</Type>
-            </Header_File>
-            <Header_File>
-                <File_Name>PWMSP003_Conf.h</File_Name>
-                <Path>\Dave\Generated\inc\PWMSP003\PWMSP003_Conf.h</Path>
-                <Type>H File</Type>
-            </Header_File>
-            <Header_File>
-                <File_Name>PWMSP003_Extern.h</File_Name>
-                <Path>\Dave\Generated\inc\PWMSP003\PWMSP003_Extern.h</Path>
                 <Type>H File</Type>
             </Header_File>
             <Header_File>

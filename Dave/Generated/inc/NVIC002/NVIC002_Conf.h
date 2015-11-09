@@ -77,9 +77,6 @@ extern "C" {
 /* User defined function mapped to IRQ_Hdlr_76 */
 #define CAN_Extended_RX_Handler    IRQ_Hdlr_76 
 
-/* User defined function mapped to IRQ_Hdlr_57 */
-#define MAIN_CLOCK_HANDLER    IRQ_Hdlr_57 
-
 /* User defined function mapped to IRQ_Hdlr_63 */
 #define LSCURR1_2_Handler    IRQ_Hdlr_63 
 
@@ -136,7 +133,7 @@ extern "C" {
  * @ingroup NVIC002_constants
  * @{
  */
-#define NVIC002_NUM_INSTANCES 30U
+#define NVIC002_NUM_INSTANCES 29U
 /**
   * @}
   */
