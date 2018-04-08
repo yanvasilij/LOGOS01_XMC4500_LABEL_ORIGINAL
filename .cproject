@@ -124,6 +124,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Dave/Generated/src/USBCDC001/Drivers/USB/Core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Dave/Generated/src/USBCDC001/Drivers/USB}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Dave/Generated/src/USBCDC001/Drivers/USB/Class}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Beremiz_RTE/inc}&quot;"/>
 								</option>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.preprocessor.def.1525741818" name="Defined symbols (-D)" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.preprocessor.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="UC_ID=4503002"/>
@@ -174,25 +175,25 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="LOGOS01_XMC4500.com.ifx.xmc4000.appProject.1172365712" name="ARM-GCC Application for XMC Project" projectType="com.ifx.xmc4000.appProject"/>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
+		<project-mappings/>
+	</storageModule>
+	<storageModule moduleId="refreshScope" versionNumber="1">
+		<resource resourceType="PROJECT" workspacePath="/LOGOS01_XMC4500"/>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="com.ifx.xmc4000.appRelease.1359314798;com.ifx.xmc4000.appRelease.1359314798.;com.ifx.xmc4000.appRelease.assembler.151609731;org.eclipse.cdt.cross.arm.gnu.sourcery.windows.assembler.base.input.676065515">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.cross.arm.gnu.ARM_CS_GCCWinManagedMakePerProjectProfileC"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.ifx.xmc4000.appRelease.1359314798;com.ifx.xmc4000.appRelease.1359314798.;com.ifx.xmc4000.appRelease.compiler.227491870;org.eclipse.cdt.cross.arm.gnu.sourcery.windows.c.compiler.base.input.748572108">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.cross.arm.gnu.ARM_CS_GCCWinManagedMakePerProjectProfileC"/>
-		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="com.ifx.xmc4000.appDebug.74644621;com.ifx.xmc4000.appDebug.74644621.;com.ifx.xmc4000.appDebug.compiler.1312246216;org.eclipse.cdt.cross.arm.gnu.sourcery.windows.c.compiler.base.input.729315114">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.cross.arm.gnu.ARM_CS_GCCWinManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="com.ifx.xmc4000.appDebug.74644621;com.ifx.xmc4000.appDebug.74644621.;com.ifx.xmc4000.appDebug.assembler.1249012746;org.eclipse.cdt.cross.arm.gnu.sourcery.windows.assembler.base.input.619203262">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.cross.arm.gnu.ARM_CS_GCCWinManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
-	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
-		<project-mappings/>
-	</storageModule>
-	<storageModule moduleId="refreshScope" versionNumber="1">
-		<resource resourceType="PROJECT" workspacePath="/LOGOS01_XMC4500"/>
+		<scannerConfigBuildInfo instanceId="com.ifx.xmc4000.appRelease.1359314798;com.ifx.xmc4000.appRelease.1359314798.;com.ifx.xmc4000.appRelease.compiler.227491870;org.eclipse.cdt.cross.arm.gnu.sourcery.windows.c.compiler.base.input.748572108">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.cross.arm.gnu.ARM_CS_GCCWinManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.ifx.xmc4000.appRelease.1359314798;com.ifx.xmc4000.appRelease.1359314798.;com.ifx.xmc4000.appRelease.assembler.151609731;org.eclipse.cdt.cross.arm.gnu.sourcery.windows.assembler.base.input.676065515">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.cross.arm.gnu.ARM_CS_GCCWinManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
 	</storageModule>
 </cproject>
