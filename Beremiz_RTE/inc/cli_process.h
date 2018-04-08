@@ -9,7 +9,9 @@
 #include <stdint.h>
 #include <string.h>
 
-#define SERIAL_INPUT_BUFFER 100
+#define SERIAL_INPUT_BUFFER 	100
+#define MAX_CLI_COMMAND_LEN 	20
+#define NUMBER_OF_CLI_COMMANDS 	6
 
 typedef struct
 {
@@ -20,7 +22,17 @@ typedef struct
 	bool overflowed;
 }Seial_queue;
 
+typedef void (*Cli_cmd_callback) (char *cmd, char * response, uint32_t len);
+
+typedef struct
+{
+	char cmd[MAX_CLI_COMMAND_LEN];
+	uint32_t cmd_len;
+	Cli_cmd_callback callback;
+}Cli_command;
+
 extern void serial_write (uint8_t *string, uint32_t len);
+
 
 #endif
 
