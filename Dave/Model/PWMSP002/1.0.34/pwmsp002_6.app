@@ -705,13 +705,13 @@ to be enabled during initialization.</toolTipHelpDescription>
   <provided xsi:type="ResourceModel:EnumerationParameter" name="Trap Interrupt" evalFunction="             &#xD;&#xA;            function ForwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var value = SCM.getIntValue(currentResource);&#xD;&#xA;              var Res = SCM.getResource(&quot;pwmsp002_temptrap&quot;);&#xD;&#xA;              SCM.setIntValue(Res,value);        &#xD;&#xA;            }&#xD;&#xA;            function BackwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var Res = SCM.getResource(&quot;pwmsp002_temptrap&quot;); &#xD;&#xA;              var value = SCM.getIntValue(Res); &#xD;&#xA;              SCM.setIntValue(currentResource,value);&#xD;&#xA;            }        " URI="http://www.infineon.com/1.0.34/app/pwmsp002/6/pwmsp002_erwtrap" downWardmappedList="//@consumed.14" multipleSelections="true">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <localValue xsi:type="ResourceModel:StringValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>This allows user to configure whether trap interrupt&#xD;
 to be enabled during initialization.</toolTipHelpDescription>
     <item name="Enable at initialization" evalFunction="             &#xD;&#xA;            function ForwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var value = SCM.getIntValue(currentResource);&#xD;&#xA;              var Res = SCM.getResource(&quot;pwmsp002_temptrap&quot;);&#xD;&#xA;              if(value == 1){&#xD;&#xA;                SCM.setIntValue(Res,1);&#xD;&#xA;              }        &#xD;&#xA;              else{&#xD;&#xA;                SCM.setIntValue(Res,0);&#xD;&#xA;              }&#xD;&#xA;            }&#xD;&#xA;            function BackwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var Res = SCM.getResource(&quot;pwmsp002_temptrap&quot;); &#xD;&#xA;              var value = SCM.getIntValue(Res);&#xD;&#xA;              if(value == 1){ &#xD;&#xA;                SCM.setIntValue(currentResource, 1);&#xD;&#xA;              }&#xD;&#xA;              else{&#xD;&#xA;                SCM.setIntValue(currentResource, 0);&#xD;&#xA;              }&#xD;&#xA;            }        " URI="http://www.infineon.com/1.0.34/app/pwmsp002/6/pwmsp002_erwtrap/0" downWardmappedList="//@consumed.14" maxValue="1" minValue="0">
       <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-      <localValue xsi:type="ResourceModel:StringValue" value="0"/>
-      <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+      <localValue xsi:type="ResourceModel:StringValue" value="1"/>
+      <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
       <toolTipHelpDescription>Enable Trap (Event 2) interrupt at initialization.</toolTipHelpDescription>
     </item>
   </provided>
@@ -1050,8 +1050,8 @@ not enabled then Port Pin is not consumed</toolTipHelpDescription>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.34/app/pwmsp002/6/pwmsp002_temptrap" upWardMappingList="//@provided.70 //@provided.70/@item.0" isSystemDefined="true">
-    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.34/app/pwmsp002/6/pwmsp002_tempfalldeadtime" upWardMappingList="//@provided.56 //@provided.57 //@provided.58 //@provided.59 //@provided.60 //@provided.61" isSystemDefined="true">

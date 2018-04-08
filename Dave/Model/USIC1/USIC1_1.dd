@@ -1072,8 +1072,8 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="SRBINP" URI="http://www.infineon.com/0.1.30/peripheral/usic/1/channel/1/rbctr_srbinp" maxValue="7" minValue="0" startPos="16" stopPos="18" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Standard Receive Buffer Interrupt Node Pointer</toolTipHelpDescription>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b000" description="Output SR0 becomes activated."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b001" description="Output SR1 becomes activated."/>
@@ -1118,8 +1118,8 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="RBERIEN" URI="http://www.infineon.com/0.1.30/peripheral/usic/1/channel/1/rbctr_rberien" maxValue="1" minValue="0" startPos="31" stopPos="31" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Receive Buffer Error Interrupt Enable</toolTipHelpDescription>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The receive buffer error interrupt generation is disabled."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The receive buffer error interrupt generation is enabled."/>
@@ -1166,8 +1166,8 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="TBERIEN" URI="http://www.infineon.com/0.1.30/peripheral/usic/1/channel/1/tbctr_tberien" maxValue="1" minValue="0" startPos="31" stopPos="31" accessPermission="rw">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <toolTipHelpDescription>Transmit Buffer Error Interrupt Enable</toolTipHelpDescription>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b0" description="The transmit buffer error interrupt generation is disabled."/>
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="0b1" description="The transmit buffer error interrupt generation is enabled."/>

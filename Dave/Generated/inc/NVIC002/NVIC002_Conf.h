@@ -95,8 +95,8 @@ extern "C" {
 /* User defined function mapped to IRQ_Hdlr_67 */
 #define LSCURR11_12_Handler    IRQ_Hdlr_67 
 
-/* User defined function mapped to IRQ_Hdlr_90 */
-#define RxUartEventHandler    IRQ_Hdlr_90 
+/* User defined function mapped to IRQ_Hdlr_91 */
+#define RxUartEventHandler    IRQ_Hdlr_91 
 
 /* User defined function mapped to IRQ_Hdlr_66 */
 #define LSCURR13_14_Handler    IRQ_Hdlr_66 
@@ -128,12 +128,15 @@ extern "C" {
 /* User defined function mapped to IRQ_Hdlr_2 */
 #define HSCURR15_16_Handler    IRQ_Hdlr_2 
 
+/* User defined function mapped to IRQ_Hdlr_90 */
+#define Uart_Error_Handler    IRQ_Hdlr_90 
+
 
 /**
  * @ingroup NVIC002_constants
  * @{
  */
-#define NVIC002_NUM_INSTANCES 29U
+#define NVIC002_NUM_INSTANCES 30U
 /**
   * @}
   */

@@ -133,7 +133,7 @@ const PWMSP002_HandleType PWMSP002_Handle0 =
   .CC8yRegs1Ptr= CCU80_CC80,
   .DynamicHandleType= &PWMSP002_DynamicHandle0,
   .StartControl = 1U,
-  .InterruptControl = 0x0U,
+  .InterruptControl = 0x400U,
   .SetCompareFuncPtr = &CCU8PWMLIB_SetCompareSymmetric,
   .SetDutyFuncPtr = &CCU8PWMLIB_SetDutyEdgeAlignSymmetric,
 };
@@ -195,7 +195,7 @@ const PWMSP002_HandleType PWMSP002_Handle1 =
   .CC8yRegs1Ptr= CCU80_CC81,
   .DynamicHandleType= &PWMSP002_DynamicHandle1,
   .StartControl = 1U,
-  .InterruptControl = 0x0U,
+  .InterruptControl = 0x400U,
   .SetCompareFuncPtr = &CCU8PWMLIB_SetCompareSymmetric,
   .SetDutyFuncPtr = &CCU8PWMLIB_SetDutyEdgeAlignSymmetric,
 };
@@ -257,7 +257,7 @@ const PWMSP002_HandleType PWMSP002_Handle2 =
   .CC8yRegs1Ptr= CCU80_CC82,
   .DynamicHandleType= &PWMSP002_DynamicHandle2,
   .StartControl = 1U,
-  .InterruptControl = 0x0U,
+  .InterruptControl = 0x400U,
   .SetCompareFuncPtr = &CCU8PWMLIB_SetCompareSymmetric,
   .SetDutyFuncPtr = &CCU8PWMLIB_SetDutyEdgeAlignSymmetric,
 };
@@ -319,7 +319,7 @@ const PWMSP002_HandleType PWMSP002_Handle3 =
   .CC8yRegs1Ptr= CCU80_CC83,
   .DynamicHandleType= &PWMSP002_DynamicHandle3,
   .StartControl = 1U,
-  .InterruptControl = 0x0U,
+  .InterruptControl = 0x400U,
   .SetCompareFuncPtr = &CCU8PWMLIB_SetCompareSymmetric,
   .SetDutyFuncPtr = &CCU8PWMLIB_SetDutyEdgeAlignSymmetric,
 };
@@ -381,7 +381,7 @@ const PWMSP002_HandleType PWMSP002_Handle4 =
   .CC8yRegs1Ptr= CCU81_CC83,
   .DynamicHandleType= &PWMSP002_DynamicHandle4,
   .StartControl = 1U,
-  .InterruptControl = 0x0U,
+  .InterruptControl = 0x400U,
   .SetCompareFuncPtr = &CCU8PWMLIB_SetCompareSymmetric,
   .SetDutyFuncPtr = &CCU8PWMLIB_SetDutyEdgeAlignSymmetric,
 };
@@ -443,7 +443,7 @@ const PWMSP002_HandleType PWMSP002_Handle5 =
   .CC8yRegs1Ptr= CCU81_CC82,
   .DynamicHandleType= &PWMSP002_DynamicHandle5,
   .StartControl = 1U,
-  .InterruptControl = 0x0U,
+  .InterruptControl = 0x400U,
   .SetCompareFuncPtr = &CCU8PWMLIB_SetCompareSymmetric,
   .SetDutyFuncPtr = &CCU8PWMLIB_SetDutyEdgeAlignSymmetric,
 };
@@ -505,7 +505,7 @@ const PWMSP002_HandleType PWMSP002_Handle6 =
   .CC8yRegs1Ptr= CCU81_CC81,
   .DynamicHandleType= &PWMSP002_DynamicHandle6,
   .StartControl = 1U,
-  .InterruptControl = 0x0U,
+  .InterruptControl = 0x400U,
   .SetCompareFuncPtr = &CCU8PWMLIB_SetCompareSymmetric,
   .SetDutyFuncPtr = &CCU8PWMLIB_SetDutyEdgeAlignSymmetric,
 };
@@ -567,7 +567,7 @@ const PWMSP002_HandleType PWMSP002_Handle7 =
   .CC8yRegs1Ptr= CCU81_CC80,
   .DynamicHandleType= &PWMSP002_DynamicHandle7,
   .StartControl = 1U,
-  .InterruptControl = 0x0U,
+  .InterruptControl = 0x400U,
   .SetCompareFuncPtr = &CCU8PWMLIB_SetCompareSymmetric,
   .SetDutyFuncPtr = &CCU8PWMLIB_SetDutyEdgeAlignSymmetric,
 };

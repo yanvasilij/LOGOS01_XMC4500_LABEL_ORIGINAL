@@ -181,10 +181,19 @@ void DAVE_MUX_Init(void)
  						
    /*USIC 1 Channel 1 Mux Related SFR/Bitfields Configurations*/ 						         
  WR_REG(USIC1_CH1->DX0CR, USIC_CH_DX0CR_DSEL_Msk, USIC_CH_DX0CR_DSEL_Pos,2); 
-  			  					 				 				 		       				              				  					    					 					   				  					 				 				       				  					    
+  			  					 				 				 		       				              				  					    					 					   				  					 				 				       				    
+ //Transmit buffer error event is enabled.                   
+ WR_REG(USIC1_CH1->TBCTR, USIC_CH_TBCTR_TBERIEN_Msk, USIC_CH_TBCTR_TBERIEN_Pos,1);  
+  					    
  //Standard receive buffer event is enabled.                 
  WR_REG(USIC1_CH1->RBCTR, USIC_CH_RBCTR_SRBIEN_Msk, USIC_CH_RBCTR_SRBIEN_Pos,1);  
- 					 									 					 					  									      					              					  						    					      
+ 					    
+ //Receive buffer error event is enabled.                 
+ WR_REG(USIC1_CH1->RBCTR, USIC_CH_RBCTR_RBERIEN_Msk, USIC_CH_RBCTR_RBERIEN_Pos,1); 
+  									 					 					  									      					              					  						       
+ //Interrupt node 1 is selected for Standard receive buffer event                 
+ WR_REG(USIC1_CH1->RBCTR, USIC_CH_RBCTR_SRBINP_Msk, USIC_CH_RBCTR_SRBINP_Pos,1);  
+ 					      
                  
    // Data Pointer & Buffer Size for Transmitter Buffer Control  
  WR_REG(USIC1_CH1->TBCTR, USIC_CH_TBCTR_DPTRSIZE_Msk, USIC_CH_TBCTR_DPTRSIZE_Pos,0x04000020);		/*    DPTR = 32,  SIZE = 4 */ 
@@ -243,6 +252,9 @@ void DAVE_MUX_Init(void)
  
 	       				  	
 	                                    
+   	 
+            	         
+                                              
         //********* Capture/Compare Unit 8 (CAPCOM8) CONFIGURATIONS *************************
                       
             // Configuring CCU80 CC80INS - Input Selector Configuration
@@ -300,9 +312,6 @@ void DAVE_MUX_Init(void)
             // Configuring CCU81_CC82SRS  =  Service Request Selector
 
             WR_REG(CCU81_CC82->SRS, CCU8_CC8_SRS_E2SR_Msk, CCU8_CC8_SRS_E2SR_Pos, CCU_SR3);    
-   	 
-            	         
-                                              
    	 
             	         
                                               

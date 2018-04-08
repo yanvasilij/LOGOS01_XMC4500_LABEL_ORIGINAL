@@ -744,6 +744,14 @@ specific interrupt signal otherwise there
     <downWardmappedList xsi:type="ResourceModel:App" href="../../NVIC002/1.0.28/nvic002_2.app#/"/>
     <requiredResource uriString="app/nvic002/2" uriType="LOCALTYPE"/>
   </consumed>
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/uart001/0/SignalConfigurator_1398062772" bindingMode="READ" isSystemDefined="true">
+    <downWardmappedList xsi:type="ResourceModel:App" href="../../NVIC002/1.0.28/nvic002_32.app#/"/>
+    <requiredResource uriString="app/nvic002/32" uriType="LOCALTYPE"/>
+  </consumed>
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/uart001/0/SignalConfigurator_141668472" bindingMode="READ" isSystemDefined="true">
+    <downWardmappedList xsi:type="ResourceModel:App" href="../../NVIC002/1.0.28/nvic002_32.app#/"/>
+    <requiredResource uriString="app/nvic002/32" uriType="LOCALTYPE"/>
+  </consumed>
   <alias name="alias_channel" URI="alias_channel" fromURI="peripheral/usic/*/channel/*"/>
   <propertyConstants name="uridevice" value="device/">
     <propertyConstants name="uriperi_uart001" value="peripheral/usic/">
@@ -784,6 +792,8 @@ specific interrupt signal otherwise there
   <connections sourceSignal="app/uart001/0/uart001_txpin_vs" targetSignal="app/uart001/0/uart001_rx_vs" constraintFunction="&#xD;&#xA;          function resourceCondition(){&#xD;&#xA;              var Res = Solver.getResource(&quot;uart001_OprModeTemp&quot;);&#xD;&#xA;              var value = Solver.getIntValue(Res);&#xD;&#xA;              if (value == 1 ) {&#xD;&#xA;              return true;&#xD;&#xA;              }&#xD;&#xA;              return false;&#xD;&#xA;          }&#xD;&#xA;        "/>
   <connections sourceSignal="app/uart001/0/uart001_tx_vs" targetSignal="app/uart001/0/uart001_rx_vs" constraintFunction="&#xD;&#xA;          function resourceCondition(){&#xD;&#xA;              var Res = Solver.getResource(&quot;uart001_OprModeTemp&quot;);&#xD;&#xA;              var value = Solver.getIntValue(Res);&#xD;&#xA;              if (value == 2 ) {&#xD;&#xA;              return true;&#xD;&#xA;              }&#xD;&#xA;              return false;&#xD;&#xA;          }&#xD;&#xA;        "/>
   <connections sourceSignal="app/uart001/0/uart001_srbi_vs" targetSignal="SignalConfigurator_1477214378/nvic002_vs" isSystemDefined="false"/>
+  <connections sourceSignal="app/uart001/0/uart001_tberi_vs" targetSignal="SignalConfigurator_1398062772/nvic002_vs" isSystemDefined="false"/>
+  <connections sourceSignal="app/uart001/0/uart001_rberi_vs" targetSignal="SignalConfigurator_141668472/nvic002_vs" isSystemDefined="false"/>
   <softwareIdList>45.0.1</softwareIdList>
   <softwareIdList>45.0.2</softwareIdList>
   <softwareIdList>45.0.3</softwareIdList>
