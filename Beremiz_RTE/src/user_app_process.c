@@ -2,6 +2,7 @@
  * @brief All about user application polling
  * @author Yanikeev Vasily (yanvasilij@gmail.ru)
  */
+#include "user_app_process.h"
 #include "plc_abi.h"
 
 #define USER_APP_POINTER (plc_app_abi_t*)(0x8050000) /**< brief pointer to user application */
