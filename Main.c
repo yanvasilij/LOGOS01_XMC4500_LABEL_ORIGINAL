@@ -229,6 +229,14 @@ int main(void)
 				newvalue[i] = 0;
 			}
 		}
+	
+		/* FIXME: Which ai and ao value should be pass to user application? */
+		float ai[8];
+		float ao[8];
+		for (u8 i=0; i<8; i++)
+			ai[i] = (float)avgcurr[i];
+		/* user application pollig*/
+		poll_user_app(ai, ao);
 	}
 	return 0;
 }
