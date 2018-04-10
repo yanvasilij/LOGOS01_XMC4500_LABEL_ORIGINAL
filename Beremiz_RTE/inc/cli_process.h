@@ -22,7 +22,7 @@ typedef struct
 	bool overflowed;
 }Seial_queue;
 
-typedef void (*Cli_cmd_callback) (char *cmd, char * response, uint32_t len);
+typedef void (*Cli_cmd_callback) (char *cmd, char * response, uint32_t *response_len);
 
 typedef struct
 {
@@ -31,7 +31,7 @@ typedef struct
 	Cli_cmd_callback callback;
 }Cli_command;
 
-extern void serial_write (uint8_t *string, uint32_t len);
+extern void serial_write (char *string, uint32_t len);
 
 
 #endif
