@@ -72,6 +72,7 @@ static bool get_ch_from_rx_queue (uint8_t * ch)
 
 static void get_plc_status (char * cmd, char * response, uint32_t *response_len)
 {
+	*response_len = sprintf(response, "Running\r\n");
 }
 
 static void boot (char * cmd, char * response, uint32_t *response_len)
@@ -97,7 +98,7 @@ static void run_user_app (char * cmd, char * response, uint32_t *response_len)
 /**
  * @brief Execute terminated command
  */
-void exec_cmd (char *cmd, char *response uint32_t *response_len)
+void exec_cmd (char *cmd, char *response, uint32_t *response_len)
 {
 	for	(uint32_t i=0; i<NUMBER_OF_CLI_COMMANDS; i++)
 	{
