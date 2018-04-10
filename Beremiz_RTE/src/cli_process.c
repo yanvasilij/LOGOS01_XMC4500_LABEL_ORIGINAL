@@ -77,22 +77,27 @@ static void get_plc_status (char * cmd, char * response, uint32_t *response_len)
 
 static void boot (char * cmd, char * response, uint32_t *response_len)
 {
+	*response_len = sprintf(response, "Done\r\n");
 }
 
 static void reset_download (char * cmd, char * response, uint32_t *response_len)
 {
+	*response_len = sprintf(response, "Done\r\n");
 }
 
 static void download (char * cmd, char * response, uint32_t *response_len)
 {
+	*response_len = sprintf(response, "CRC correct\r\n");
 }
 
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 {
+	*response_len = sprintf(response, "Total CRC correct\r\n");
 }
 
 static void run_user_app (char * cmd, char * response, uint32_t *response_len)
 {
+	*response_len = sprintf(response, "Done\r\n");
 }
 
 /**
@@ -174,6 +179,11 @@ void cli_poll (void)
 			}
 		}
 	}
+}
+
+void serial_write (char *string, uint32_t len)
+{
+	/* FIXME: Should be realized outside */
 }
 
 /*
