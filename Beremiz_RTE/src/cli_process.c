@@ -3,6 +3,7 @@
  * @author Yanikeev Vasily (yanvasilij@gmail.com)
  */
 #include "cli_process.h"
+#include "stdio.h"
 
 /******************************************************************************
  *	prototypes 
