@@ -2,9 +2,9 @@
  * @brief Command line interface
  * @author Yanikeev Vasily (yanvasilij@gmail.com)
  */
+#include <DAVE3.h>
 #include "cli_process.h"
 #include "stdio.h"
-#include "UART001.h"
 
 /******************************************************************************
  *	prototypes 
@@ -186,7 +186,7 @@ void cli_poll (void)
 void serial_write (char *string, uint32_t len)
 {
 	for (uint32_t i = 0; i<len; i++)
-		while(!UART001_WriteDataBytes(&UART001_Handle0, string[i], 1));
+		while(!UART001_WriteDataBytes(&UART001_Handle0, (uint8_t*)&string[i], 1));
 }
 
 /*
