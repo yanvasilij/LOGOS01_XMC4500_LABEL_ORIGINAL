@@ -9,6 +9,7 @@
 
 #include <DAVE3.h>			//Declarations from DAVE3 Code Generation (includes SFR declaration)
 #include "GPIO.h"
+#include "cli_process.h"
 
 
 #define teststep 1
@@ -900,13 +901,15 @@ void Uart_Error_Handler()
 /* Fifo standard receive buffer event handler */
 void RxUartEventHandler()
 {
-    uint8_t DataRead;
+    uint8_t ch;
 
     if(UART001_GetFlagStatus(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG) == UART001_SET)
     {
 	/* Read the received data to the buffer */
-	DataRead=UART001_ReadDataBytes(&UART001_Handle0,&rxbuf[rxindex],uartmsglen);
+	UART001_ReadDataBytes(&UART001_Handle0, &ch, 1);
 	UART001_ClearFlag(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG);
+
+	cli_serial_input(ch);
     }
 }
 

@@ -32,6 +32,7 @@ typedef struct
 }Cli_command;
 
 extern void serial_write (char *string, uint32_t len);
+extern void cli_serial_input (uint8_t ch);
 
 
 #endif
