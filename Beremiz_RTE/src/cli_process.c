@@ -4,6 +4,7 @@
  */
 #include "cli_process.h"
 #include "stdio.h"
+#include "UART001.h"
 
 /******************************************************************************
  *	prototypes 
@@ -184,7 +185,8 @@ void cli_poll (void)
 
 void serial_write (char *string, uint32_t len)
 {
-	/* FIXME: Should be realized outside */
+	for (uint32_t i = 0; i<len; i++)
+		while(!UART001_WriteDataBytes(&UART001_Handle0, string[i], 1));
 }
 
 /*
