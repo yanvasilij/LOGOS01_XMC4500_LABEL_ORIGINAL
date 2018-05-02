@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Project MotherSystem_Version="" Name="LOGOS01_XMC4500_LABEL_ORIGINAL" Path="C:\DAVE3_workspace\ws3.1.10\LOGOS01_XMC4500_LABEL_ORIGINAL">
+<Project MotherSystem_Version="" Name="LOGOS01_XMC4500_LABEL_ORIGINAL" Path="E:\vasilij\Logos01\LOGOS_IDE\LOGOS01_XMC4500_LABEL_ORIGINAL">
     <COMPILER>
         <Name>ARM-GCC</Name>
         <Version/>
@@ -969,6 +969,7 @@
         <Path>\Dave\Generated\src\USBCDC001\Drivers\USB\Core</Path>
         <Path>\Dave\Generated\src\USBCDC001\Drivers\USB</Path>
         <Path>\Dave\Generated\src\USBCDC001\Drivers\USB\Class</Path>
+        <Path>\Beremiz_RTE\inc</Path>
     </Include_Path>
     <Preprocessor_Symbols>
         <Assembler_Symbol>UC_ID=4503002</Assembler_Symbol>
