@@ -161,7 +161,7 @@ void cli_poll (void)
 	uint32_t response_len;
 	char ch;
 
-	if ( (rx_queue.overflowed) || (response_len>=MAX_CLI_COMMAND_LEN) )
+	if ( (rx_queue.overflowed) || (cmd_len >=MAX_CLI_COMMAND_LEN) )
 	{
 		response_len = sprintf(response, "Wrong cmd\r\n"); 
 		serial_write(response, response_len);
