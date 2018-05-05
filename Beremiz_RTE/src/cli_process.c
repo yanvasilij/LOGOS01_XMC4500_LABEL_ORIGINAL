@@ -13,7 +13,7 @@
 static void get_plc_status (char * cmd, char * response, uint32_t *response_len);
 static void boot (char * cmd, char * response, uint32_t *response_len);
 static void reset_download (char * cmd, char * response, uint32_t *response_len);
-static void download (char * cmd, char * response, uint32_t *response_len);
+static void send_segment (char * cmd, char * response, uint32_t *response_len);
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len);
 static void run_user_app (char * cmd, char * response, uint32_t *response_len);
 
