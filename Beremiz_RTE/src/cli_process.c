@@ -177,7 +177,7 @@ void cli_poll (void)
 	{
 		if (get_ch_from_rx_queue(&ch))
 		{
-			cmd[response_len++] = ch;
+			cmd[cmd_len++] = ch;
 			if (ch == '\n')
 			{
 				exec_cmd(cmd, response, &response_len);			

@@ -7,6 +7,12 @@ openning_sequence = [1,1,0,8,8,1]
 
 ser.write(openning_sequence)
 time.sleep(0.1)
+
+ser.write("GetPlcStatus\r\n")
+time.sleep(0.1)
+n_bytes = ser.in_waiting
+response = ser.read(n_bytes);
+
 ser.write("GetPlcStatus\r\n");
 time.sleep(0.1)
 n_bytes = ser.in_waiting
