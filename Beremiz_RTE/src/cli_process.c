@@ -21,6 +21,8 @@ static void run_user_app (char * cmd, char * response, uint32_t *response_len);
  *	vars 
 ******************************************************************************/
 
+static u8 segment_buffer[5000]; /**< @brief Buffer for reciving incomming */
+
 static Seial_queue rx_queue; /**< @brief serial input queue */
 
 /**
@@ -31,7 +33,7 @@ static Cli_command commands[NUMBER_OF_CLI_COMMANDS] =
 	{"GetPlcStatus", 		12, 	get_plc_status},
 	{"Boot", 				4, 		boot},
 	{"ResetDownload", 		13, 	reset_download},
-	{"Download", 			8, 		download},
+	{"SendSegment", 		8, 		send_segment},
 	{"SendTotalCRC", 		12, 	send_total_crc},
 	{"RunUserApp", 			10, 	run_user_app}
 };
@@ -87,7 +89,7 @@ static void reset_download (char * cmd, char * response, uint32_t *response_len)
 	*response_len = sprintf(response, "Done\r\n");
 }
 
-static void download (char * cmd, char * response, uint32_t *response_len)
+static void send_segment (char * cmd, char * response, uint32_t *response_len)
 {
 	*response_len = sprintf(response, "CRC correct\r\n");
 }
