@@ -165,6 +165,10 @@ void cli_poll (void)
 	{
 		response_len = sprintf(response, "Wrong cmd\r\n"); 
 		serial_write(response, response_len);
+
+		response_len = sprintf(response, "\t %s \r\n", cmd); 
+		serial_write(response, response_len);
+
 		reset_serial_rx_queue();
 		cmd_len = 0;
 		memset(cmd, 0, MAX_CLI_COMMAND_LEN);
@@ -178,6 +182,10 @@ void cli_poll (void)
 			{
 				exec_cmd(cmd, response, &response_len);			
 				serial_write(response, response_len);
+
+				response_len = sprintf(response, "\t cmd - %s \r\n", cmd); 
+				serial_write(response, response_len);
+
 				cmd_len = 0;
 				memset(cmd, 0, MAX_CLI_COMMAND_LEN);
 			}
