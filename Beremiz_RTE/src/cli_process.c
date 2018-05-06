@@ -24,6 +24,7 @@ static void run_user_app (char * cmd, char * response, uint32_t *response_len);
 
 static u8 segment_buffer[5000]; /**< @brief Buffer for reciving incomming */
 static u8 download_in_progress = 0; /**< @brief Flag is download in progress */
+static uint32_t total_len = 0; /**< @brief total len of download user app */
 static uint32_t segment_count = 0; /**< @brief number of incomming segments with user application */
 
 static Seial_queue rx_queue; /**< @brief serial input queue */
@@ -99,6 +100,7 @@ static void boot (char * cmd, char * response, uint32_t *response_len)
 static void reset_download (char * cmd, char * response, uint32_t *response_len)
 {
 	download_in_progress = 0;
+	total_len = 0;
 	segment_count = 0;
 	*response_len = sprintf(response, "Done\r\n");
 }
@@ -106,16 +108,19 @@ static void reset_download (char * cmd, char * response, uint32_t *response_len)
 static void send_segment (char * cmd, char * response, uint32_t *response_len)
 {
 	uint32_t segment_len;
+
+	if (sscanf(cmd, "SendSegment %u\r\n", &segment_len) != 1)
+	{
+		*response_len = sprintf(response, "Wrong format\r\n");
+		return;
+	}
+
 	if (download_in_progress == 0)
 	{
 		clear_page_for_user_app();
 		download_in_progress = 1;
 		segment_count = 0;
-	}
-	if (sscanf(cmd, "SendSegment %u\r\n", &segment_len) != 1)
-	{
-		*response_len = sprintf(response, "Wrong format\r\n");
-		return;
+		enable_user_app_programming(true);
 	}
 
 	for (uint32_t i = 0; i < segment_len; i++)
@@ -126,6 +131,7 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 			return;
 		}
 	}
+	total_len += segment_len;
 
 	program_4096(segment_buffer, segment_count++);
 	*response_len = sprintf(response, "CRC correct\r\n");
@@ -133,6 +139,24 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 {
+	u32 crc;
+	if (sscanf(cmd, "SendTotalCRC %u\r\n", &crc) != 1)
+	{
+		*response_len = sprintf(response, "Wrong format\r\n");
+		return;
+	}
+
+	set_user_app_len (total_len);
+
+	if ( calc_user_app_crc() != crc)
+	{
+		*response_len = sprintf(response, "Wrong format\r\n");
+		return;
+	}
+
+	set_user_app_crc(crc);
+	enable_user_app_programming(false);
+
 	*response_len = sprintf(response, "Total CRC correct\r\n");
 }
 
