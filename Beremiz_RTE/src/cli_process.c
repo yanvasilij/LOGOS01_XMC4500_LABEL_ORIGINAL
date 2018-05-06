@@ -4,6 +4,7 @@
  */
 #include <DAVE3.h>
 #include "cli_process.h"
+#include "iap_api.h"
 #include "stdio.h"
 
 /******************************************************************************
@@ -22,6 +23,8 @@ static void run_user_app (char * cmd, char * response, uint32_t *response_len);
 ******************************************************************************/
 
 static u8 segment_buffer[5000]; /**< @brief Buffer for reciving incomming */
+static u8 download_in_progress = 0; /**< @brief Flag is download in progress */
+static uint32_t segment_count = 0; /**< @brief number of incomming segments with user application */
 
 static Seial_queue rx_queue; /**< @brief serial input queue */
 
@@ -69,6 +72,15 @@ static bool get_ch_from_rx_queue (uint8_t * ch)
 	return true;
 }
 
+/**
+ * @brief get character from queue with timeout
+ * @param ch pointer to place readed character
+ * @param time to wait (timeout value)
+ * @return true - succes, false - no elements in queue
+ */
+static bool get_ch_from_rx_queue_by_timeout (uint8_t * ch, uint32_t timeout)
+{
+}
 
 /******************************************************************************
  *	comands callbacks 
@@ -86,11 +98,36 @@ static void boot (char * cmd, char * response, uint32_t *response_len)
 
 static void reset_download (char * cmd, char * response, uint32_t *response_len)
 {
+	download_in_progress = 0;
+	segment_count = 0;
 	*response_len = sprintf(response, "Done\r\n");
 }
 
 static void send_segment (char * cmd, char * response, uint32_t *response_len)
 {
+	uint32_t segment_len;
+	if (download_in_progress == 0)
+	{
+		clear_page_for_user_app();
+		download_in_progress = 1;
+		segment_count = 0;
+	}
+	if (sscanf(cmd, "SendSegment %u\r\n", &segment_len) != 1)
+	{
+		*response_len = sprintf(response, "Wrong format\r\n");
+		return;
+	}
+
+	for (uint32_t i = 0; i < segment_len; i++)
+	{
+		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 100) == 0)
+		{
+			*response_len = sprintf(response, "Wrong format\r\n");
+			return;
+		}
+	}
+
+	program_4096(segment_buffer, segment_count++);
 	*response_len = sprintf(response, "CRC correct\r\n");
 }
 
