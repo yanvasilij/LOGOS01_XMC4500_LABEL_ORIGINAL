@@ -81,6 +81,14 @@ static bool get_ch_from_rx_queue (uint8_t * ch)
  */
 static bool get_ch_from_rx_queue_by_timeout (uint8_t * ch, uint32_t timeout)
 {
+	while ( (get_ch_from_rx_queue(ch) != true) && (timeout>0) )
+	{
+		timeout--;
+	}
+	if (timeout==0)
+		return false;
+	else
+		return true;
 }
 
 /******************************************************************************
@@ -125,7 +133,7 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 
 	for (uint32_t i = 0; i < segment_len; i++)
 	{
-		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 100) == 0)
+		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 10000) == false)
 		{
 			*response_len = sprintf(response, "Wrong format\r\n");
 			return;
