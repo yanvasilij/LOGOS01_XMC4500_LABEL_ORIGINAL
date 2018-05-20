@@ -6,6 +6,14 @@ def test_cli_commad (cmd):
 	time.sleep(0.1)
 	n_bytes = ser.in_waiting
 	response = ser.read(n_bytes);
+	print response
+
+def test_SendSegment ():
+	for i in range(4096):
+		segment.append(i)
+	ser.write("SendSegment 4096\r\n")
+	ser.write(segment)
+	response = ser.read(n_bytes);
 	print response	
 
 if __name__ == "__main__":
@@ -14,6 +22,8 @@ if __name__ == "__main__":
 	print(ser.name)
 
 	openning_sequence = [1,1,0,8,8,1]
+	
+	segment = []
 
 	ser.write(openning_sequence)
 	time.sleep(0.1)
@@ -26,7 +36,7 @@ if __name__ == "__main__":
 	test_cli_commad("GetPlcStatus\r\n")
 	test_cli_commad("Boot\r\n")
 	test_cli_commad("ResetDownload\r\n")
-	test_cli_commad("SendSegment\r\n")
+	test_SendSegment()
 	test_cli_commad("SendTotalCRC\r\n")
 	test_cli_commad("RunUserApp\r\n")
 
