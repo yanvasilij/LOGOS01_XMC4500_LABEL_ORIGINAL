@@ -10,7 +10,7 @@ def test_cli_commad (cmd):
 
 def test_SendSegment ():
 	for i in range(4096):
-		segment.append(i)
+		segment.append(0xFF)
 	ser.write("SendSegment 4096\r\n")
 	ser.write(segment)
 	response = ser.read(n_bytes);
