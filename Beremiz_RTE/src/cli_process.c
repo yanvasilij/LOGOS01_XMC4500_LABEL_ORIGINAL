@@ -81,7 +81,7 @@ static bool get_ch_from_rx_queue (uint8_t * ch)
  */
 static bool get_ch_from_rx_queue_by_timeout (uint8_t * ch, uint32_t timeout)
 {
-	while ( (get_ch_from_rx_queue(ch) != true) && (timeout>0) )
+	while ( (get_ch_from_rx_queue(ch) != true) )
 	{
 		timeout--;
 	}
