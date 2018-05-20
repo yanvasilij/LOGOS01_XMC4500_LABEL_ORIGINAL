@@ -246,6 +246,8 @@ void cli_poll (void)
 	{
 		if (get_ch_from_rx_queue(&ch))
 		{
+			//ECHO - send back all recived characters
+			serial_write(&ch, 1);
 			cmd[cmd_len++] = ch;
 			if (ch == '\n')
 			{

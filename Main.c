@@ -911,7 +911,7 @@ void RxUartEventHandler()
 	UART001_ReadDataBytes(&UART001_Handle0, &ch, 1);
 	UART001_ClearFlag(&UART001_Handle0,UART001_FIFO_STD_RECV_BUF_FLAG);
 	cli_serial_input(ch);
-	while(!UART001_WriteDataBytes(&UART001_Handle0, &ch, 1));
+	//while(!UART001_WriteDataBytes(&UART001_Handle0, &ch, 1));
     }
 }
 
