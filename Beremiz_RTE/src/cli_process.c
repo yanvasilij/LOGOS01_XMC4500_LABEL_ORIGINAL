@@ -225,10 +225,19 @@ void cli_poll (void)
 {
 	static char cmd[MAX_CLI_COMMAND_LEN];
 	static uint32_t cmd_len=0;
+	static uint32_t last_time = 0;
 
 	char response[MAX_CLI_COMMAND_LEN];
 	uint32_t response_len;
 	char ch;
+
+	if ( (last_time+1000) < SYSTM001_GetTime() )
+	{
+		last_time = SYSTM001_GetTime();
+		response_len = sprintf(response, "tick tesk\r\n"); 
+		serial_write(response, response_len);
+	}
+
 
 	if ( (rx_queue.overflowed) || (cmd_len >=MAX_CLI_COMMAND_LEN) )
 	{
