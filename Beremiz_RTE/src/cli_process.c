@@ -81,11 +81,11 @@ static bool get_ch_from_rx_queue (uint8_t * ch)
  */
 static bool get_ch_from_rx_queue_by_timeout (uint8_t * ch, uint32_t timeout)
 {
-	while ( (get_ch_from_rx_queue(ch) != true) )
-	{
-		timeout--;
-	}
-	if (timeout==0)
+	uint32_t start_time = SYSTM001_GetTime();
+	while ( (get_ch_from_rx_queue(ch) != true) && 
+			( (start_time+timeout) < SYSTM001_GetTime() ) );
+
+	if ( (start_time+timeout) < SYSTM001_GetTime() )
 		return false;
 	else
 		return true;
@@ -133,7 +133,7 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 
 	for (uint32_t i = 0; i < segment_len; i++)
 	{
-		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 10000) == false)
+		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 100) == false)
 		{
 			*response_len = sprintf(response, "Wrong format\r\n");
 			return;
@@ -225,19 +225,10 @@ void cli_poll (void)
 {
 	static char cmd[MAX_CLI_COMMAND_LEN];
 	static uint32_t cmd_len=0;
-	static uint32_t last_time = 0;
 
 	char response[MAX_CLI_COMMAND_LEN];
 	uint32_t response_len;
 	char ch;
-
-	if ( (last_time+1000) < SYSTM001_GetTime() )
-	{
-		last_time = SYSTM001_GetTime();
-		response_len = sprintf(response, "tick tesk\r\n"); 
-		serial_write(response, response_len);
-	}
-
 
 	if ( (rx_queue.overflowed) || (cmd_len >=MAX_CLI_COMMAND_LEN) )
 	{
