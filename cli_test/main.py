@@ -2,24 +2,29 @@ import serial
 import time
 
 def test_cli_commad (cmd):
+	print "------------------------------"
 	ser.write(cmd)
 	time.sleep(0.3)
 	n_bytes = ser.in_waiting
 	response = ser.read(n_bytes);
 	print response
+	print "------------------------------"
 
 def test_SendSegment ():
-	segment = [0 for x in range(4096)]
-	ser.write("SendSegment 4096\r\n")
+	print "------------------------------"
+	segment_len = 4096
+	segment = [0]*segment_len
+	ser.write("SendSegment {}\r\n".format(segment_len))
 	time.sleep(0.010)
 	ser.write(segment)
-	time.sleep(0.5)
+	time.sleep(2)
 	response = ser.read(n_bytes);
 	print response	
+	print "------------------------------"
 
 if __name__ == "__main__":
 	
-	ser = serial.Serial('COM4', timeout=0.1)
+	ser = serial.Serial('COM4', timeout=0.2)
 	print(ser.name)
 
 	openning_sequence = [1,1,0,8,8,1]
@@ -38,7 +43,11 @@ if __name__ == "__main__":
 	test_cli_commad("Boot\r\n")
 	test_cli_commad("ResetDownload\r\n")
 	test_SendSegment()
-	print "After test_SendSegment"
+	test_SendSegment()
+	test_SendSegment()
+	test_SendSegment()
+	print "------------------------------"
+	#print "After test_SendSegment"
 	test_cli_commad("ResetDownload\r\n")
 	test_cli_commad("SendTotalCRC\r\n")
 	test_cli_commad("RunUserApp\r\n")
