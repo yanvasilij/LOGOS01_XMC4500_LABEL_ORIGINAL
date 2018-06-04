@@ -38,7 +38,7 @@ static Cli_command commands[NUMBER_OF_CLI_COMMANDS] =
 	{"Boot", 				4, 		boot},
 	{"ResetDownload", 		13, 	reset_download},
 	{"SendSegment", 		8, 		send_segment},
-	{"SendTotalCRC", 		12, 	send_total_crc},
+	{"SendTotalCRC", 		11, 	send_total_crc},
 	{"RunUserApp", 			10, 	run_user_app}
 };
 
@@ -130,19 +130,21 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 		segment_count = 0;
 		enable_user_app_programming(true);
 	}
+	uint32_t input_count = 0;
 
 	for (uint32_t i = 0; i < segment_len; i++)
 	{
-		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 100) == false)
+		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 1000) == false)
 		{
 			*response_len = sprintf(response, "Wrong format\r\n");
 			return;
 		}
+		input_count = i;
 	}
 	total_len += segment_len;
 
 	program_4096(segment_buffer, segment_count++);
-	*response_len = sprintf(response, "CRC correct\r\n");
+	*response_len = sprintf(response, "CRC correct %u\r\n", input_count);
 }
 
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
@@ -186,7 +188,7 @@ void exec_cmd (char *cmd, char *response, uint32_t *response_len)
 			return;
 		}
 	}
-	*response_len = sprintf(response, "Wrong cmd!\r\n");
+	*response_len = sprintf(response, "Wrong cmd!: %s \r\n", cmd);
 }
 
 
@@ -232,7 +234,7 @@ void cli_poll (void)
 
 	if ( (rx_queue.overflowed) || (cmd_len >=MAX_CLI_COMMAND_LEN) )
 	{
-		response_len = sprintf(response, "Wrong cmd\r\n"); 
+		response_len = sprintf(response, "Wrong cmd: input queue is overfloved\r\n");
 		serial_write(response, response_len);
 
 		response_len = sprintf(response, "\t %s \r\n", cmd); 
@@ -251,7 +253,7 @@ void cli_poll (void)
 			cmd[cmd_len++] = ch;
 			if (ch == '\n')
 			{
-				exec_cmd(cmd, response, &response_len);			
+				exec_cmd(cmd, response, &response_len);
 				serial_write(response, response_len);
 				cmd_len = 0;
 				memset(cmd, 0, MAX_CLI_COMMAND_LEN);
