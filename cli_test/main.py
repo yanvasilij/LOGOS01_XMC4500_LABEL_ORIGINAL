@@ -18,6 +18,7 @@ def test_SendSegment ():
 	time.sleep(0.010)
 	ser.write(segment)
 	time.sleep(5)
+	n_bytes = ser.in_waiting
 	response = ser.read(n_bytes);
 	print response	
 	print "------------------------------"
