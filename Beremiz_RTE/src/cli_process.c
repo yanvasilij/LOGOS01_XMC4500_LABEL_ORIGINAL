@@ -68,6 +68,7 @@ static bool get_ch_from_rx_queue (uint8_t * ch)
 	if (rx_queue.last == rx_queue.first)
 		return false;
 	*ch = rx_queue.buf[rx_queue.first++];
+	rx_queue.count--;
 	if (rx_queue.first >= SERIAL_INPUT_BUFFER)
 		rx_queue.first = 0;
 	return true;
