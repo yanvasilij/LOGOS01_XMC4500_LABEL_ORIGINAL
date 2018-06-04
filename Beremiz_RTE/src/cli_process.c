@@ -145,7 +145,8 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 	total_len += segment_len;
 
 	program_4096(segment_buffer, segment_count++);
-	*response_len = sprintf(response, "CRC correct %u\r\n", input_count);
+	//*response_len = sprintf(response, "CRC correct %u\r\n", input_count);
+	*response_len = sprintf(response, "CRC correct\r\n");
 }
 
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
