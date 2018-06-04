@@ -17,7 +17,7 @@ def test_SendSegment ():
 	ser.write("SendSegment {}\r\n".format(segment_len))
 	time.sleep(0.010)
 	ser.write(segment)
-	time.sleep(2)
+	time.sleep(5)
 	response = ser.read(n_bytes);
 	print response	
 	print "------------------------------"
