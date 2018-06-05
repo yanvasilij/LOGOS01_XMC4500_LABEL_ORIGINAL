@@ -207,11 +207,10 @@ void cli_serial_input (uint8_t ch)
 	rx_queue.buf[rx_queue.last++] = ch;
 	if (rx_queue.last >= SERIAL_INPUT_BUFFER)
 		rx_queue.last = 0;
-	rx_queue.count++;
 	if (rx_queue.count>=SERIAL_INPUT_BUFFER)
-	{
 		rx_queue.overflowed = true;
-	}
+	else
+		rx_queue.count++;
 }
 
 /**
