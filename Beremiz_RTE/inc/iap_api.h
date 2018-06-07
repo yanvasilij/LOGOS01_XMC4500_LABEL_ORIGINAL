@@ -15,6 +15,13 @@ extern uint32_t calc_user_app_crc (void);
 extern bool is_user_app_correct (void);
 extern bool is_user_app_programming_now (void);
 
+
+typedef struct
+{
+	uint32_t len;
+	uint32_t crc;
+}User_app_info;
+
 #endif
 
 /*
