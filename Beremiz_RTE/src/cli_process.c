@@ -133,11 +133,11 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 	}
 	uint32_t input_count = 0;
 
-	for (uint32_t i = 0; i < segment_len; i++)
+	for (uint32_t i = 0; i < segment_len+2; i++) //2 bytes for CRC
 	{
-		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 100) == false)
+		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 2000) == false)
 		{
-			*response_len = sprintf(response, "Wrong format\r\n");
+			*response_len = sprintf(response, "CRC incorrect!\r\n");
 			return;
 		}
 		input_count = i;
@@ -146,12 +146,14 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 
 	program_4096(segment_buffer, segment_count++);
 	//*response_len = sprintf(response, "CRC correct %u\r\n", input_count);
-	*response_len = sprintf(response, "CRC correct\r\n");
+	*response_len = sprintf(response, "CRC correct!\r\n");
 }
 
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 {
 	u32 crc;
+	*response_len = sprintf(response, "Total CRC correct\r\n");
+	return;
 	if (sscanf(cmd, "SendTotalCRC %u\r\n", &crc) != 1)
 	{
 		*response_len = sprintf(response, "Wrong format\r\n");
@@ -190,7 +192,7 @@ void exec_cmd (char *cmd, char *response, uint32_t *response_len)
 			return;
 		}
 	}
-	*response_len = sprintf(response, "Wrong cmd!: %s \r\n", cmd);
+	*response_len = sprintf(response, "Unknown cmd!\r\n");
 }
 
 
@@ -233,20 +235,20 @@ void cli_poll (void)
 	uint32_t response_len;
 	char ch;
 
-	if ( (rx_queue.overflowed) || (cmd_len >=MAX_CLI_COMMAND_LEN) )
-	{
-		response_len = sprintf(response, "Wrong cmd: input queue is overfloved\r\n");
-		serial_write(response, response_len);
-
-		response_len = sprintf(response, "\t %s \r\n", cmd); 
-		serial_write(response, response_len);
-
-		reset_serial_rx_queue();
-		cmd_len = 0;
-		memset(cmd, 0, MAX_CLI_COMMAND_LEN);
-	}
-	else
-	{
+//	if ( (rx_queue.overflowed) || (cmd_len >=MAX_CLI_COMMAND_LEN) )
+//	{
+//		response_len = sprintf(response, "Wrong cmd: input queue is overfloved\r\n");
+//		serial_write(response, response_len);
+//
+//		//response_len = sprintf(response, "\t %s \r\n", cmd);
+//		//serial_write(response, response_len);
+//
+//		//reset_serial_rx_queue();
+//		cmd_len = 0;
+//		memset(cmd, 0, MAX_CLI_COMMAND_LEN);
+//	}
+//	else
+//	{
 		if (get_ch_from_rx_queue(&ch))
 		{
 			//ECHO - send back all recived characters
@@ -260,7 +262,7 @@ void cli_poll (void)
 				memset(cmd, 0, MAX_CLI_COMMAND_LEN);
 			}
 		}
-	}
+//	}
 }
 
 void serial_write (char *string, uint32_t len)
