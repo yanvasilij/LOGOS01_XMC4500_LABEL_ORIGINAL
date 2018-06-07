@@ -19,6 +19,9 @@ bool is_user_app_programming_now (void)
 
 void clear_page_for_user_app (void)
 {
+	FLASH002_Init();
+	FLASH002_ClearStatus();
+	Flash002_EraseSector(FLASH002_SECTOR11_BASE);
 }
 
 void program_4096 (uint8_t * data, uint32_t shift)
