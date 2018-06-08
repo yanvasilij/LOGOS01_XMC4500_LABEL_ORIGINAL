@@ -13,7 +13,7 @@ def test_cli_commad (cmd):
 def test_SendSegment ():
 	print "------------------------------"
 	segment_len = 4096
-	segment = [0]*segment_len
+	segment = [0]*(segment_len+2)
 	ser.write("SendSegment {}\r\n".format(segment_len))
 	time.sleep(0.010)
 	ser.write(segment)
