@@ -137,7 +137,7 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 	{
 		if (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 2000) == false)
 		{
-			*response_len = sprintf(response, "CRC incorrect!\r\n");
+			*response_len = sprintf(response, "Time out!\r\n");
 			return;
 		}
 		input_count = i;
