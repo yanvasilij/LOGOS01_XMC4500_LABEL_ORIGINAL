@@ -8,6 +8,8 @@
 extern void enable_user_app_programming (bool value);
 extern void clear_page_for_user_app (void);
 extern void program_4096 (uint8_t * data, uint32_t shift);
+extern void program_user_app_info(void);
+extern void upload_user_app_info (void);
 extern void set_user_app_crc (uint32_t value);
 extern void set_user_app_len (uint32_t value);
 extern uint32_t get_user_app_crc (void);
@@ -20,6 +22,7 @@ typedef struct
 {
 	uint32_t len;
 	uint32_t crc;
+	u8 not_used[248]; //filling structure up to 256 byte (page size)
 }User_app_info;
 
 #endif
