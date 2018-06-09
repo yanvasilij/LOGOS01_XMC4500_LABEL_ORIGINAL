@@ -103,6 +103,7 @@ static void get_plc_status (char * cmd, char * response, uint32_t *response_len)
 
 static void boot (char * cmd, char * response, uint32_t *response_len)
 {
+	clear_page_for_user_app();
 	*response_len = sprintf(response, "Done\r\n");
 }
 
@@ -126,7 +127,6 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 
 	if (download_in_progress == 0)
 	{
-		clear_page_for_user_app();
 		download_in_progress = 1;
 		segment_count = 0;
 		enable_user_app_programming(true);
