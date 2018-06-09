@@ -1,10 +1,10 @@
 import serial
 import time
 
-def test_cli_commad (cmd):
+def test_cli_commad (cmd, timeout=0.3):
 	print "------------------------------"
 	ser.write(cmd)
-	time.sleep(0.3)
+	time.sleep(timeout)
 	n_bytes = ser.in_waiting
 	response = ser.read(n_bytes);
 	print response
@@ -15,7 +15,6 @@ def test_SendSegment ():
 	segment_len = 4096
 	segment = [0]*(segment_len+2)
 	ser.write("SendSegment {}\r\n".format(segment_len))
-	time.sleep(0.010)
 	ser.write(segment)
 	time.sleep(5)
 	n_bytes = ser.in_waiting
@@ -41,12 +40,12 @@ if __name__ == "__main__":
 	response = ser.read(n_bytes)
 	
 	test_cli_commad("GetPlcStatus\r\n")
-	test_cli_commad("Boot\r\n")
+	test_cli_commad("Boot\r\n", 5)
 	test_cli_commad("ResetDownload\r\n")
 	test_SendSegment()
-	test_SendSegment()
-	test_SendSegment()
-	test_SendSegment()
+	#test_SendSegment()
+	#test_SendSegment()
+	#test_SendSegment()
 	print "------------------------------"
 	#print "After test_SendSegment"
 	test_cli_commad("ResetDownload\r\n")
