@@ -6,6 +6,7 @@
 #include "cli_process.h"
 #include "iap_api.h"
 #include "stdio.h"
+#include "crc_calc.h"
 
 /******************************************************************************
  *	prototypes 
@@ -144,11 +145,21 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 		}
 		input_count = i;
 	}
-	total_len += segment_len;
+	uint16_t crc_from_cli = *(uint16_t*)&segment_buffer[segment_len];
+	uint16_t crc_calc = calcCrc(segment_buffer, segment_len);
 
-	program_4096(segment_buffer, segment_count++);
-	//*response_len = sprintf(response, "CRC correct %u\r\n", input_count);
-	*response_len = sprintf(response, "CRC correct!\r\n");
+	if (crc_from_cli == crc_calc)
+	{
+		total_len += segment_len;
+
+		program_4096(segment_buffer, segment_count++);
+		//*response_len = sprintf(response, "CRC correct %u\r\n", input_count);
+		*response_len = sprintf(response, "CRC correct!\r\n");
+	}
+	else
+	{
+		*response_len = sprintf(response, "CRC incorrect!\r\n");
+	}
 }
 
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
