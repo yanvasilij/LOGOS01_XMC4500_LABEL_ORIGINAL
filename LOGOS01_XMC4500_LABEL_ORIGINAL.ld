@@ -16,7 +16,7 @@ MEMORY
 	DSRAM_2_comm(!RX) : ORIGIN = 0x30000000, LENGTH = 0x8000
 }
 
-stack_size = 2048;
+stack_size = 4098;
 
 SECTIONS
 {
