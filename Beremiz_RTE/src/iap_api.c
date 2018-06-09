@@ -52,6 +52,7 @@ void program_4096 (uint8_t * data, uint32_t shift)
 	{
 		Flash002_WritePage(adr, (uint32_t*)data);
 		adr += 256;
+		data += 256;
 	}
 }
 
