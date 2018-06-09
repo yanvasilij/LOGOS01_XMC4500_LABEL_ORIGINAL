@@ -203,11 +203,19 @@ static void show_user_app_hex (char * cmd, char * response, uint32_t *response_l
 	uint8_t *app_p = (uint8_t*)FLASH002_SECTOR11_BASE;
 	char hex[4] = {0,0,0,0};
 	char ln = '\n';
+	u32 shift;
+
+	if (sscanf(cmd, "Hex %u\r\n", &shift) != 1)
+	{
+		*response_len = sprintf(response, "Wrong format\r\n");
+		return;
+	}
+
 	for (uint32_t i = 0, k=0; i < 10; i++)
 	{
 		for (uint32_t j=0; j<16; j++, k++)
 		{
-			sprintf (hex, "%02X ", app_p[k]);
+			sprintf (hex, "%02X ", app_p[k+shift]);
 			serial_write(hex, 3);
 		}
 		serial_write(&ln, 1);
