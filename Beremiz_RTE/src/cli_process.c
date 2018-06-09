@@ -167,8 +167,8 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 
 	if ( user_app_crc != crc)
 	{
-		*response_len = sprintf(response, "Total crc incorrect: %d %d\r\n",
-				user_app_crc, crc);
+		*response_len = sprintf(response, "Total crc incorrect: %d %d %d\r\n",
+				user_app_crc, crc, total_len);
 		return;
 	}
 
