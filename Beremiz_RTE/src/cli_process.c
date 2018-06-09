@@ -152,8 +152,6 @@ static void send_segment (char * cmd, char * response, uint32_t *response_len)
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 {
 	u32 crc;
-	*response_len = sprintf(response, "Total CRC correct\r\n");
-	return;
 	if (sscanf(cmd, "SendTotalCRC %u\r\n", &crc) != 1)
 	{
 		*response_len = sprintf(response, "Wrong format\r\n");
