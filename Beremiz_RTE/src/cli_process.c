@@ -41,7 +41,7 @@ static Cli_command commands[NUMBER_OF_CLI_COMMANDS] =
 	{"SendSegment", 		8, 		send_segment},
 	{"SendTotalCRC", 		11, 	send_total_crc},
 	{"RunUserApp", 			10, 	run_user_app},
-	{"Hex", 			8, 		show_user_app_hex}
+	{"Hex", 				3, 		show_user_app_hex}
 };
 
 /******************************************************************************

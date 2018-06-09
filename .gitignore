@@ -6,5 +6,6 @@ Old_Startup/
 *.csv
 *.swp
 *.bak
+*.pyc
 *.*~
 LOGOS01_XMC4500_LABEL_ORIGINAL_xSPY.log

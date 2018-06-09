@@ -1,7 +1,7 @@
 import serial
 import time
 
-def test_cli_commad (cmd, timeout=0.3):
+def test_cli_commad (ser, cmd, timeout=0.3):
 	print "------------------------------"
 	ser.write(cmd)
 	time.sleep(timeout)
@@ -10,7 +10,7 @@ def test_cli_commad (cmd, timeout=0.3):
 	print response
 	print "------------------------------"
 
-def test_SendSegment ():
+def test_SendSegment (ser):
 	print "------------------------------"
 	segment_len = 4096
 	segment = [0]*(segment_len+2)
@@ -39,17 +39,17 @@ if __name__ == "__main__":
 	n_bytes = ser.in_waiting
 	response = ser.read(n_bytes)
 	
-	test_cli_commad("GetPlcStatus\r\n")
-	test_cli_commad("Boot\r\n", 5)
-	test_cli_commad("ResetDownload\r\n")
-	test_SendSegment()
-	#test_SendSegment()
-	#test_SendSegment()
-	#test_SendSegment()
+	test_cli_commad(ser, "GetPlcStatus\r\n")
+	test_cli_commad(ser, "Boot\r\n", 5)
+	test_cli_commad(ser, "ResetDownload\r\n")
+	test_SendSegment(ser)
+	#test_SendSegment(ser)
+	#test_SendSegment(ser)
+	#test_SendSegment(ser)
 	print "------------------------------"
 	#print "After test_SendSegment"
-	test_cli_commad("ResetDownload\r\n")
-	test_cli_commad("SendTotalCRC\r\n")
-	test_cli_commad("RunUserApp\r\n")
+	test_cli_commad(ser, "ResetDownload\r\n")
+	test_cli_commad(ser, "SendTotalCRC\r\n")
+	test_cli_commad(ser, "RunUserApp\r\n")
 
 	ser.close()
