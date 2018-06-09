@@ -167,7 +167,7 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 		return;
 	}
 
-	update_user_app_info();
+	program_user_app_info();
 
 	enable_user_app_programming(false);
 
