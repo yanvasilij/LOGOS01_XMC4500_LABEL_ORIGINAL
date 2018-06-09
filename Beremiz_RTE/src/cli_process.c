@@ -17,6 +17,7 @@ static void reset_download (char * cmd, char * response, uint32_t *response_len)
 static void send_segment (char * cmd, char * response, uint32_t *response_len);
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len);
 static void run_user_app (char * cmd, char * response, uint32_t *response_len);
+static void show_user_app_hex (char * cmd, char * response, uint32_t *response_len);
 
 /******************************************************************************
  *	vars 
@@ -39,7 +40,8 @@ static Cli_command commands[NUMBER_OF_CLI_COMMANDS] =
 	{"ResetDownload", 		13, 	reset_download},
 	{"SendSegment", 		8, 		send_segment},
 	{"SendTotalCRC", 		11, 	send_total_crc},
-	{"RunUserApp", 			10, 	run_user_app}
+	{"RunUserApp", 			10, 	run_user_app},
+	{"Hex", 			8, 		show_user_app_hex}
 };
 
 /******************************************************************************
@@ -179,6 +181,26 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 
 static void run_user_app (char * cmd, char * response, uint32_t *response_len)
 {
+	*response_len = sprintf(response, "Done\r\n");
+}
+
+/**
+ * @brief Shows the first part of downloaded hex
+ */
+static void show_user_app_hex (char * cmd, char * response, uint32_t *response_len)
+{
+	uint8_t *app_p = (uint8_t*)FLASH002_SECTOR11_BASE;
+	char hex[4] = {0,0,0,0};
+	char ln = '\n';
+	for (uint32_t i = 0, k=0; i < 10; i++)
+	{
+		for (uint32_t j=0; j<16; j++, k++)
+		{
+			sprintf (hex, "%02X ", app_p[k]);
+			serial_write(hex, 3);
+		}
+		serial_write(&ln, 1);
+	}
 	*response_len = sprintf(response, "Done\r\n");
 }
 
