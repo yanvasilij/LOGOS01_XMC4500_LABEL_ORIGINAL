@@ -11,7 +11,7 @@
 
 #define SERIAL_INPUT_BUFFER 	5000
 #define MAX_CLI_COMMAND_LEN 	20
-#define NUMBER_OF_CLI_COMMANDS 	7
+#define NUMBER_OF_CLI_COMMANDS 	8
 
 typedef struct
 {
