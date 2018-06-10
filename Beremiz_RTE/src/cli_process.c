@@ -17,6 +17,7 @@ static void boot (char * cmd, char * response, uint32_t *response_len);
 static void reset_download (char * cmd, char * response, uint32_t *response_len);
 static void send_segment (char * cmd, char * response, uint32_t *response_len);
 static void send_total_crc (char * cmd, char * response, uint32_t *response_len);
+static void send_total_len (char * cmd, char * response, uint32_t *response_len);
 static void run_user_app (char * cmd, char * response, uint32_t *response_len);
 static void show_user_app_hex (char * cmd, char * response, uint32_t *response_len);
 
@@ -41,6 +42,7 @@ static Cli_command commands[NUMBER_OF_CLI_COMMANDS] =
 	{"ResetDownload", 		13, 	reset_download},
 	{"SendSegment", 		8, 		send_segment},
 	{"SendTotalCRC", 		11, 	send_total_crc},
+	{"SendTotalLen", 		12, 	send_total_len},
 	{"RunUserApp", 			10, 	run_user_app},
 	{"Hex", 				3, 		show_user_app_hex}
 };
@@ -172,22 +174,35 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 		return;
 	}
 
-	set_user_app_len (total_len);
-	set_user_app_crc(crc);
 	user_app_crc = calc_user_app_crc();
 
-	if ( user_app_crc != crc)
+	if ( user_app_crc != crc )
 	{
 		*response_len = sprintf(response, "Total crc incorrect: %d %d %d\r\n",
 				user_app_crc, crc, total_len);
 		return;
 	}
 
+	set_user_app_crc(crc);
 	program_user_app_info();
 
 	enable_user_app_programming(false);
 
 	*response_len = sprintf(response, "Total CRC correct\r\n");
+}
+
+static void send_total_len (char * cmd, char * response, uint32_t *response_len)
+{
+	u32 len;
+	if (sscanf(cmd, "SendTotalLen %u\r\n", &len) != 1)
+	{
+		*response_len = sprintf(response, "Wrong format\r\n");
+		return;
+	}
+
+	set_user_app_len (len);
+
+	*response_len = sprintf(response, "Done!\r\n");
 }
 
 static void run_user_app (char * cmd, char * response, uint32_t *response_len)
