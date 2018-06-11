@@ -20,6 +20,6 @@ if __name__ == "__main__":
 	n_bytes = ser.in_waiting
 	response = ser.read(n_bytes)
 	
-	test_cli_commad(ser, "Hex\r\n", 1)
+	test_cli_commad(ser, "Hex 10320\r\n", 1)
 
 	ser.close()
