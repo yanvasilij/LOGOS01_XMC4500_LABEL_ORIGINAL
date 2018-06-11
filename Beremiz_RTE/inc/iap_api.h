@@ -22,7 +22,7 @@ typedef struct
 {
 	uint32_t len;
 	uint32_t crc;
-	u8 not_used[248]; //filling structure up to 256 byte (page size)
+	uint8_t not_used[248]; //filling structure up to 256 byte (page size)
 }User_app_info;
 
 #endif
