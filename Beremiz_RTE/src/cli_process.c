@@ -176,14 +176,14 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 
 	user_app_crc = calc_user_app_crc();
 
-	if ( user_app_crc != crc )
-	{
-		*response_len = sprintf(response, "Total crc incorrect: %d %d %d\r\n",
-				user_app_crc, crc, total_len);
-		return;
-	}
+//	if ( user_app_crc != crc )
+//	{
+//		*response_len = sprintf(response, "Total crc incorrect: %d %d %d\r\n",
+//				user_app_crc, crc, total_len);
+//		return;
+//	}
 
-	set_user_app_crc(crc);
+	set_user_app_crc(user_app_crc);
 	program_user_app_info();
 
 	enable_user_app_programming(false);
