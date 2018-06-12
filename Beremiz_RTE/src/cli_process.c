@@ -104,7 +104,7 @@ static bool get_ch_from_rx_queue_by_timeout (uint8_t * ch, uint32_t timeout)
 static void delay_ms (uint32_t value)
 {
 	uint32_t start_time = SYSTM001_GetTime();
-	while ( ( (start_time+value) < SYSTM001_GetTime() ) );
+	while ( ( (start_time+value) > SYSTM001_GetTime() ) );
 }
 
 /******************************************************************************
@@ -201,7 +201,7 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 
 	*response_len = sprintf(response, "Total CRC correct\r\n");
 	serial_write(response, *response_len);
-	delay_ms(10);
+	delay_ms(100);
 	NVIC_SystemReset();
 }
 
