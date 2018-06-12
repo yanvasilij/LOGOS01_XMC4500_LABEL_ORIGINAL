@@ -6,8 +6,8 @@
 #include "iap_api.h"
 #include "crc_calc.h"
 
-#define SECTOR_SIZE 	0x10000000U
-#define USER_INFO_SIZE 	10240U
+#define SECTOR_SIZE 	0x40000U
+#define USER_INFO_SIZE 	0x2800U
 #define USER_APP_INFO_ADDR	(FLASH002_SECTOR11_BASE+SECTOR_SIZE-USER_INFO_SIZE)
 
 static bool is_user_programming_now_flag = false;
