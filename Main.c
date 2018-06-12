@@ -239,7 +239,7 @@ int main(void)
 	for (u8 i=0; i<8; i++)
 	    ai[i] = (float)avgcurr[i];
 	/* user application pollig*/
-	//poll_user_app(ai, ao);
+	poll_user_app(ai, ao);
 	cli_poll();
     }
     return 0;
