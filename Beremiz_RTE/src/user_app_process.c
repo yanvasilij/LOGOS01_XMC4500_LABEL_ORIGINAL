@@ -8,20 +8,31 @@
 
 #define USER_APP_POINTER (plc_app_abi_t*)(0x80C0000) /**< brief pointer to user application */
 
+static bool first_call = true;
+
+/**
+ * @brief Restart user application
+ */
+void reset_user_app (void)
+{
+	 first_call = true;
+}
+
 /**
  * @brief User application polling
  */
 void poll_user_app (float *ai, float *ao)
 {
-	static bool first_call = true;
 	static bool user_app_is_downloaded = false;
+    plc_app_abi_t * user_app = USER_APP_POINTER;
+
 	if (first_call)
 	{
 		upload_user_app_info();
+		user_app->start(0,0);
 		user_app_is_downloaded = is_user_app_correct();
 		first_call = false;
 	}
-    plc_app_abi_t * user_app = USER_APP_POINTER;
 
 	if ( user_app_is_downloaded && (is_user_app_programming_now() == false) )
 	{

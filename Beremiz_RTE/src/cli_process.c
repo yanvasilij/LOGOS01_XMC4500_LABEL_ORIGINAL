@@ -7,6 +7,7 @@
 #include "iap_api.h"
 #include "stdio.h"
 #include "crc_calc.h"
+#include "user_app_process.h"
 
 /******************************************************************************
  *	prototypes 
@@ -197,6 +198,7 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 	set_user_app_crc(user_app_crc);
 	program_user_app_info();
 
+	reset_user_app();
 	enable_user_app_programming(false);
 
 	*response_len = sprintf(response, "Total CRC correct\r\n");
