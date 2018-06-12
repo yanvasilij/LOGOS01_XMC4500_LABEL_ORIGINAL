@@ -201,8 +201,6 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 
 	*response_len = sprintf(response, "Total CRC correct\r\n");
 	serial_write(response, *response_len);
-	delay_ms(100);
-	NVIC_SystemReset();
 }
 
 static void send_total_len (char * cmd, char * response, uint32_t *response_len)
