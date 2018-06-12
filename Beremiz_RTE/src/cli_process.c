@@ -104,7 +104,7 @@ static bool get_ch_from_rx_queue_by_timeout (uint8_t * ch, uint32_t timeout)
 static void delay_ms (uint32_t value)
 {
 	uint32_t start_time = SYSTM001_GetTime();
-	while ( ( (start_time+timeout) < SYSTM001_GetTime() ) );
+	while ( ( (start_time+value) < SYSTM001_GetTime() ) );
 }
 
 /******************************************************************************
