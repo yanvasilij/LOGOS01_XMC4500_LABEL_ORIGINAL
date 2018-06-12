@@ -108,6 +108,7 @@ static void get_plc_status (char * cmd, char * response, uint32_t *response_len)
 
 static void boot (char * cmd, char * response, uint32_t *response_len)
 {
+	enable_user_app_programming(true);
 	clear_page_for_user_app();
 	*response_len = sprintf(response, "Done\r\n");
 }
