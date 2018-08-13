@@ -191,15 +191,16 @@ int main(void)
     SetupAuxOutput();    //Setup Aux Volt output value + CAN PORT 1 and 2 enable, to be refactored
     SetupAnalogInputs(); //Setup Analong input range
 
-    /* FIXME: For some strange reason it caused crash, temporary removed */
+
     //Start ADC Aux, used for Analog Inputs
-    //ADC002_InitializeQueue(&ADC002_Handle2);
-    //ADC002_InitializeQueue(&ADC002_Handle3);
+    ADC002_InitializeQueue(&ADC002_Handle2);
+    ADC002_InitializeQueue(&ADC002_Handle3);
 
     //Start ADC Current Feedback 1
-    //ADC002_InitializeQueue(&ADC002_Handle0);
+    ADC002_InitializeQueue(&ADC002_Handle0);
+    /* FIXME: For some strange reason it caused crash, temporary removed */
     //Start ADC Current Feedback 2
-    //ADC002_InitializeQueue(&ADC002_Handle1);
+    ADC002_InitializeQueue(&ADC002_Handle1);
 
 
     while(1)
@@ -239,7 +240,7 @@ int main(void)
 	for (u8 i=0; i<8; i++)
 	    ai[i] = (float)avgcurr[i];
 	/* user application pollig*/
-	poll_user_app(ai, ao);
+	//poll_user_app(ai, ao);
 	cli_poll();
     }
     return 0;
