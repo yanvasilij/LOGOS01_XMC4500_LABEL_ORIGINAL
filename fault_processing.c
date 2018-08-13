@@ -98,6 +98,15 @@ void SystemCoreSetup(void)
 
 	} 
 
+void UsageFault_Handler (void)
+{
+	__asm(" TST LR, #4 \n"
+			" ITE EQ \n"
+			" MRSEQ R0, MSP \n"
+			" MRSNE R0, PSP \n"
+			" B __HardFault_Handler\n");
+}
+
 __attribute__((nacked)) void HardFault_Handler (void)
 {
 	__asm(" TST LR, #4 \n"

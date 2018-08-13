@@ -536,6 +536,8 @@ void CalcTarPwm(int secid)
 
 void CalcActPwm(int secid,uint32_t tmpcurr)
 {
+	if (secid >= 8)
+		while (1);
     if(sectionstatus[secid]==0)
     {
 	if(avgcurrindex[secid]<loopfreq[secid]-1)
@@ -558,7 +560,8 @@ void CalcActPwm(int secid,uint32_t tmpcurr)
 	else
 	{
 	    avgcurr[secid]=avgcurr[secid]+tmpcurr;
-	    actualcurr[secid]=avgcurr[secid]/loopfreq[secid];
+	    if (loopfreq[secid] != 0)
+	    	actualcurr[secid]=avgcurr[secid]/loopfreq[secid];
 	    avgcurr[secid]=0;
 	    avgcurrindex[secid]=0;
 
