@@ -29,8 +29,9 @@ void poll_user_app (float *ai, float *ao)
 	if (first_call)
 	{
 		upload_user_app_info();
-		user_app->start(0,0);
 		user_app_is_downloaded = is_user_app_correct();
+		if (user_app_is_downloaded)
+			user_app->start(0,0);
 		first_call = false;
 	}
 
