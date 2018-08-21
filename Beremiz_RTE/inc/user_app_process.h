@@ -9,6 +9,7 @@
 
 extern void reset_user_app (void);
 extern void poll_user_app (float *ai, float *ao);
+extern bool stop_user_app;
 
 #endif
 

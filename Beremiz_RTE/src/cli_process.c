@@ -221,6 +221,7 @@ static void send_total_len (char * cmd, char * response, uint32_t *response_len)
 
 static void run_user_app (char * cmd, char * response, uint32_t *response_len)
 {
+	stop_user_app = false;
 	*response_len = sprintf(response, "Done\r\n");
 }
 
