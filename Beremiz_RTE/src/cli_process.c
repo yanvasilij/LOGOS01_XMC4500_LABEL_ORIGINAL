@@ -223,7 +223,6 @@ static void run_user_app (char * cmd, char * response, uint32_t *response_len)
 {
 	stop_user_app = false;
 	*response_len = sprintf(response, "Done\r\n");
-	NVIC_SystemReset();
 }
 
 /**
