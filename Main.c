@@ -91,7 +91,7 @@ uint32_t actualcurr[8];
 uint8_t avgcurrindex[8];
 float targcurr[8];
 float acttargcurr[8];
-float inputlevel[8];
+float inputlevel[10];
 uint8_t currsec=0;
 uint16_t ReadData;
 uint8_t txbuf[256];
@@ -193,14 +193,14 @@ int main(void)
 
 
     //Start ADC Aux, used for Analog Inputs
-    ADC002_InitializeQueue(&ADC002_Handle2);
-    ADC002_InitializeQueue(&ADC002_Handle3);
+    //ADC002_InitializeQueue(&ADC002_Handle2);
+    //ADC002_InitializeQueue(&ADC002_Handle3);
 
     //Start ADC Current Feedback 1
-    ADC002_InitializeQueue(&ADC002_Handle0);
+    //ADC002_InitializeQueue(&ADC002_Handle0);
     /* FIXME: For some strange reason it caused crash, temporary removed */
     //Start ADC Current Feedback 2
-    ADC002_InitializeQueue(&ADC002_Handle1);
+    //ADC002_InitializeQueue(&ADC002_Handle1);
 
 
     while(1)
@@ -506,6 +506,8 @@ void CalcTarPwm(int secid)
 {
     uint32_t deltacurr;
 
+    acttargcurr[secid]=targcurr[secid]/ma_for_lev;
+
     if(actualcurr[secid]>abs(acttargcurr[secid]))
     {
 	deltacurr=actualcurr[secid]-abs(acttargcurr[secid]);
@@ -720,13 +722,187 @@ void SetActPwm(int secid)
 //Callback to handle basic J1939 message
 void HandleCanMessageBasic(uint8_t Data[8], uint8_t port)
 {
+	if(port==1)
+		{
+			X_Pos_P1 = Data[1] * 4 + (Data[0] / 64);
+			Y_Pos_P1 = Data[3] * 4 + (Data[2] / 64);
 
+			PB1_P1 = ((Data[5] & 0xC0) >> 6);
+			PB2_P1 = ((Data[5] & 0x30) >> 4);
+			PB3_P1 = ((Data[5] & 0x0C) >> 2);
+			PB4_P1 = (Data[5] & 0x03);
+			PB5_P1 = ((Data[6] & 0xC0) >> 6);
+			PB6_P1 = ((Data[6] & 0x30) >> 4);
+			PB7_P1 = ((Data[6] & 0x0C) >> 2);
+			PB8_P1 = (Data[6] & 0x03);
+			PB9_P1 = ((Data[7] & 0xC0) >> 6);
+			PB10_P1 = ((Data[7] & 0x30) >> 4);
+
+			if(X_Pos_P1>=1022)
+			{
+				X_Pos_P1=0;
+			}
+
+			if(Y_Pos_P1>=1022)
+			{
+				Y_Pos_P1=0;
+			}
+
+			if (Data[0] & 0x10) {
+				X_Pos_P1 = (X_Pos_P1 * 100) / 1000.0;
+			}
+			else if(Data[0] & 0x04)
+			{
+				X_Pos_P1 = (-X_Pos_P1 * 100) / 1000.0;
+			}
+
+			if (Data[2] & 0x10) {
+				Y_Pos_P1 = (Y_Pos_P1 * 100) / 1000.0;
+			}
+			else if(Data[2] & 0x04)
+			{
+				Y_Pos_P1 = (-Y_Pos_P1 * 100) / 1000.0;
+			}
+
+		}
+		else if(port==2)
+		{
+			X_Pos_P2 = Data[1] * 4 + (Data[0] / 64);
+			Y_Pos_P2 = Data[3] * 4 + (Data[2] / 64);
+
+			PB1_P2 = ((Data[5] & 0xC0) >> 6);
+			PB2_P2 = ((Data[5] & 0x30) >> 4);
+			PB3_P2 = ((Data[5] & 0x0C) >> 2);
+			PB4_P2 = (Data[5] & 0x03);
+			PB5_P2 = ((Data[6] & 0xC0) >> 6);
+			PB6_P2 = ((Data[6] & 0x30) >> 4);
+			PB7_P2 = ((Data[6] & 0x0C) >> 2);
+			PB8_P2 = (Data[6] & 0x03);
+			PB9_P2 = ((Data[7] & 0xC0) >> 6);
+			PB10_P2 = ((Data[7] & 0x30) >> 4);
+
+			if(X_Pos_P2>=1022)
+			{
+				X_Pos_P2=0;
+			}
+
+			if(Y_Pos_P2>=1022)
+			{
+				Y_Pos_P2=0;
+			}
+
+			if (Data[0] & 0x10) {
+				X_Pos_P2 = (X_Pos_P2 * 100) / 1000.0;
+			}
+			else if(Data[0] & 0x04)
+			{
+				X_Pos_P2 = (-X_Pos_P2 * 100) / 1000.0;
+			}
+
+			if (Data[2] & 0x10) {
+				Y_Pos_P2 = (Y_Pos_P2 * 100) / 1000.0;
+			}
+			else if(Data[2] & 0x04)
+			{
+				Y_Pos_P2 = (-Y_Pos_P2 * 100) / 1000.0;
+			}
+		}
 }
 
 //Callback to handle extended J1939 message
 void HandleCanMessageExtended(uint8_t Data[8], uint8_t port)
 {
+	if(port==1)
+		{
+			Z_Pos_P1 = Data[1] * 4 + (Data[0] / 64);
+			W_Pos_P1 = Data[3] * 4 + (Data[2] / 64);
+			V_Pos_P1 = Data[5] * 4 + (Data[4] / 64);
 
+			if(Z_Pos_P1>=1022)
+			{
+				Z_Pos_P1=0;
+			}
+
+			if(W_Pos_P1>=1022)
+			{
+				W_Pos_P1=0;
+			}
+
+			if(V_Pos_P1>=1022)
+			{
+				V_Pos_P1=0;
+			}
+
+			if (Data[0] & 0x10) {
+				Z_Pos_P1 = (Z_Pos_P1 * 100) / 1000.0;
+			}
+			else if(Data[0] & 0x04)
+			{
+				Z_Pos_P1 = (-Z_Pos_P1 * 100) / 1000.0;
+			}
+
+			if (Data[2] & 0x10) {
+				W_Pos_P1 = (W_Pos_P1 * 100) / 1000.0;
+			}
+			else if(Data[2] & 0x04)
+			{
+				W_Pos_P1 = (-W_Pos_P1 * 100) / 1000.0;
+			}
+
+			if (Data[4] & 0x10) {
+				V_Pos_P1 = (V_Pos_P1 * 100) / 1000.0;
+			}
+			else if(Data[4] & 0x04)
+			{
+				V_Pos_P1 = (-V_Pos_P1 * 100) / 1000.0;
+			}
+		}
+		else if(port==2)
+		{
+			Z_Pos_P2 = Data[1] * 4 + (Data[0] / 64);
+			W_Pos_P2 = Data[3] * 4 + (Data[2] / 64);
+			V_Pos_P2 = Data[5] * 4 + (Data[4] / 64);
+
+			if(Z_Pos_P2>=1022)
+			{
+				Z_Pos_P2=0;
+			}
+
+			if(W_Pos_P2>=1022)
+			{
+				W_Pos_P2=0;
+			}
+
+			if(V_Pos_P2>=1022)
+			{
+				V_Pos_P2=0;
+			}
+
+			if (Data[0] & 0x10) {
+				Z_Pos_P2 = (Z_Pos_P2 * 100) / 1000.0;
+			}
+			else if(Data[0] & 0x04)
+			{
+				Z_Pos_P2 = (-Z_Pos_P2 * 100) / 1000.0;
+			}
+
+			if (Data[2] & 0x10) {
+				W_Pos_P2 = (W_Pos_P2 * 100) / 1000.0;
+			}
+			else if(Data[2] & 0x04)
+			{
+				W_Pos_P2 = (-W_Pos_P2 * 100) / 1000.0;
+			}
+
+			if (Data[4] & 0x10) {
+				V_Pos_P2 = (V_Pos_P2 * 100) / 1000.0;
+			}
+			else if(Data[4] & 0x04)
+			{
+				V_Pos_P2 = (-V_Pos_P2 * 100) / 1000.0;
+			}
+
+		}
 }
 
 void GetSPIData(char mode) {
@@ -1308,27 +1484,38 @@ void MAIN_CLOCK_HANDLER(void* Temp)
 	ADCCH001_GetResult(&ADCCH001_Handle3, &NoMappedVal2);
 	NoMappedVal2=NoMappedVal2/4;
 
+	inputlevel[0]=G2Ch1Val;
+	inputlevel[1]=G2Ch2Val;
+	inputlevel[2]=G2Ch3Val;
+	inputlevel[3]=G2Ch4Val;
+	inputlevel[4]=G2Ch5Val;
 
-	for (k = 0; k < 8; k++) {
+	inputlevel[5]=G3Ch1Val;
+	inputlevel[6]=G3Ch2Val;
+	inputlevel[7]=G3Ch3Val;
+	inputlevel[8]=G3Ch4Val;
+	inputlevel[9]=G3Ch5Val;
+
+	for (k = 0; k < 10; k++) {
 	    switch (analoginmode[k]) {
 		//0-5V
 		case 1:
-		    //inputlevel[k] = (v1analoginputlevel / 1800.0) * 100.0;
+		    inputlevel[k] = (inputlevel[k] / 1800.0) * 100.0;
 		    break;
 
 		    //0-10V
 		case 2:
-		    //inputlevel[k] = (v1analoginputlevel / 3610.0) * 100.0;
+		    inputlevel[k] = (inputlevel[k] / 3610.0) * 100.0;
 		    break;
 
 		    //4-20mA
 		case 3:
-		    //inputlevel[k] = (v1analoginputlevel / 1720.0) * 100.0;
+		    inputlevel[k] = (inputlevel[k] / 1720.0) * 100.0;
 		    break;
 
 		    //Raziometrico
 		case 4:
-		    // inputlevel[k] = (v1analoginputlevel / 4095.0) * 100.0;
+		    inputlevel[k] = (inputlevel[k] / 4095.0) * 100.0;
 		    break;
 
 		default:
