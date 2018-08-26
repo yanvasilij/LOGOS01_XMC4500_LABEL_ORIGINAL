@@ -65,9 +65,6 @@ void poll_user_app (plc_variables_t * variables, plc_configuration_t * configura
 	static bool user_app_is_downloaded = false;
     plc_app_abi_t * user_app = USER_APP_POINTER;
 
-	if (stop_user_app)
-		return;
-
 	if (first_call)
 	{
 		upload_user_app_info();
