@@ -51,16 +51,16 @@ typedef struct
     float * W_Pos;
     float * V_Pos;
 
-    uint8_t pb1;
-    uint8_t pb2;
-    uint8_t pb3;
-    uint8_t pb4;
-    uint8_t pb5;
-    uint8_t pb6;
-    uint8_t pb7;
-    uint8_t pb8;
-    uint8_t pb9;
-    uint8_t pb10;
+    uint8_t * pb1;
+    uint8_t * pb2;
+    uint8_t * pb3;
+    uint8_t * pb4;
+    uint8_t * pb5;
+    uint8_t * pb6;
+    uint8_t * pb7;
+    uint8_t * pb8;
+    uint8_t * pb9;
+    uint8_t * pb10;
 }can_joystick_t;
 
 typedef struct
@@ -76,7 +76,7 @@ typedef struct
     uint8_t * sectionconf; //Section Configuration
     uint8_t * analoginmode; //Analog Input Mode
     uint8_t * loopfreq; //Dithering Frequency
-    uint8_t * ditherampl; //Dithering
+    int32_t * ditherampl; //Dithering
     uint8_t * auxvolt; //Auxiliary Voltage Output
     uint8_t * can1DMenable; //Can1 Port Enable
     uint8_t * can2DMenable; //Can2 Port Enable

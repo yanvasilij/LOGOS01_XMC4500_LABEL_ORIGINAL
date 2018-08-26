@@ -10,6 +10,7 @@
 #include <DAVE3.h>			//Declarations from DAVE3 Code Generation (includes SFR declaration)
 #include "GPIO.h"
 #include "cli_process.h"
+#include "user_app_process.h"
 
 
 #define teststep 1
@@ -163,16 +164,16 @@ float Z_Pos_P1;
 float W_Pos_P1;
 float V_Pos_P1;
 
-float PB1_P1;
-float PB2_P1;
-float PB3_P1;
-float PB4_P1;
-float PB5_P1;
-float PB6_P1;
-float PB7_P1;
-float PB8_P1;
-float PB9_P1;
-float PB10_P1;
+uint8_t PB1_P1;
+uint8_t PB2_P1;
+uint8_t PB3_P1;
+uint8_t PB4_P1;
+uint8_t PB5_P1;
+uint8_t PB6_P1;
+uint8_t PB7_P1;
+uint8_t PB8_P1;
+uint8_t PB9_P1;
+uint8_t PB10_P1;
 
 float X_Pos_P2;
 float Y_Pos_P2;
@@ -180,16 +181,16 @@ float Z_Pos_P2;
 float W_Pos_P2;
 float V_Pos_P2;
 
-float PB1_P2;
-float PB2_P2;
-float PB3_P2;
-float PB4_P2;
-float PB5_P2;
-float PB6_P2;
-float PB7_P2;
-float PB8_P2;
-float PB9_P2;
-float PB10_P2;
+uint8_t PB1_P2;
+uint8_t PB2_P2;
+uint8_t PB3_P2;
+uint8_t PB4_P2;
+uint8_t PB5_P2;
+uint8_t PB6_P2;
+uint8_t PB7_P2;
+uint8_t PB8_P2;
+uint8_t PB9_P2;
+uint8_t PB10_P2;
 
 #ifdef dbgvar4ramp
 uint32_t dbgcnt[32];
@@ -199,6 +200,8 @@ int main(void)
 {
     //	status_t status;		// Declaration of return variable for DAVE3 APIs (toggle comment if required)
     uint32_t i;
+	plc_variables_t variables;
+	plc_configuration_t configuration;
 
     DAVE_Init();			// Initialization of DAVE Apps
     IO004_Init();			// Setup Specific I/O
@@ -235,7 +238,54 @@ int main(void)
     /* FIXME: For some strange reason it caused crash, temporary removed */
     //Start ADC Current Feedback 2
     //ADC002_InitializeQueue(&ADC002_Handle1);
+	//
+	
 
+	//setup configuratoin variales
+	configuration.sectionconf 	= &sectionconf; //Section Configuration
+    configuration.analoginmode	= analoginmode; //Analog Input Mode
+    configuration.loopfreq		= loopfreq; //Dithering Frequency
+    configuration.ditherampl	= ditherampl; //Dithering
+    configuration.auxvolt		= &auxvolt; //Auxiliary Voltage Output
+    configuration.can1DMenable	= &can1DMenable; //Can1 Port Enable
+    configuration.can2DMenable	= &can2DMenable; //Can2 Port Enable
+
+	//setup variales to elaborate
+	variables.inputlevel = inputlevel; 
+
+    variables.can1.X_Pos = &X_Pos_P1;
+    variables.can1.Y_Pos = &Y_Pos_P1;
+    variables.can1.Z_Pos = &Z_Pos_P1;
+    variables.can1.W_Pos = &W_Pos_P1;
+    variables.can1.V_Pos = &V_Pos_P1;
+    variables.can1.pb1 = &PB1_P1;
+    variables.can1.pb2 = &PB2_P1;
+    variables.can1.pb3 = &PB3_P1;
+    variables.can1.pb4 = &PB4_P1;
+    variables.can1.pb5 = &PB5_P1;
+    variables.can1.pb6 = &PB6_P1;
+    variables.can1.pb7 = &PB7_P1;
+    variables.can1.pb8 = &PB8_P1;
+    variables.can1.pb9 = &PB9_P1;
+    variables.can1.pb10 = &PB10_P1;
+
+    variables.can2.X_Pos = &X_Pos_P2;
+    variables.can2.Y_Pos = &Y_Pos_P2;
+    variables.can2.Z_Pos = &Z_Pos_P2;
+    variables.can2.W_Pos = &W_Pos_P2;
+    variables.can2.V_Pos = &V_Pos_P2;
+    variables.can2.pb1 = &PB1_P2;
+    variables.can2.pb2 = &PB2_P2;
+    variables.can2.pb3 = &PB3_P2;
+    variables.can2.pb4 = &PB4_P2;
+    variables.can2.pb5 = &PB5_P2;
+    variables.can2.pb6 = &PB6_P2;
+    variables.can2.pb7 = &PB7_P2;
+    variables.can2.pb8 = &PB8_P2;
+    variables.can2.pb9 = &PB9_P2;
+    variables.can2.pb10 = &PB10_P2;
+
+	variables.targcurr = targcurr;
 
     while(1)
     {
@@ -268,13 +318,8 @@ int main(void)
 	    }
 	}
 
-	/* FIXME: Which ai and ao value should be pass to user application? */
-	float ai[8];
-	float ao[8];
-	for (u8 i=0; i<8; i++)
-	    ai[i] = (float)avgcurr[i];
 	/* user application pollig*/
-	poll_user_app(ai, ao);
+	poll_user_app(&variables, &configuration);
 	cli_poll();
     }
     return 0;

@@ -22,7 +22,7 @@ void reset_user_app (void)
 /**
  * @brief User application polling
  */
-void poll_user_app (float *ai, float *ao)
+void poll_user_app (plc_variables_t * variables, plc_configuration_t * configuration)
 {
 	static bool user_app_is_downloaded = false;
     plc_app_abi_t * user_app = USER_APP_POINTER;
@@ -35,16 +35,14 @@ void poll_user_app (float *ai, float *ao)
 		upload_user_app_info();
 		user_app_is_downloaded = is_user_app_correct();
 		if (user_app_is_downloaded)
-			user_app->start(0,0);
+			user_app->start(variables,configuration);
 		first_call = false;
 	}
 
 	if ( user_app_is_downloaded && (is_user_app_programming_now() == false) )
 	{
 		/* FIXME: user application polls as faster as possible. It is neccesary to poll it using timer */
-		user_app->set_ai_value(ai);
 		user_app->run();
-		user_app->get_ao_value(ao);
 	}
 }
 
