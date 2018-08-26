@@ -157,6 +157,40 @@ int32_t diagnocurr=0;
 uint8_t stopdiagno=0;
 uint8_t ackstartdiagno=0;
 
+float X_Pos_P1;
+float Y_Pos_P1;
+float Z_Pos_P1;
+float W_Pos_P1;
+float V_Pos_P1;
+
+float PB1_P1;
+float PB2_P1;
+float PB3_P1;
+float PB4_P1;
+float PB5_P1;
+float PB6_P1;
+float PB7_P1;
+float PB8_P1;
+float PB9_P1;
+float PB10_P1;
+
+float X_Pos_P2;
+float Y_Pos_P2;
+float Z_Pos_P2;
+float W_Pos_P2;
+float V_Pos_P2;
+
+float PB1_P2;
+float PB2_P2;
+float PB3_P2;
+float PB4_P2;
+float PB5_P2;
+float PB6_P2;
+float PB7_P2;
+float PB8_P2;
+float PB9_P2;
+float PB10_P2;
+
 #ifdef dbgvar4ramp
 uint32_t dbgcnt[32];
 #endif
