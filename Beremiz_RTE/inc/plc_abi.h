@@ -77,6 +77,7 @@ typedef struct
     uint8_t * analoginmode; //Analog Input Mode
     uint8_t * loopfreq; //Dithering Frequency
     int32_t * ditherampl; //Dithering
+    uint8_t * ditheractive;
     uint8_t * auxvolt; //Auxiliary Voltage Output
     uint8_t * can1DMenable; //Can1 Port Enable
     uint8_t * can2DMenable; //Can2 Port Enable
