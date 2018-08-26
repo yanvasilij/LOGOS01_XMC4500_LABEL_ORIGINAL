@@ -246,6 +246,7 @@ int main(void)
     configuration.analoginmode	= analoginmode; //Analog Input Mode
     configuration.loopfreq		= loopfreq; //Dithering Frequency
     configuration.ditherampl	= ditherampl; //Dithering
+    configuration.ditheractive	= ditheractive; //Dithering
     configuration.auxvolt		= &auxvolt; //Auxiliary Voltage Output
     configuration.can1DMenable	= &can1DMenable; //Can1 Port Enable
     configuration.can2DMenable	= &can2DMenable; //Can2 Port Enable
