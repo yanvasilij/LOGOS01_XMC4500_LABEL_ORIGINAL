@@ -10,6 +10,11 @@
 #include "user_app_process.h"
 
 /******************************************************************************
+ *	defs 
+******************************************************************************/
+#define  TRACE_LIST_LEN 1024
+#define  TRACE_BUFER_SIZE 1024
+/******************************************************************************
  *	prototypes 
 ******************************************************************************/
 
@@ -21,6 +26,8 @@ static void send_total_crc (char * cmd, char * response, uint32_t *response_len)
 static void send_total_len (char * cmd, char * response, uint32_t *response_len);
 static void run_user_app (char * cmd, char * response, uint32_t *response_len);
 static void show_user_app_hex (char * cmd, char * response, uint32_t *response_len);
+static void register_debug_var (char * cmd, char * response, uint32_t *response_len);
+static void get_debug_data (char * cmd, char * response, uint32_t *response_len);
 
 /******************************************************************************
  *	vars 
@@ -45,7 +52,9 @@ static Cli_command commands[NUMBER_OF_CLI_COMMANDS] =
 	{"SendTotalCRC", 		11, 	send_total_crc},
 	{"SendTotalLen", 		12, 	send_total_len},
 	{"RunUserApp", 			10, 	run_user_app},
-	{"Hex", 				3, 		show_user_app_hex}
+	{"Hex", 				3, 		show_user_app_hex},
+	{"RegDbgVar", 			9, 		register_debug_var},
+	{"GetDbg", 				6, 		get_debug_data}
 };
 
 /******************************************************************************
@@ -251,6 +260,62 @@ static void show_user_app_hex (char * cmd, char * response, uint32_t *response_l
 		serial_write(&ln, 1);
 	}
 	*response_len = sprintf(response, "Done\r\n");
+}
+
+static void register_debug_var (char * cmd, char * response, uint32_t *response_len)
+{
+    plc_app_abi_t * user_app = USER_APP_POINTER;
+
+    unsigned long size;
+
+    char buffer[TRACE_BUFER_SIZE];
+    char force_buffer[24] = "";
+    int ch_count = 0;
+    void *get_data_buf;
+    int force_flag;
+    char trace_list[TRACE_LIST_LEN] = "NONE";
+    u32 idx;
+
+	while (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 100) != false)
+	{
+		return;
+	}
+
+	user_app->dbg_vars_reset();
+	while(ch_count <= inlen - 1)
+	{
+		memcpy(&idx, trace_list + ch_count, 4);
+		/* обращаяюсь к той части сообщения, где лежит флаг с размером изменяемой перменной*/
+		force_flag = int(*(trace_list + ch_count + 4));
+		if (force_flag  != 0)
+		{
+			/* обращаяюсь к той части сообщения, где лежат данные с новыи значение для перемнной */
+			memcpy(&force_buffer, trace_list + ch_count + 5, force_flag);
+			user_app->dbg_var_register(idx, (void *)force_buffer);
+			/* добаляю смещение исходя из того, сколько занимает измененное значения, помиомо основного смещения
+			   +5 (см. коммент ниже) */
+			ch_count = ch_count + force_flag;
+		}
+		else
+			user_app->dbg_var_register(idx, (void *)force_buffer);
+		/*  добавляю смещение для получения данных по следующей переменной, прибавление +5 идет потому что
+		 * данные для регистрации лежат в формате 4 байта с номером и 1 байт с флагом */
+		ch_count = ch_count + 5;
+	}
+	*response_len = sprintf(response, "Done\r\n");
+}
+
+static void get_debug_data (char * cmd, char * response, uint32_t *response_len)
+{
+	if (GetDebugData((unsigned long *)(buffer), &size, &get_data_buf) == 0)
+	{
+		/* прибавляю + 4, т.к. в первые байты кладется значение unsigned long, длинна которого равна 4,
+		 * это деляется исходя из Beremiz-ского правила формирования сообщения с дебажнами данными*/
+		memcpy(buffer + 4, get_data_buf, size);
+		FreeRTOS_send(socket, buffer, size + 4, 0);
+		FreeDebugData();
+		suspendDebug(0);
+	}
 }
 
 /**
