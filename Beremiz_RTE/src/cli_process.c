@@ -268,7 +268,6 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 
     unsigned long size;
 
-    char buffer[TRACE_BUFER_SIZE];
     char force_buffer[24] = "";
     int ch_count = 0;
     void *get_data_buf;
@@ -276,31 +275,55 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
     char trace_list[TRACE_LIST_LEN] = "NONE";
     u32 idx;
 
-	while (get_ch_from_rx_queue_by_timeout(&segment_buffer[i], 100) != false)
+	u32 inlen;
+	if (sscanf(cmd, "RegDbgVar %u\r\n", &inlen) != 1)
 	{
+		*response_len = sprintf(response, "Wrong format\r\n");
 		return;
 	}
 
-	user_app->dbg_vars_reset();
-	while(ch_count <= inlen - 1)
+	for (uint32_t i=0; i<inlen; i++)
 	{
-		memcpy(&idx, trace_list + ch_count, 4);
-		/* обращаяюсь к той части сообщения, где лежит флаг с размером изменяемой перменной*/
-		force_flag = int(*(trace_list + ch_count + 4));
-		if (force_flag  != 0)
+		while (get_ch_from_rx_queue_by_timeout(&trace_list[i], 100) != false)
 		{
-			/* обращаяюсь к той части сообщения, где лежат данные с новыи значение для перемнной */
-			memcpy(&force_buffer, trace_list + ch_count + 5, force_flag);
-			user_app->dbg_var_register(idx, (void *)force_buffer);
-			/* добаляю смещение исходя из того, сколько занимает измененное значения, помиомо основного смещения
-			   +5 (см. коммент ниже) */
-			ch_count = ch_count + force_flag;
+			*response_len = sprintf(response, "Wrong format\r\n");
+			return;
 		}
-		else
-			user_app->dbg_var_register(idx, (void *)force_buffer);
-		/*  добавляю смещение для получения данных по следующей переменной, прибавление +5 идет потому что
-		 * данные для регистрации лежат в формате 4 байта с номером и 1 байт с флагом */
-		ch_count = ch_count + 5;
+	}
+
+	if (inlen < 5)
+	{
+		*response_len = sprintf(response, "Wrong format\r\n");
+		return;
+	}
+
+	if (user_app->dbg_suspend(0) == 0) 
+	{
+		user_app->dbg_vars_reset();
+
+		ch_count = 0;
+		while(ch_count <= inlen - 1)
+		{
+			memcpy(&idx, trace_list + ch_count, 4);
+			/* обращаяюсь к той части сообщения, где лежит флаг с размером изменяемой перменной*/
+			force_flag = int(*(trace_list + ch_count + 4));
+			if (force_flag  != 0)
+			{
+				/* обращаяюсь к той части сообщения, где лежат данные с новыи значение для перемнной */
+				memcpy(&force_buffer, trace_list + ch_count + 5, force_flag);
+				user_app->dbg_var_register(idx, (void *)force_buffer);
+				/* добаляю смещение исходя из того, сколько занимает измененное значения, помиомо основного смещения
+				   +5 (см. коммент ниже) */
+				ch_count = ch_count + force_flag;
+			}
+			else
+				user_app->dbg_var_register(idx, (void *)force_buffer);
+			/*  добавляю смещение для получения данных по следующей переменной, прибавление +5 идет потому что
+			 * данные для регистрации лежат в формате 4 байта с номером и 1 байт с флагом */
+			ch_count = ch_count + 5;
+		}
+		user_app->dbg_resume();
+
 	}
 	*response_len = sprintf(response, "Done\r\n");
 }
