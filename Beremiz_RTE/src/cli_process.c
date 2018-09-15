@@ -296,8 +296,8 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 		*response_len = sprintf(response, "Wrong format\r\n");
 		return;
 	}
-
-	if (user_app->dbg_suspend(0) == 0) 
+	user_app->dbg_suspend(0);
+	if (1) 
 	{
 		user_app->dbg_vars_reset();
 
@@ -306,7 +306,7 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 		{
 			memcpy(&idx, trace_list + ch_count, 4);
 			/* обращаяюсь к той части сообщения, где лежит флаг с размером изменяемой перменной*/
-			force_flag = int(*(trace_list + ch_count + 4));
+			force_flag = (int)(*(trace_list + ch_count + 4));
 			if (force_flag  != 0)
 			{
 				/* обращаяюсь к той части сообщения, где лежат данные с новыи значение для перемнной */
@@ -342,7 +342,6 @@ static void get_debug_data (char * cmd, char * buffer, uint32_t *response_len)
 		 * это деляется исходя из Beremiz-ского правила формирования сообщения с дебажнами данными*/
 		memcpy(buffer + 4, get_data_buf, size);
 
-		FreeRTOS_send(socket, buffer, size + 4, 0);
 		*response_len = size + 4;
 
 		user_app->dbg_data_free();
