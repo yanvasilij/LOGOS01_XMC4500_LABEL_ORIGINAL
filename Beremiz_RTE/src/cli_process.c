@@ -328,17 +328,32 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 	*response_len = sprintf(response, "Done\r\n");
 }
 
-static void get_debug_data (char * cmd, char * response, uint32_t *response_len)
+static void get_debug_data (char * cmd, char * buffer, uint32_t *response_len)
 {
-	if (GetDebugData((unsigned long *)(buffer), &size, &get_data_buf) == 0)
+    plc_app_abi_t * user_app = USER_APP_POINTER;
+    unsigned long size;
+    void *get_data_buf;
+
+	user_app->dbg_resume();
+
+	if (user_app->dbg_data_get((unsigned long *)(buffer), &size, &get_data_buf) == 0)
 	{
 		/* прибавляю + 4, т.к. в первые байты кладется значение unsigned long, длинна которого равна 4,
 		 * это деляется исходя из Beremiz-ского правила формирования сообщения с дебажнами данными*/
 		memcpy(buffer + 4, get_data_buf, size);
+
 		FreeRTOS_send(socket, buffer, size + 4, 0);
-		FreeDebugData();
-		suspendDebug(0);
+		*response_len = size + 4;
+
+		user_app->dbg_data_free();
+		user_app->dbg_suspend(0);
+
+		return;
 	}
+	*response_len = 0;
+	user_app->dbg_suspend(0);
+	return;
+
 }
 
 /**
