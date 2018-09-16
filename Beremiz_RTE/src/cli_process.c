@@ -296,7 +296,7 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 		*response_len = sprintf(response, "Wrong format\r\n");
 		return;
 	}
-	user_app->dbg_resume();
+	user_app->dbg_suspend(0);
 	if (1) 
 	{
 		user_app->dbg_vars_reset();
@@ -322,7 +322,7 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 			 * данные для регистрации лежат в формате 4 байта с номером и 1 байт с флагом */
 			ch_count = ch_count + 5;
 		}
-		user_app->dbg_suspend(0);
+		user_app->dbg_resume();
 
 	}
 	*response_len = sprintf(response, "Done\r\n");
