@@ -275,7 +275,7 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
     char trace_list[TRACE_LIST_LEN] = "NONE";
     u32 idx;
 
-	u32 inlen;
+	uint32_t inlen;
 	if (sscanf(cmd, "RegDbgVar %u\r\n", &inlen) != 1)
 	{
 		*response_len = sprintf(response, "Wrong format\r\n");
@@ -284,7 +284,7 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 
 	for (uint32_t i=0; i<inlen; i++)
 	{
-		while (get_ch_from_rx_queue_by_timeout(&trace_list[i], 100) != false)
+		if (get_ch_from_rx_queue_by_timeout(&trace_list[i], 1000) == false)
 		{
 			*response_len = sprintf(response, "Wrong format\r\n");
 			return;
@@ -311,13 +311,13 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 			{
 				/* обращаяюсь к той части сообщения, где лежат данные с новыи значение для перемнной */
 				memcpy(&force_buffer, trace_list + ch_count + 5, force_flag);
-				user_app->dbg_var_register(idx, (void *)force_buffer);
+				user_app->dbg_var_register(idx, (void *)&force_buffer);
 				/* добаляю смещение исходя из того, сколько занимает измененное значения, помиомо основного смещения
 				   +5 (см. коммент ниже) */
 				ch_count = ch_count + force_flag;
 			}
 			else
-				user_app->dbg_var_register(idx, (void *)force_buffer);
+				user_app->dbg_var_register(idx, (void *)&force_buffer);
 			/*  добавляю смещение для получения данных по следующей переменной, прибавление +5 идет потому что
 			 * данные для регистрации лежат в формате 4 байта с номером и 1 байт с флагом */
 			ch_count = ch_count + 5;
