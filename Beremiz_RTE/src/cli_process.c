@@ -350,7 +350,6 @@ static void get_debug_data (char * cmd, char * buffer, uint32_t *response_len)
 		return;
 	}
 	*response_len = 0;
-	user_app->dbg_suspend(0);
 	return;
 
 }
