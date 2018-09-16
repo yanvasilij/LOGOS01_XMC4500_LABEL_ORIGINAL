@@ -284,7 +284,7 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 
 	for (uint32_t i=0; i<inlen; i++)
 	{
-		while (get_ch_from_rx_queue_by_timeout(&trace_list[i], 100) != false)
+		if (get_ch_from_rx_queue_by_timeout(&trace_list[i], 100) == false)
 		{
 			*response_len = sprintf(response, "Wrong format\r\n");
 			return;
