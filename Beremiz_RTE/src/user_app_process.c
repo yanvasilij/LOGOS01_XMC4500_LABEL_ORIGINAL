@@ -10,8 +10,6 @@
 extern int startPLC(void);
 void runPLC(void);
 extern void on_board_io_init (plc_variables_t * variables, plc_configuration_t * configuration );
-static plc_variables_t vars;
-static plc_configuration_t conf;
 #endif
 
 
@@ -72,7 +70,7 @@ void poll_user_app (plc_variables_t * variables, plc_configuration_t * configura
 #ifdef USE_USER_APP_CAP
 	if (first_call)
 	{
-		on_board_io_init(&vars, &conf);
+		on_board_io_init(variables, configuration);
 		first_call = false;
 		startPLC();
 	}
