@@ -240,7 +240,7 @@ int main(void)
     //ADC002_InitializeQueue(&ADC002_Handle1);
 	//
 	
-
+    //clear_page_for_user_app();
 	//setup configuratoin variales
 	configuration.sectionconf 	= &sectionconf; //Section Configuration
     configuration.analoginmode	= analoginmode; //Analog Input Mode

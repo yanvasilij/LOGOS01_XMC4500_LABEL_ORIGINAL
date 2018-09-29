@@ -305,23 +305,18 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 		while(ch_count <= inlen - 1)
 		{
 			memcpy(&idx, trace_list + ch_count, 4);
-			/* обращаяюсь к той части сообщения, где лежит флаг с размером изменяемой перменной*/
 			force_flag = (int)(*(trace_list + ch_count + 4));
 			if (force_flag  != 0)
 			{
-				/* обращаяюсь к той части сообщения, где лежат данные с новыи значение для перемнной */
 				memcpy(&force_buffer, trace_list + ch_count + 5, force_flag);
 				user_app->dbg_var_register(idx, (void *)force_buffer);
-				/* добаляю смещение исходя из того, сколько занимает измененное значения, помиомо основного смещения
-				   +5 (см. коммент ниже) */
 				ch_count = ch_count + force_flag;
 			}
 			else
 				user_app->dbg_var_register(idx, (void *)force_buffer);
-			/*  добавляю смещение для получения данных по следующей переменной, прибавление +5 идет потому что
-			 * данные для регистрации лежат в формате 4 байта с номером и 1 байт с флагом */
 			ch_count = ch_count + 5;
 		}
+		force_buffer[0] = '0';
 		user_app->dbg_resume();
 
 	}
