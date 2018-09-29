@@ -29,6 +29,14 @@ static void show_user_app_hex (char * cmd, char * response, uint32_t *response_l
 static void register_debug_var (char * cmd, char * response, uint32_t *response_len);
 static void get_debug_data (char * cmd, char * response, uint32_t *response_len);
 
+#ifdef USE_USER_APP_CAP
+extern void resumeDebug(void);
+extern void suspendDebug(int disable);
+extern void FreeDebugData(void);
+extern int GetDebugData(unsigned long *tick, unsigned long *size, void **buffer);
+extern void ResetDebugVariables(void);
+extern void RegisterDebugVariable(int idx, void* force);
+#endif
 /******************************************************************************
  *	vars 
 ******************************************************************************/
@@ -296,6 +304,26 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 		*response_len = sprintf(response, "Wrong format\r\n");
 		return;
 	}
+#ifdef USE_USER_APP_CAP
+	suspendDebug(0);
+	ResetDebugVariables();
+	ch_count = 0;
+	while(ch_count <= inlen - 1)
+	{
+		memcpy(&idx, trace_list + ch_count, 4);
+		force_flag = (int)(*(trace_list + ch_count + 4));
+		if (force_flag  != 0)
+		{
+			memcpy(&force_buffer, trace_list + ch_count + 5, force_flag);
+			RegisterDebugVariable(idx, (void *)force_buffer);
+			ch_count = ch_count + force_flag;
+		}
+		else
+			RegisterDebugVariable(idx, (void *)force_buffer);
+		ch_count = ch_count + 5;
+	}
+	resumeDebug();
+#else
 	user_app->dbg_suspend(0);
 	if (1) 
 	{
@@ -320,6 +348,7 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 		user_app->dbg_resume();
 
 	}
+#endif
 	*response_len = sprintf(response, "Done\r\n");
 }
 
@@ -328,7 +357,21 @@ static void get_debug_data (char * cmd, char * buffer, uint32_t *response_len)
     plc_app_abi_t * user_app = USER_APP_POINTER;
     unsigned long size;
     void *get_data_buf;
+#ifdef USE_USER_APP_CAP
+    resumeDebug();
+	if (GetDebugData((unsigned long *)(buffer), &size, &get_data_buf) == 0)
+	{
+		/* прибавляю + 4, т.к. в первые байты кладется значение unsigned long, длинна которого равна 4,
+		 * это деляется исходя из Beremiz-ского правила формирования сообщения с дебажнами данными*/
+		memcpy(buffer + 4, get_data_buf, size);
 
+		*response_len = size + 4;
+
+		FreeDebugData();
+		suspendDebug(0);
+
+		return;
+#else
 	user_app->dbg_resume();
 
 	if (user_app->dbg_data_get((unsigned long *)(buffer), &size, &get_data_buf) == 0)
@@ -344,6 +387,7 @@ static void get_debug_data (char * cmd, char * buffer, uint32_t *response_len)
 
 		return;
 	}
+#endif
 	*response_len = 0;
 	return;
 

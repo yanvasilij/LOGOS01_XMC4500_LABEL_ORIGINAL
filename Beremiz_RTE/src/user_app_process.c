@@ -6,6 +6,11 @@
 #include "iap_api.h"
 #include "user_app_process.h"
 
+#ifdef USE_USER_APP_CAP
+extern int startPLC(void);
+void runPLC(void);
+#endif
+
 
 static bool first_call = true;
 bool stop_user_app = true;
@@ -61,6 +66,14 @@ void plc_app_cstratup(void)
  */
 void poll_user_app (plc_variables_t * variables, plc_configuration_t * configuration)
 {
+#ifdef USE_USER_APP_CAP
+	if (first_call)
+	{
+		first_call = false;
+		startPLC();
+	}
+	runPLC();
+#else
 	static bool user_app_is_downloaded = false;
     plc_app_abi_t * user_app = USER_APP_POINTER;
 
@@ -81,6 +94,7 @@ void poll_user_app (plc_variables_t * variables, plc_configuration_t * configura
 		/* FIXME: user application polls as faster as possible. It is neccesary to poll it using timer */
 		user_app->run();
 	}
+#endif
 }
 
 /*
