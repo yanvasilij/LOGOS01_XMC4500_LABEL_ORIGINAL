@@ -371,6 +371,7 @@ static void get_debug_data (char * cmd, char * buffer, uint32_t *response_len)
 		suspendDebug(0);
 
 		return;
+	}
 #else
 	user_app->dbg_resume();
 
