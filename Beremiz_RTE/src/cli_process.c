@@ -337,11 +337,11 @@ static void register_debug_var (char * cmd, char * response, uint32_t *response_
 			if (force_flag  != 0)
 			{
 				memcpy(&force_buffer, trace_list + ch_count + 5, force_flag);
-				user_app->dbg_var_register(idx, (void *)force_buffer);
+				user_app->dbg_var_register(idx, (void *)*force_buffer);
 				ch_count = ch_count + force_flag;
 			}
 			else
-				user_app->dbg_var_register(idx, (void *)force_buffer);
+				user_app->dbg_var_register(idx, (void *)*force_buffer);
 			ch_count = ch_count + 5;
 		}
 		force_buffer[0] = '0';
