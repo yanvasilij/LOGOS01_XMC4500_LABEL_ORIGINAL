@@ -20,6 +20,6 @@ if __name__ == "__main__":
 	n_bytes = ser.in_waiting
 	response = ser.read(n_bytes)
 	
-	test_cli_commad(ser, "RegDbgVar 5\r\n\x10\0\0\0\0", 1)
+	test_cli_commad(ser, "RegDbgVar 5\r\n\x1D\0\0\0\0", 1)
 
 	ser.close()

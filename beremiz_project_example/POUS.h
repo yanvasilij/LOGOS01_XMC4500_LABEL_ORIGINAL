@@ -35,7 +35,7 @@ typedef struct {
   // PROGRAM Interface - IN, OUT, IN_OUT variables
 
   // PROGRAM private variables - TEMP, private and located variables
-  __DECLARE_LOCATED(REAL,LOCALVAR0)
+  __DECLARE_VAR(INT,LOCALVAR0)
 
 } PROGRAM0;
 

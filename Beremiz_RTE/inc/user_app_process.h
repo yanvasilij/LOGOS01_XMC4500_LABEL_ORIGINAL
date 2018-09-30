@@ -14,7 +14,7 @@ extern void reset_user_app (void);
 extern void poll_user_app (plc_variables_t * variables, plc_configuration_t * configuration);
 extern bool stop_user_app;
 
-//#define USE_USER_APP_CAP 1
+#define USE_USER_APP_CAP 1
 
 #endif
 

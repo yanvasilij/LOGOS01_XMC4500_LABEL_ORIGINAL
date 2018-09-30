@@ -179,6 +179,7 @@ static unsigned long __debug_tick;
 
 int TryEnterDebugSection(void)
 {
+	return 1;
     if(!debug_locked && __DEBUG){
         debug_locked = 1;
 		return 1;
@@ -214,7 +215,7 @@ void resumeDebug(void)
 
 int WaitDebugData(unsigned long *tick)
 {
-    if(_DebugDataAvailable && !debug_locked){
+    if( !debug_locked){
         /* returns 0 on success */
         *tick = __debug_tick;
         _DebugDataAvailable = 0;

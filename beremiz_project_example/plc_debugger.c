@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#define BUFFER_SIZE 62
+#define BUFFER_SIZE 60
 
 /* Atomically accessed variable for buffer state */
 #define BUFFER_FREE 0
@@ -103,7 +103,7 @@ static dbgvardsc_t dbgvardsc[] = {
 {&(CONFIG__PWMSETTINGCH5), INT_ENUM},
 {&(CONFIG__PWMSETTINGCH6), INT_ENUM},
 {&(CONFIG__PWMSETTINGCH7), INT_ENUM},
-{&(RESOURCE1__INSTANCE0.LOCALVAR0), REAL_O_ENUM}
+{&(RESOURCE1__INSTANCE0.LOCALVAR0), INT_ENUM}
 };
 
 typedef void(*__for_each_variable_do_fp)(dbgvardsc_t*);
@@ -325,7 +325,7 @@ void __publish_debug(void)
 void RegisterDebugVariable(int idx, void* force)
 {
     if(idx  < sizeof(dbgvardsc)/sizeof(dbgvardsc_t)){
-        unsigned char flags = force ?
+        unsigned char flags = *(unsigned char*)force ?
             __IEC_DEBUG_FLAG | __IEC_FORCE_FLAG :
             __IEC_DEBUG_FLAG;
         dbgvardsc_t *dsc = &dbgvardsc[idx];

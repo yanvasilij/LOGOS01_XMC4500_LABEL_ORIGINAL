@@ -59,25 +59,20 @@ __end:
 
 
 void PROGRAM0_init__(PROGRAM0 *data__, BOOL retain) {
-  __INIT_LOCATED(REAL,__QD0_0_0,data__->LOCALVAR0,retain)
-  __INIT_LOCATED_VALUE(data__->LOCALVAR0,0)
+  __INIT_VAR(data__->LOCALVAR0,0,retain)
 }
 
 // Code part
 void PROGRAM0_body__(PROGRAM0 *data__) {
   // Initialise TEMP variables
 
-  __SET_LOCATED(data__->,LOCALVAR0,,1.0);
+  __SET_VAR(data__->,LOCALVAR0,,777);
 
   goto __end;
 
 __end:
   return;
 } // PROGRAM0_body__() 
-
-
-
-
 
 
 //pou end --------------------------------------------------
